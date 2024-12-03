@@ -1,0 +1,78 @@
+.text_center {
+	text-align: center;
+}
+
+.btn_issue {
+	margin-right: 30px;
+}
+
+.room_table {
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+td {
+	padding: 0;
+}
+.check {
+	width: 25px;
+	padding-left: 0px;
+}
+.check [type="checkbox"] + span:not(.lever) {
+	padding-left: 0px;
+}
+.reissue {
+width: 120px;
+}
+.room {
+	width: 120px;
+}
+.from_dt {
+	width: 165px;
+	padding-left: 15px;
+}
+.to_dt {
+	width: 165px;
+	padding-left: 40px;
+}
+.status {
+	width: 180px;
+}
+.issue_dt {
+	width: 200px;
+}
+
+.mini_selectbox .select-wrapper {
+    display: inline-block;
+    clear: both;
+    float: none;
+    width: 100px;
+}
+.bg-dinner {
+    /* background-color: #F5EEF8; */
+    /* border: 3px solid #000; */
+}
+.bg-breakfast {
+    /*background-color: #FEF9E7;*/
+}
+.bg-dinner .tbl-title {
+    color: #2E86C1;
+    /* background-color: #F5EEF8; */
+    /* border: 3px solid #000; */
+}
+.bg-breakfast .tbl-title {
+    color: deeppink;
+}
+
+.bg-white {
+    background-color: #FFF;
+}
+.tbl-title {
+    font-weight: bold;
+    padding-left: 10px;
+}
+.pa20 {
+    padding: 20px;
+}
+.pa10 {
+    padding: 20px;
+}

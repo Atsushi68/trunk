@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;souvenir_cart.js&apos; to &apos;omiyage&apos;&#x0D;&#x0A;- 元のプロジェクト: &apos;TAKETORI&apos;&#x0D;&#x0A;- 宛先要素: &apos;omiyage&apos;&#x0D;&#x0A;- オリジナル要素: &apos;souvenir_cart.js&apos;" description="ファイルをコピー" element1="src/main/resources/static/js/omiyage/souvenir_cart.js" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1612107095131" target="/TAKETORI/src/main/resources/static/js/omiyage" units="0" version="1.0"/>
+</session>

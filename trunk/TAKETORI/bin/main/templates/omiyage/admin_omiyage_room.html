@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+
+<!--/* 共通ヘッダ */-->
+<meta th:replace="common/meta_header">
+
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<link rel="stylesheet" th:href="@{/css/omiyage/admin_omiyage_room.css}">
+<script th:src="@{/js/omiyage/admin_omiyage_room.js}"></script>
+
+<title>お土産注文 | 竹取亭フロント</title>
+</head>
+
+<body>
+
+	<!--/* 管理者サイドメニュー */-->
+	<div id="side_menu" th:replace="common/admin_side_menu"></div>
+
+	<main>
+	<div class="container">
+
+		<!--/* ナビゲーションバー */-->
+		<div class="row">
+			<nav>
+				<div class="nav-wrapper">
+					<div class="col s12">
+						<a th:href="@{/admin}" class="breadcrumb">TOP</a>
+						<a th:href="@{/admin/omiyage/}" class="breadcrumb">お土産注文</a>
+						<a href="#!" class="breadcrumb" th:text="|${form.roomNo}号室|">201号室</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+
+		<!--/* エラーメッセージエリア */-->
+		<div id="error_field" th:replace="common/admin_message_field"></div>
+
+		<form id="processedForm" th:action="@{/admin/omiyage/lost/order/processed}" method="post">
+			<div id="lostOrderTable"></div>
+			<input type="hidden" id="lost_order_id" name="lost_order_id" value="">
+			<input type="hidden" id="lost_room_no" name="lost_room_no" value="">
+		</form>
+
+		<div class="row border_bottom_thin">
+			<p>現在のお土産の注文状況です。</p>
+			<form id="cancelForm" th:action="@{/admin/omiyage/cancel}" method="post">
+				<div class="col s12" id="omiyageTable"></div>
+				<input type="hidden" id="order_id" name="order_id" value="">
+				<input type="hidden" id="room_no" name="room_no" value="">
+			</form>
+		</div>
+
+		<div class="row border_bottom_thin">
+			<form th:object="${form}" th:action="@{/admin/omiyage/regist}" method="post">
+				<div class="row">
+					<p>フロントからお土産の注文を追加できます。</p>
+					<div class="input-field col">
+						<input type="text" class="autocomplete" autocomplete="off" th:field="${form.omiyageName}">
+						<label for="omiyage">お土産をお土産名・カテゴリーで検索</label>
+					</div>
+					<div class="input-field col">
+						<input type="text" id="num" th:field="${form.num}">
+						<label for="num">個数</label>
+					</div>
+					<button class="btn waves-effect waves-light receipt" type="submit">
+						<i class="material-icons left">receipt</i> 登録
+					</button>
+				</div>
+				<input type="hidden" th:field="${form.roomNo}">
+			</form>
+		</div>
+	</div>
+	</main>
+</body>
+</html>

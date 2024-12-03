@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+  <!-- Spring Bootデフォルト設定読込 -->
+  <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+  <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+  <!-- 開発環境では、DEBUG レベル以上を console に出力する -->
+  <springProfile name="dev">
+    <include resource="logback-file-spring.xml"/> <!-- ファイルの世代管理検証用に開発環境でもいれてみる -->
+    <root level="DEBUG">
+      <appender-ref ref="CONSOLE"/>
+      <appender-ref ref="ASYNC_APPLICATION_LOG_FILE"/>
+    </root>
+  </springProfile>
+  <!-- テスト・本番環境では、INFO レベル以上を ファイル に出力する -->
+  <springProfile name="release">
+    <include resource="logback-file-spring.xml"/>
+    <root level="INFO">
+      <appender-ref ref="ASYNC_APPLICATION_LOG_FILE"/>
+    </root>
+  </springProfile>
+</configuration>

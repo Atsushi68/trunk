@@ -1,0 +1,1 @@
+alter table d_reserve_bath add column token text;

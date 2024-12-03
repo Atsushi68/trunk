@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no,address=no,email=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" href="/css/style.css">
+<script type="text/javascript" src="/js/style.js"></script>
+<link rel="shortcut icon" href="/img/favicon.ico">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" th:href="@{/css/error.css}">
+<title>error</title>
+</head>
+<body>
+
+	<header>
+		<div class="head_box">
+		    <div class="logo_item">
+		    <a th:href="'/' + ${#locale} + '/index.html'"><img src="/img/logo.svg" alt=""></a>
+		    </div><!--logo_item-->
+		</div><!--head_box-->
+	</header>
+
+	<main>
+		<section id="error">
+			<div class="lscontainer">
+				<div class="error-message">
+					<span th:if="${errorMsg} == null" th:text="#{error.system}">システムエラーです。フロントにご連絡ください。</span>
+					<span th:unless="${errorMsg} == ''" th:text="${errorMsg}">エラーの内容があればここに表示</span>
+				</div>
+			</div>
+		</section>
+	</main>
+</body>
+</html>

@@ -1,0 +1,7 @@
+tomcatDir=D:/tools/eclipse/Java/20202/pleiades/tomcat/8
+eclipse.preferences.version=1
+fixTomcatHomeBug=fixed
+contextsDir=D:/tools/eclipse/Java/20202/pleiades/tomcat/8/conf/Catalina/localhost
+tomcatVersion=tomcatV8
+computeSourcePath=true
+tomcatConfigFile=D:/tools/eclipse/Java/20202/pleiades/tomcat/8/conf/server.xml

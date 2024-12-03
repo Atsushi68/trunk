@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no,address=no,email=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css">
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style-ko.css">
+<script type="text/javascript" src="/js/style.js"></script>
+<link rel="shortcut icon" href="/img/favicon.ico">
+<title>카트를 보다</title>
+
+<body>
+<header>
+<?php include('/var/www/html/ko/header-ko.html'); ?>
+</header>
+<section>
+<div class="hero_under">
+<img class="tb" src="/img/top_img.jpg" alt="">
+<img class="sp" src="/img/top_img-sp.jpg" alt="">
+    <div class="txt">
+        <h1>카트를 보다</h1>
+    </div>
+</div><!--hero_under-->
+</section>
+
+<ol class="breadcrumbs_comm">
+    <li class="link_txt"><a href="/ko/index.html">톱</a></li>
+    <li class="link_txt"><a href="/ko/sv.html">특산구메</a></li>
+    <li>카트를 보다</li>
+</ol><!--breadcrumbs_comm-->
+
+<section>
+<div class="sv_cart_wrap">
+    <div class="txt_wrap">
+        <p>바구니에 담은 상품은 아직 확정되지 않았습니다.<br>아래 시간까지 <상품 구매하기> 버튼을 눌러 주세요.</p>
+        <div class="time_item">
+        <p>구매 가능기한</p><p>●●●●●●</p>
+        </div>
+        <p>상품 취소 시 <삭제하기>에서 취소해주세요.<br>
+		또한, 구매가 확정된 상품은 결제 시 프론트에서 함께 결제 부탁드립니다.</p>
+        <div class="link tb">
+            <a href="#cart_link">카트 상품</a>
+            <a href="#conf_link">정한 여약상품</a>
+        </div>
+        <div class="sp">
+        <div class="link">
+            <a href="#cart_link_2">카트 상품</a>
+            <a href="#conf_link_2">정한 여약상품</a>
+        </div>
+        </div>
+    </div><!--txt_wrap-->
+	<div id="cart_link" class="purchase_plan tb">
+        <div class="title_comm">
+        <h2>카트 상품</h2>
+        </div>
+        <div class="item">
+            <div class="delate">
+            <a href="#" class="delate_button"><img src="/img/dust-icom.svg">삭제</a>
+            </div>
+            <div class="pic">
+            <img src="/img-sv/sv_img1.jpg">
+            </div>
+            <div class="title">
+            <p>특산구메특산구메특산구메특산구메특산구메</p>
+            </div>
+            <div class="quantity">
+            <p><span>1</span>개</p>
+            </div>
+            <div class="price">
+            <p>&yen;&nbsp;<span>000,000</span></p>
+            </div>
+        </div><!--item-->
+        <div class="item">
+            <div class="delate">
+            <a href="#" class="delate_button"><img src="/img/dust-icom.svg">삭제</a>
+            </div>
+            <div class="pic">
+            <img src="/img-sv/sv_img2.jpg">
+            </div>
+            <div class="title">
+            <p>특산구메특산구메특산구메특산구메특산구메</p>
+            </div>
+            <div class="quantity">
+            <p><span>1</span>개</p>
+            </div>
+            <div class="price">
+            <p>&yen;&nbsp;<span>000,000000,000000,000000,000000,000000,000000,000000,000000,000000,000000,000000,000000,000000,000000,000000,000</span></p>
+            </div>
+        </div><!--item-->
+        <div class="total_price">
+        <p>지부 총금액(세금포함)</p><p>&yen;&nbsp;<span>000,000</span></p>
+        </div><!--total_price-->
+        <div class="putin">
+            <a href="#">상품을 구매하다</a>
+        </div><!--putin-->
+
+	</div><!--purchase_plan tb-->
+
+	<div id="cart_link_2" class="purchase_plan sp">
+        <div class="title_comm">
+        <h2>카트 상품</h2>
+        </div>
+        <div class="item">
+            <div class="delate">
+            <a href="#" class="delate_button"><img src="/img/dust-icom.svg">삭제</a>
+            </div>
+            <div class="box_sp">
+                <div class="pic">
+                    <img src="/img-sv/sv_img1.jpg">
+                </div>
+                <div class="txt_item_sp">
+                    <div class="title">
+                    <p>특산구메특산구메특산구메특산구메특산구메・・・</p>
+                    </div>
+                    <div class="under_txt">
+                        <div class="quantity">
+                        <p><span>1</span>개</p>
+                        </div>
+                        <div class="price">
+                        <p>&yen;&nbsp;<span>000,000</span></p>
+                        </div>
+                    </div>
+                </div><!--txt_item_sp-->
+            </div><!--box_sp-->
+        </div><!--item-->
+        <div class="total_price">
+        <p>지부 총금액(세금포함)</p><p>&yen;&nbsp;<span>000,000</span></p>
+        </div><!--total_price-->
+        <div class="putin">
+            <a href="#">상품을 구매하다</a>
+        </div><!--putin-->
+	</div><!--purchase_plan sp-->
+
+	<div id="plan_link" class="purchase_plan_blank"><!--blank-->
+        <div class="title_comm">
+        <h2>카트 상품</h2>
+        </div>
+        <div class="item">
+        <p>지금 구매하실 상품없음</p>
+        </div>
+	</div><!--purchase_plan-->
+    
+    <div id="conf_link" class="purchase_confirmed tb">
+        <div class="title_comm">
+	    <h2>정한 여약상품</h2>
+		</div>
+        <div class="item">
+            <div class="pic">
+            <img src="/img-sv/sv_img1.jpg">
+            </div>
+            <div class="title">
+            <p>특산구메특산구메특산구메특산구메특산구메</p>
+            </div>
+            <div class="quantity">
+            <p><span>1</span>개</p>
+            </div>
+            <div class="price">
+            <p>&yen;&nbsp;<span>000,000</span></p>
+            </div>
+        </div><!--item-->
+        <div class="item">
+            <div class="pic">
+            <img src="/img-sv/sv_img2.jpg">
+            </div>
+            <div class="title">
+            <p>특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메특산구메</p>
+            </div>
+            <div class="quantity">
+            <p><span>1</span>개</p>
+            </div>
+            <div class="price">
+            <p>&yen;&nbsp;<span>000,000</span></p>
+            </div>
+        </div><!--item-->
+        <div class="total_price">
+        <p>총금액<br>(세금포함)</p><p>&yen;&nbsp;<span>000,000</span></p>
+        </div><!--total_price-->
+    </div><!--purchase_confirmed tb-->
+
+    <div id="conf_link_2" class="purchase_confirmed sp">
+        <div class="title_comm">
+	    <h2>정한 여약상품</h2>
+		</div>
+        <div class="item">
+            <div class="box_sp">
+            <div class="pic">
+                <img src="/img-sv/sv_img1.jpg">
+            </div>
+            <div class="txt_item_sp">
+                <div class="title">
+                <p>商品タイトル商品タイトル商品タイト・・・</p>
+                </div>
+                <div class="under_txt">
+                    <div class="quantity">
+                    <p><span>1</span>개</p>
+                    </div>
+                    <div class="price">
+                    <p>&yen;&nbsp;<span>000,000</span></p>
+                    </div>
+                </div><!--under_txt-->
+            </div><!--txt_item_sp-->
+            </div><!--box_sp-->
+        </div><!--item-->
+        <div class="total_price">
+        <p>총금액(세금포함)</p><p>&yen;&nbsp;<span>000,000000,000000,000000,000000,000000,000</span></p>
+        </div><!--total_price-->
+    </div><!--purchase_confirmed sp-->
+
+    <div id="conf_link" class="purchase_confirmed_blank"><!--blank-->
+        <div class="title_comm">
+	    <h2>정한 여약상품</h2>
+		</div>
+        <div class="item">
+        <p>지금 구매확인한 상품없음</p>
+        </div>
+    </div><!--purchase_confirmed-->
+
+</div><!--sv_cart_wrap-->
+</section>
+
+<div id="modal_wrap">
+    <div id="modal_item">
+    	<div class="txt">
+            <p>商品タイトル</p>
+        </div>
+        <div class="link">
+            <a href="#" class="arrow">삭제</a>
+        </div>
+	</div>
+</div><!--modal_wrap-->
+
+<footer>
+</footer>
+
+<!-- pagetop -->
+<div id="scroll">
+    <a href="#" class="scroll"><img src="/img/page_top.svg"><span class="tb">위로</span></a>
+</div>
+
+<script>
+$(function() {
+	$('.delate_button').click(function(){
+	  $('#modal_wrap, #modal_item').fadeTo(200,1);
+	});
+	$('#modal_wrap').click(function(){
+	  $('#modal_wrap, #modal_item').fadeTo(200,0).hide();
+	});
+});
+</script>
+
+
+</body>
+</html>

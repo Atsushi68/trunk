@@ -1,0 +1,3204 @@
+@charset "utf-8";
+
+/*reset-----------*/
+
+html {font-size: 62.5%;}
+/*size10px*/
+
+* {
+margin: 0;
+padding: 0;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+/*body { font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;}*/
+/*body {font-family:"Sawarabi Mincho", "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;}*/
+
+body a { font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;}
+
+@font-face {
+  font-family: 'myfont';
+  src: url('../font/10249.woff') format('woff');
+  font-display: swap;
+}
+
+@media all and (-ms-high-contrast:none) {
+body { overflow-x: hidden;}
+}
+
+a {text-decoration: none;}
+a:link {color: #000;}
+a:visited{ color: #000;}
+ul,ol {list-style: none;}
+h1,h2,h3,h4,h5,h6 { font-weight: normal; font-size:1rem; line-height: 2.5rem;}
+p { font-size:1rem; line-height: 2.5rem;}
+img {vertical-align: middle;}
+
+/*-----------reset*/
+
+/*
+共通スタイル common_
+-------------------------*/
+@media (min-width: 600px) {
+.tb {display: inherit;}
+.sp {display: none;}
+.tbsp {display: inherit;}
+
+body { font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+		font-weight: bold;}
+
+/* ページトップ */
+#scroll {
+    position: fixed;
+    right: 0px;
+	z-index: 100;
+}
+#scroll a {
+	color: #FFF;
+	font-size: 1.1rem;
+}
+.scroll {
+	background: rgba(0,0,0,.8);
+	border-radius: 0%;
+    color: #fff;
+    width: 70px;
+	height: 70px;
+    padding: 13px 0;
+    text-align: center;
+    display: block;
+}
+.scroll img {
+	display: block;
+	margin: 0 auto 5px;
+	height: 25px;
+	width: 25px;
+}
+footer {
+	height: 100px;
+	width: 100%;
+}
+
+}
+
+@media (max-width:599px){
+.tb {display: none;}
+.sp {display: inherit;}
+.tbsp {display: inherit;}
+
+body {font-family:"Sawarabi Mincho", "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;}
+
+#scroll {
+    position: fixed;
+    right: 0;
+	z-index: 100;
+}
+#scroll a {
+	color: #FFF;
+	font-size: 1rem;
+}
+.scroll {
+	background: rgba(0,0,0,.8);
+	border-radius: 0%;
+    color: #fff;
+    width: 50px;
+	height: 50px;
+    padding: 13px 0;
+    text-align: center;
+    display: block;
+}
+.scroll img {
+	display: block;
+	margin: 0 auto 5px;
+	height: 25px;
+	width: 25px;
+}
+footer {
+	height: 80px;
+	width: 100%;
+}
+
+
+}
+
+/*----------------------
+▼ロゴ_ナビゲーション▼
+----------------------*/
+
+@media (min-width: 600px) {
+.head_box {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+	margin: 10px auto;
+	width: 95%;
+}
+.head_box .logo_item {
+	width: 20%;
+}
+.head_box .logo_item img {
+	height: auto;
+	max-width: 200px;
+	width: 100%;
+}
+.language {
+	position: absolute;
+	right: 80px;
+	top: 15px;
+	z-index: 1000;
+}
+.language > li {
+	border: solid thin rgba(51,51,51,1);
+	font-size: 1.5rem;
+	font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+	text-align: center;
+	list-style: none;
+	padding: 8px 0;
+	width: 150px;
+}
+.language span {
+	content:"";
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	border-bottom: 2px solid #000;
+	border-right: 2px solid #000;
+	transform: rotate(45deg);
+	margin: 0 0 2px 10px;
+}
+.language .drop ul,
+.language .drop ul li,
+.language .drop ul li a {
+	background: rgba(255,255,255,1);
+	display: block;
+	font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+	line-height: 60px;
+	width: 100%;
+	z-index: 100;
+}
+.language .drop ul li:first-of-type {
+	margin: 10px 0 0;
+}
+/*ナビゲーション*/
+#top_head {
+	width: 100%;
+	z-index: 999;
+}
+#mobile_head {
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+	z-index: 999;
+}
+/* ナビOPEN時 */
+#global_nav {
+	background: rgba(0,0,0,.7);
+	font-size: 1.5rem;
+	height: auto;
+	max-height: 80vh;
+  	overflow-y: auto; /*scroll用*/
+	z-index: 999;
+/* 開いてないとき画面外配置 */
+	position: fixed;
+	right: -1000px;
+	top: 80px;
+	-webkit-transition: .5s ease-in-out;
+	-moz-transition: .5s ease-in-out;
+	transition: .5s ease-in-out;
+	width: 80%;
+	-webkit-overflow-scrolling:touch; /*IOS対策*/
+}
+#global_nav::-webkit-scrollbar {
+    width: 7px;
+}
+#global_nav::-webkit-scrollbar-thumb{
+    background: rgba(153,153,153,1);
+    border-radius: 10px;
+}
+#global_nav::-webkit-scrollbar-track-piece {
+    background: rgba(255,255,255,1);
+}
+#global_nav ul {
+	z-index: 999;
+}
+#global_nav li {
+	height: 60px;
+	line-height: 60px;
+	text-align: left;
+	padding-left: 30px;
+}
+#global_nav a:link,nav a:visited {
+	color: rgba(255,255,255,1);
+}
+/* スライドアニメーション_li要素全体の移動調整 */
+.open #global_nav {
+	-moz-transform: translateX(-700px);
+	-webkit-transform: translateX(-700px);
+	transform: translateX(-700px);
+}
+/* 3本ラインの位置調整 */
+#nav_toggle {
+    position: absolute;
+    right: 0;
+    top: 6px;
+    width: 34px;
+    height: 36px;
+    z-index: 999;
+}
+#nav_toggle span {
+/* 3本ラインデザイン */
+    display: block;
+    position: absolute;
+    left: 0;
+    background: rgba(51,51,51,1);
+	height: 4px;
+    width: 100%;
+	-webkit-transition: .35s ease-in-out;
+    -moz-transition: .35s ease-in-out;
+    transition: .35s ease-in-out;
+}
+#nav_toggle span:nth-child(1) {top: 7px;}
+#nav_toggle span:nth-child(2) {top: 18px;}
+#nav_toggle span:nth-child(3) {top: 29px;}
+
+/* Fixed reset */
+#top_head .fixed {
+	padding-top: 0;
+	background: transparent;
+}
+#nav_toggle {
+	display: block;
+}
+/* #nav-toggle 切り替えアニメーション */
+.open #nav_toggle span:nth-child(1) {
+	top: 17px;
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+.open #nav_toggle span:nth-child(2) {
+	width: 0;
+	left: 50%;
+}
+.open #nav_toggle span:nth-child(3) {
+	top: 17px;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+/* メニューテキスト */
+#mobile_head .menu {
+	position: absolute;
+	top: -12px;
+	right: 2px;
+}
+#mobile_head .menu::before {
+	content:"menu";
+	position: absolute;
+	top: 10px;
+	right: 2px;
+}
+#close {
+	color: #FFF;
+	font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+}
+/*お土産_カート*/
+.sv_cart_sp {
+	display: none;
+}
+
+}
+
+@media (min-width: 1000px) {/*tb_横調整*/
+.language {
+	position: absolute;
+	right: 85px;
+	top: 23px;
+	z-index: 1000;
+}
+/* ナビOPEN時 */
+#global_nav {
+	background: rgba(0,00,0,.7);
+	font-size: 1.5rem;
+	height: auto;
+  	overflow-y: auto; /*scroll用*/
+	z-index: 999;
+/* 開いてないとき画面外配置 */
+	position: fixed;
+	right: -1000px;
+	top: 80px;
+	-webkit-transition: .5s ease-in-out;
+	-moz-transition: .5s ease-in-out;
+	transition: .5s ease-in-out;
+	width: 50%;
+	-webkit-overflow-scrolling:touch; /*IOS対策*/
+}
+/* 3本ラインの位置調整 */
+#nav_toggle {
+    position: absolute;
+    right: 0;
+    top: 15px;
+    width: 34px;
+    height: 36px;
+    z-index: 999;
+}
+/* メニューテキスト */
+#mobile_head .menu {
+	position: absolute;
+	top: -5px;
+	right: 2px;
+}
+/*お土産_カート*/
+.sv_cart_sp {
+	display: none;
+}
+
+}
+
+@media (max-width:599px){
+.head_box {
+	position: fixed;
+	top: 0;
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+	background: #fff;
+	height: 55px;
+	padding: 10px 2.5%;
+	width: 100%;
+	z-index: 1000;
+}
+.head_box .logo_item {
+	height: auto;
+	width: 25%;
+}
+.head_box .logo_item img {
+	height: 35px;
+	width: auto;
+}
+.language {
+	position: absolute;
+	right: 60px;
+	top: 11px;
+	z-index: 1000;
+}
+.language > li {
+	border: solid thin rgba(51,51,51,1);
+	font-size: 1.3rem;
+	font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+	text-align: center;
+	list-style: none;
+	padding: 5px 0;
+	width: 100px;
+}
+.language span {
+	display: none;
+}
+.language .drop ul,
+.language .drop ul li,
+.language .drop ul li a {
+	background: rgba(255,255,255,1);
+	display: block;
+	font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+	line-height: 60px;
+	width: 100%;
+	z-index: 100;
+}
+.language .drop ul li:first-of-type {
+	margin: 10px 0 0;
+}
+/*ナビゲーション_sp*/
+#top_head {
+	width: 100%;
+	z-index: 999;
+}
+#mobile_head {
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+	z-index: 999;
+}
+/* ナビOPEN時_sp */
+#global_nav {
+	background: rgba(0,0,0,.7);
+	font-size: 1.5rem;
+	font-weight: bold;
+	height: auto;
+	max-height: 80vh;
+  	overflow-y: auto; /*scroll用*/
+	z-index: 999;
+/* 開いてないとき画面外配置 */
+	position: fixed;
+	right: -1000px;
+	top: 55px;
+	-webkit-transition: .5s ease-in-out;
+	-moz-transition: .5s ease-in-out;
+	transition: .5s ease-in-out;
+	width: 65%;
+	-webkit-overflow-scrolling:touch; /*IOS対策*/
+}
+#global_nav::-webkit-scrollbar {
+    width: 7px;
+}
+#global_nav::-webkit-scrollbar-thumb{
+    background: rgba(153,153,153,1);
+    border-radius: 10px;
+}
+#global_nav::-webkit-scrollbar-track-piece {
+    background: rgba(255,255,255,1);
+}
+#global_nav ul {
+	z-index: 999;
+}
+#global_nav li {
+	height: 55px;
+	line-height: 55px;
+	text-align: left;
+	padding-left: 30px;
+}
+#global_nav a:link,nav a:visited {
+	color: rgba(255,255,255,1);
+}
+/* スライドアニメーション_li要素全体の移動調整 */
+.open #global_nav {
+	-moz-transform: translateX(-1000px);
+	-webkit-transform: translateX(-1000px);
+	transform: translateX(-1000px);
+}
+/* 3本ラインの位置調整_sp */
+#nav_toggle {
+    position: absolute;
+    right: 0;
+    top: 0px;
+    width: 34px;
+    height: 36px;
+    z-index: 999;
+}
+#nav_toggle span {
+/* 3本ラインデザイン_sp */
+    display: block;
+    position: absolute;
+    left: 0;
+    background: rgba(51,51,51,1);
+	height: 4px;
+    width: 100%;
+	-webkit-transition: .35s ease-in-out;
+    -moz-transition: .35s ease-in-out;
+    transition: .35s ease-in-out;
+}
+#nav_toggle span:nth-child(1) {top: 7px;}
+#nav_toggle span:nth-child(2) {top: 18px;}
+#nav_toggle span:nth-child(3) {top: 29px;}
+
+/* Fixed reset */
+#top_head .fixed {
+	padding-top: 0;
+	background: transparent;
+}
+#nav_toggle {
+	display: block;
+}
+/* #nav-toggle 切り替えアニメーション_sp */
+.open #nav_toggle span:nth-child(1) {
+	top: 17px;
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+.open #nav_toggle span:nth-child(2) {
+	width: 0;
+	left: 50%;
+}
+.open #nav_toggle span:nth-child(3) {
+	top: 17px;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+/* メニューテキスト_sp */
+#mobile_head .menu {
+	position: absolute;
+	top: -16px;
+	right: 2px;
+}
+#mobile_head .menu::before {
+	content:"menu";
+	position: absolute;
+	top: 10px;
+	right: 2px;
+	font-size: 1rem;
+}
+#close {
+	color: #FFF;
+	font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+}
+/*お土産_カート_sp*/
+.sv_cart_sp {
+	position: fixed;
+	right: 60px;
+	top: 9px;
+	z-index: 1001;
+}
+
+}
+
+/*----------------------
+▲ロゴ_ナビゲーション▲
+----------------------*/
+
+/*----------------------
+▼ヒーロー▼
+----------------------*/
+@media (min-width: 600px) {
+/*メイン*/
+.hero {
+	position: relative;
+	height: auto;
+	margin: 0 auto;
+	width: 95%;
+}
+.hero img {
+	height: auto;
+	width: 100%;
+}
+.hero .txt {
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	-ms-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+	text-align: center;
+}
+.hero .txt p {
+	color: rgba(255,255,255,.7);
+	font-size: 1.3rem;
+	margin: 0 0 5px;
+}
+.hero .txt h1 {
+	color: #FFF;
+	font-size: 1.7rem;
+	line-height: 23px;
+}
+/*下層*/
+.hero_under {
+	position: relative;
+	height: auto;
+	margin: 0 auto 10px;
+	width: 95%;
+}
+.hero_under img {
+	height: auto;
+	width: 100%;
+}
+.hero_under .txt {
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	-ms-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+	text-align: center;
+}
+.hero_under .txt h1 {
+	color: #FFF;
+	font-size: 2rem;
+}
+
+}
+
+@media (max-width:599px){
+/*メイン_sp*/
+.hero {
+	position: relative;
+	height: auto;
+	margin: 55px auto 0;
+	overflow: hidden;
+	width: 100%;
+}
+.hero img {
+	height: auto;
+	width: 100%;
+}
+.hero .txt {
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	-ms-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+	text-align: center;
+	width: 100%;
+}
+.hero .txt p {
+	color: rgba(255,255,255,.7);
+	font-size: 1.3rem;
+	margin: 0 0 5px;
+	width: 100%;
+}
+.hero .txt h1 {
+	color: #FFF;
+	font-size: 1.3rem;
+	line-height: 20px;
+}
+/*下層_sp*/
+.hero_under {
+	position: relative;
+	height: 80px;
+ 	margin: 55px auto 10px;
+	text-align: center;
+	overflow: hidden;
+	width: 100%;
+}
+.hero_under img {
+	height: 80px;
+	width: 100%;
+}
+.hero_under .txt {
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	-ms-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+	text-align: center;
+	width: 100%;
+}
+.hero_under .txt h1 {
+	color: #FFF;
+	font-size: 1.8rem;
+}
+
+}
+
+/*----------------------
+▲ヒーロー▲
+----------------------*/
+
+/*----------------------
+▼共通_comm▼
+----------------------*/
+@media (min-width: 600px) {
+/*パンクズ*/
+.breadcrumbs_comm {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	margin: 0 auto 20px;
+	width: 95%;
+}
+.breadcrumbs_comm .link_txt:after {
+	content:">";
+	padding: 0 10px;
+}
+.breadcrumbs_comm li {
+	font-size: 1.3rem;
+	font-weight: bold;
+	font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+}
+/*タイトル*/
+.title_comm {
+	background: rgba(240,240,240,1);
+	border-left: solid 5px rgba(153,153,153,1);
+	padding: 10px 20px;
+	margin: 0 0 30px;
+}
+.title_comm h2 {
+	font-size: 1.8rem;
+}
+/*ページ内リンク*/
+.link_btn_comm {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-ms-flex-wrap:wrap;
+    -webkit-flex-wrap:wrap;
+    flex-wrap:wrap;
+	background: rgba(255,255,235,1);
+	margin: 0 auto;
+	padding: 20px; 
+	width: 95%;
+}
+.link_btn_comm_bth_tb {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-ms-flex-wrap:wrap;
+    -webkit-flex-wrap:wrap;
+    flex-wrap:wrap;
+	background: rgba(255,255,235,1);
+	margin: 0 auto 30px;
+	padding: 20px; 
+	width: 100%;
+}
+.link_btn_comm a,
+.link_btn_comm_bth_tb a {
+	display: block;
+	background: #FFF;
+	border: solid thin rgba(102,102,102,1);
+	font-size: 1.5rem;
+	padding: 10px 0;
+	text-align: center;
+	width: 30%;
+}
+.link_btn_comm a::after,
+.link_btn_comm_bth_tb a::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 3px 12px;
+	border-bottom: 2px solid #000;
+	border-right: 2px solid #000;
+	transform: rotate(45deg);
+}
+
+.link_btn_comm a:nth-of-type(3n-1) {
+	margin: 0 3%;
+}
+/*内線*/
+.guidance {
+	background: rgba(255,255,235,1);
+	margin: 0 auto;
+	text-align: center;
+	padding: 20px 0;
+	width: 80%;
+}
+.guidance_2 {
+	background: rgba(255,255,235,1);
+	margin: 0 auto;
+	text-align: center;
+	padding: 20px 0;
+	width: 100%;
+}
+.guidance p:first-of-type,
+.guidance_2 p:first-of-type {
+	font-size: 1.5rem;
+	margin: 0 0 10px;
+}
+.guidance p:last-of-type,
+.guidance_2 p:last-of-type {
+	color: rgba(102,102,102,1);
+	font-size: 2.5rem;
+}
+.guidance img,
+.guidance_2 img {
+	height: auto;
+	margin: 0 10px 0 0;
+	width: 20px;
+}
+
+}
+
+@media (max-width:599px){
+/*パンクズ_sp*/
+.breadcrumbs_comm {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	margin: 0 auto 20px;
+	width: 95%;
+}
+.breadcrumbs_comm .link_txt:after {
+	content:">";
+	padding: 0 8px;
+}
+.breadcrumbs_comm li {
+	font-size: 1.1rem;
+	font-weight: bold;
+	font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+}
+/*タイトル_sp*/
+.title_comm {
+	background: rgba(240,240,240,1);
+	border-left: solid 5px rgba(153,153,153,1);
+	padding: 10px 15px;
+	margin: 0 0 30px;
+}
+.title_comm h2 {
+	font-size: 1.5rem;
+}
+/*ページ内リンク_sp*/
+.link_btn_comm,
+.link_btn_comm_bth_tb {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-ms-flex-wrap:wrap;
+    -webkit-flex-wrap:wrap;
+    flex-wrap:wrap;
+	background: rgba(255,255,235,1);
+	margin: 0 auto 30px;
+	padding: 20px; 
+	width: 100%;
+}
+.link_btn_comm a {
+	display: block;
+	background: #FFF;
+	border: solid thin rgba(102,102,102,1);
+	font-size: 1.5rem;
+	padding: 10px 0 10px 10px;
+	margin: 0 0 10px;
+	width: 100%;
+}
+.link_btn_comm_bth_tb a {
+	display: block;
+	background: #FFF;
+	border: solid thin rgba(102,102,102,1);
+	font-size: 1.5rem;
+	padding: 10px 0 10px 10px;
+	margin: 0 0 0;
+	width: 100%;
+}
+.link_btn_comm a:last-of-type {
+	margin: 0;
+}
+.link_btn_comm a::after,
+.link_btn_comm_bth_tb a::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 3px 12px;
+	border-bottom: 2px solid #000;
+	border-right: 2px solid #000;
+	transform: rotate(45deg);
+}
+/*内線_sp*/
+.guidance {
+	background: rgba(255,255,235,1);
+	margin: 0 auto;
+	text-align: center;
+	padding: 20px 0;
+	width: 95%;
+}
+.guidance_2 {
+	background: rgba(255,255,235,1);
+	margin: 0 auto;
+	text-align: center;
+	padding: 20px 0;
+	width: 100%;
+}
+.guidance p:first-of-type,
+.guidance_2 p:first-of-type {
+	font-size: 1.3rem;
+	margin: 0 0 10px;
+}
+.guidance p:last-of-type,
+.guidance_2 p:last-of-type {
+	color: rgba(102,102,102,1);
+	font-size: 2.5rem;
+}
+.guidance img,
+.guidance_2 img {
+	height: auto;
+	margin: 0 10px 0 0;
+	width: 20px;
+}
+/*アンカー調整*/
+#reservation_link,#bath_link,#bath_link_2,#cart_link,#conf_link,#cart_link_2,#conf_link_2,
+#train_link,#bus_link,#car_link,#map_link,#guide_link {
+padding-top:70px;
+margin-top:-70px;
+}
+
+}
+
+/*----------------------
+▲共通_comm▲
+----------------------*/
+
+/*----------------------
+▼top▼
+----------------------*/
+@media (min-width: 600px) {
+.top_wrap {
+	margin: 50px auto 0;
+	width: 95%;
+}
+.top_wrap .txt p {
+	font-size: 1.5rem;
+	margin: 30px 0;
+	text-align: center;
+}
+.top_wrap .box {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+    -ms-flex-wrap:wrap;
+    -webkit-flex-wrap:wrap;
+    flex-wrap:wrap;
+/*	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+*/	margin: 0 0 50px;
+}
+.top_wrap .box .item {
+	margin: 0 0 20px;
+	width: 32%;
+}
+.top_wrap .box .item:nth-of-type(3n-1) {
+	margin: 0 2%;
+}
+.top_wrap .box .item .pic_content {
+	position: relative;
+	height: auto;
+	overflow: hidden;
+	width: 100%;
+}
+.top_wrap .box .item .pic_content:before{
+	content:"";
+	display: block;
+	width:0;
+	height:0;
+	padding-bottom:54%;
+	width: 100%;
+}
+.top_wrap .box .item .pic_content img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	-ms-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+	height: auto;
+	width: 100%;
+}
+.top_wrap .box .item .pic_content .back_arrow {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: rgba(0,0,0,.5);
+	border-left: solid thin rgba(255,255,255,.7);
+	width: 15%;
+	height: 100%;
+	z-index: 1;
+}
+.top_wrap .box .item .pic_content .back_arrow:after {
+	content:"";
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	border-bottom: 2px solid #FFF;
+	border-right: 2px solid #FFF;
+	transform: rotate(-45deg);
+	position: absolute;
+	top: 48%;
+	left: 30%;
+}
+.top_wrap .box .item p {
+	border-left: solid 5px rgba(153,153,153,1);
+	font-size: 1.5rem;
+	margin: 0 0 10px;
+	padding: 0 0 0 5px;
+}
+
+}
+
+@media (max-width:599px){
+.top_wrap {
+	margin: 30px auto 0;
+	width: 95%;
+}
+.top_wrap .txt p {
+	font-size: 1.5rem;
+	margin: 30px 0;
+	text-align: center;
+}
+.top_wrap .box {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+    -ms-flex-wrap:wrap;
+    -webkit-flex-wrap:wrap;
+    flex-wrap:wrap;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+	margin: 0 0 30px;
+}
+.top_wrap .box .item {
+	margin: 0 0 20px;
+	width: 48%;
+}
+.top_wrap .box .item .pic_content {
+	position: relative;
+	height: auto;
+	overflow: hidden;
+	width: 100%;
+}
+.top_wrap .box .item .pic_content:before{
+	content:"";
+	display: block;
+	width:0;
+	height:0;
+	padding-bottom:54%;
+	width: 100%;
+}
+.top_wrap .box .item .pic_content img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	-ms-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+	height: auto;
+	width: 100%;
+}
+.top_wrap .box .item .pic_content .back_arrow {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: rgba(0,0,0,.5);
+	border-left: solid thin rgba(255,255,255,.7);
+	width: 15%;
+	height: 100%;
+	z-index: 1;
+}
+.top_wrap .box .item .pic_content .back_arrow:after {
+	content:"";
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	border-bottom: 2px solid #FFF;
+	border-right: 2px solid #FFF;
+	transform: rotate(-45deg);
+	position: absolute;
+	top: 45%;
+	left: 25%;
+}
+.top_wrap .box .item p {
+	border-left: solid 5px rgba(153,153,153,1);
+	font-size: 1.5rem;
+	margin: 0 0 10px;
+	padding: 0 0 0 10px;
+}
+
+}
+
+
+/*----------------------
+▲top▲
+----------------------*/
+
+/*----------------------
+▼bath reservation▼
+----------------------*/
+@media (min-width: 600px) {
+.bath_wrap {
+	margin: 30px auto;
+	width: 95%;
+}
+.bath_wrap .box {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+    -ms-flex-wrap:wrap;
+    -webkit-flex-wrap:wrap;
+    flex-wrap:wrap;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+}
+.bath_wrap .box .item {
+	margin: 0 0 30px;
+	width: 48%;
+}
+.bath_wrap .box .item h2 {
+	border-left: solid 5px rgba(153,153,153,1);
+	font-size: 1.5rem;
+	margin: 0 0 10px;
+	padding: 0 0 0 10px;
+}
+.bath_wrap .box .item .item_box {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+}
+.bath_wrap .box .item .item_box .pic {
+	width: 48%;
+}
+.bath_wrap .box .item .item_box p {
+	font-size: 1.5rem;
+	width: 48%;
+}
+.bath_wrap .box .item .item_box .pic img {
+	height: auto;
+	width: 100%;
+}
+.bath_guidance {
+	background: rgba(255,255,235,1);
+	margin: 0 auto;
+	text-align: center;
+	padding: 20px 0;
+	margin: 0 0 50px;
+	width: 100%;
+}
+.bath_wrap .txt p {
+	font-size: 1.5rem;
+	margin: 0 0 30px;
+}
+.bath_wrap .txt p a {
+	color: #900;
+	text-decoration: underline;
+}
+
+/*予約一覧*/
+.reservation_wrap {
+	margin: 30px auto;
+	width: 95%;
+}
+.reservation_wrap .txt p {
+	font-size: 1.5rem;
+	margin: 0 0 30px;
+}
+.reservation_wrap .txt span {
+	display: inline-block;
+	background: linear-gradient(transparent 60%, rgba(217,224,33,.8) 0%);
+}
+.reservation_wrap table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	text-align: center;
+	width: 100%;
+}
+.reservation_wrap table th {
+	border: solid thin rgba(51,51,51,1);
+	background: rgba(255,255,235,1);
+	font-size: 1.5rem;
+	font-weight: normal;
+	padding: 10px 0;
+	width: 20%;
+}
+.reservation_wrap table td {
+	border: solid thin rgba(51,51,51,1);
+	font-size: 2rem;
+	padding: 15px 0;
+	width: 20%;
+}
+.reservation_wrap table td:first-of-type {
+	font-size: 1.5rem;
+}
+.reservation_wrap table .impossible {
+	background: rgba(235,235,235,1);
+}
+/*モーダル_予約*/
+#modal_wrap {
+    display: none;
+    position: fixed;
+    top: 0;
+	background: rgba(0,0,0,0.25);
+    height: 100vh;
+    width: 100vw;
+	z-index: 1;
+}
+#modal_item {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	-ms-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+	background: rgba(255,255,255, 1);
+	border: solid thin rgba(153,153,153,1);
+	padding: 50px;
+	text-align: center;
+	width: 80%;
+	z-index: 2;
+}
+#modal_item .txt {
+	margin: 0 0 30px;
+}
+#modal_item .txt p {
+	font-size: 1.5rem;
+	margin: 0 auto 10px;
+	width: 70%;	
+}
+#modal_item .link {
+	margin: 0 auto;
+	width: 300px;
+}
+#modal_item .link a {
+	display: block;
+	font-size: 1.5rem;
+	font-weight: bold;
+	background: rgba(153,102,0,1);
+	color: #FFF;
+	padding: 15px 0;
+}
+#modal_item .link .arrow::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 3px 12px;
+	border-bottom: 2px solid #FFF;
+	border-right: 2px solid #FFF;
+	transform: rotate(-45deg);
+}
+/*予約後*/
+.reservation_2 {
+	margin: 30px auto 0;
+	width: 95%;
+}
+.reservation_2 .box {
+	border: solid thin rgba(51,51,51,1);
+	padding: 0 30px;
+	margin: 0 0 30px;
+}
+.reservation_2 p:first-of-type {
+	border-bottom: solid thin rgba(51,51,51,1);
+	font-size: 1.8rem;
+	padding: 20px 0;
+	text-align: center;
+}
+.reservation_2 p:nth-of-type(n+2) {
+	font-size: 1.5rem;
+	margin: 25px 0;
+}
+.reservation_2 .left {
+	display: inline-block;
+	background: rgba(240,240,240,1);
+	padding: 10px;
+	width: 250px;
+}
+.reservation_2 .right {
+	margin: 0 0 0 20px;
+}
+.reservation_2 .link {
+	margin: 0 auto;
+	text-align: center;
+	width: 300px;
+}
+.reservation_2 .link a {
+	display: block;
+	border: solid thin rgba(153,153,153,1);
+	font-size: 1.5rem;
+	padding: 10px 0;
+}
+.reservation_2 .link .arrow::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 3px 12px;
+	border-bottom: 2px solid #000;
+	border-right: 2px solid #000;
+	transform: rotate(-45deg);
+}
+
+/*モーダル_キャンセル*/
+#modal_wrap_2 {
+    display: none;
+    position: fixed;
+    top: 0;
+	background: rgba(0,0,0,0.25);
+    height: 100vh;
+    width: 100vw;
+	z-index: 1;
+}
+#modal_item_2 {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	-ms-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+	background: rgba(255,255,255, 1);
+	border: solid thin rgba(153,153,153,1);
+	padding: 50px;
+	text-align: center;
+	width: 80%;
+	z-index: 2;
+}
+#modal_item_2 .txt {
+	margin: 0 0 30px;
+}
+#modal_item_2 .txt p {
+	font-size: 1.5rem;
+	margin: 0 auto 10px;
+	width: 70%;	
+}
+#modal_item_2 .link {
+	margin: 0 auto;
+	width: 300px;
+}
+#modal_item_2 .link a {
+	display: block;
+	font-size: 1.5rem;
+	font-weight: bold;
+	border: solid thin rgba(153,153,153,1);
+	color: #000;
+	padding: 15px 0;
+}
+#modal_item_2 .link .arrow::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 3px 12px;
+	border-bottom: 2px solid #000;
+	border-right: 2px solid #000;
+	transform: rotate(-45deg);
+}
+
+}
+
+@media (max-width:599px){
+.bath_wrap {
+	margin: 30px auto;
+	width: 95%;
+}
+.bath_wrap .box {
+}
+.bath_wrap .box .item {
+	margin: 0 0 30px;
+	width: 100%;
+}
+.bath_wrap .box .item h2 {
+	border-left: solid 5px rgba(153,153,153,1);
+	font-size: 1.5rem;
+	margin: 0 0 10px;
+	padding: 0 0 0 10px;
+}
+.bath_wrap .box .item .item_box {
+}
+.bath_wrap .box .item .item_box .pic {
+	margin: 0 0 10px;
+	width: 100%;
+}
+.bath_wrap .box .item .item_box p {
+	font-size: 1.5rem;
+	width: 100%;
+}
+.bath_wrap .box .item .item_box .pic img {
+	height: auto;
+	width: 100%;
+}
+.bath_guidance {
+	background: rgba(255,255,235,1);
+	margin: 0 auto;
+	text-align: center;
+	padding: 20px 0;
+	margin: 0 0 50px;
+	width: 100%;
+}
+.bath_wrap .txt p {
+	font-size: 1.5rem;
+	margin: 0 0 30px;
+}
+.bath_wrap .txt p a {
+	color: #900;
+	text-decoration: underline;
+}
+
+/*予約一覧_sp*/
+.reservation_wrap {
+	margin: 30px auto;
+	width: 95%;
+}
+.reservation_wrap .txt p {
+	font-size: 1.5rem;
+	margin: 0 0 30px;
+}
+.reservation_wrap .txt span {
+	display: inline-block;
+	background: linear-gradient(transparent 60%, rgba(217,224,33,.8) 0%);
+}
+.reservation_wrap table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	table-layout: fixed;
+	text-align: center;
+	width: 100%;
+}
+.reservation_wrap table th {
+	border: solid thin rgba(51,51,51,1);
+	background: rgba(255,255,235,1);
+	font-size: 1.5rem;
+	font-weight: normal;
+}
+.reservation_wrap table th:nth-child(n+2) {
+	padding: 10px 0;
+	width: 18%;
+}
+.reservation_wrap table th:first-of-type {
+	padding: 10px 0 10px 10px;
+	text-align: left;
+	width: 28%;
+}
+.reservation_wrap table td {
+	border: solid thin rgba(51,51,51,1);
+	font-size: 1.5rem;
+	padding: 20px 0;
+	width: 20%;
+}
+.reservation_wrap table td:first-of-type {
+	font-size: 1.5rem;
+	padding: 0 0 0 10px;
+	text-align: left;
+}
+.reservation_wrap table td:first-of-type span {
+	display: block;
+	line-height: 10px;
+}
+.reservation_wrap table .impossible {
+	background: rgba(235,235,235,1);
+}
+/*モーダル_予約_sp*/
+#modal_wrap {
+    display: none;
+    position: fixed;
+    top: 0;
+	background: rgba(0,0,0,0.25);
+    height: 100vh;
+    width: 100vw;
+	z-index: 1;
+}
+#modal_item {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	-ms-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+	background: rgba(255,255,255, 1);
+	border: solid thin rgba(153,153,153,1);
+	padding: 30px;
+	width: 95%;
+	z-index: 2;
+}
+#modal_item .txt {
+	margin: 0 0 30px;
+}
+#modal_item .txt p {
+	font-size: 1.3rem;
+	margin: 0 auto 10px;
+	width: 100%;	
+}
+#modal_item .link {
+	margin: 0 auto;
+	text-align: center;
+	width: 100%;
+}
+#modal_item .link a {
+	display: block;
+	font-size: 1.5rem;
+	font-weight: bold;
+	background: rgba(153,102,0,1);
+	color: #FFF;
+	padding: 15px 0;
+}
+#modal_item .link .arrow::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 3px 12px;
+	border-bottom: 2px solid #FFF;
+	border-right: 2px solid #FFF;
+	transform: rotate(-45deg);
+}
+/*予約後_sp*/
+.reservation_2 {
+	margin: 30px auto 0;
+	width: 95%;
+}
+.reservation_2 .box {
+	border: solid thin rgba(102,102,102,1);
+	padding: 0 20px;
+	margin: 0 0 30px;
+}
+.reservation_2 p:first-of-type {
+	border-bottom: solid thin rgba(102,102,102,1);
+	font-size: 1.5rem;
+	padding: 20px 0 15px 10px;
+}
+.reservation_2 p:nth-of-type(n+2) {
+	font-size: 1.5rem;
+	margin: 20px 0;
+}
+.reservation_2 .left {
+	display: inline-block;
+	background: rgba(240,240,240,1);
+	padding: 10px;
+	margin: 0 0 10px;
+	width: 100%;
+}
+.reservation_2 .right {
+	padding: 0 0 0 10px;
+}
+.reservation_2 .link {
+	margin: 0 auto 30px;
+	width: 100%;
+}
+.reservation_2 .link a {
+	display: block;
+	border: solid thin rgba(102,102,102,1);
+	font-size: 1.5rem;
+	padding: 10px 0 10px 20px;
+}
+.reservation_2 .link .arrow::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 3px 12px;
+	border-bottom: 2px solid #000;
+	border-right: 2px solid #000;
+	transform: rotate(-45deg);
+}
+
+/*モーダル_キャンセル_sp*/
+#modal_wrap_2 {
+    display: none;
+    position: fixed;
+    top: 0;
+	background: rgba(0,0,0,0.25);
+    height: 100vh;
+    width: 100vw;
+	z-index: 1;
+}
+#modal_item_2 {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	-ms-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+	background: rgba(255,255,255, 1);
+	border: solid thin rgba(153,153,153,1);
+	padding: 30px;
+	width: 95%;
+	z-index: 2;
+}
+#modal_item_2 .txt {
+	margin: 0 0 30px;
+}
+#modal_item_2 .txt p {
+	font-size: 1.3rem;
+	margin: 0 auto 10px;
+	width: 100%;	
+}
+#modal_item_2 .link {
+	margin: 0 auto;
+	text-align: center;
+	width: 100%;
+}
+#modal_item_2 .link a {
+	display: block;
+	font-size: 1.5rem;
+	font-weight: bold;
+	border: solid thin rgba(153,153,153,1);
+	color: #000;
+	padding: 15px 0;
+}
+#modal_item_2 .link .arrow::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 3px 12px;
+	border-bottom: 2px solid #000;
+	border-right: 2px solid #000;
+	transform: rotate(-45deg);
+}
+
+}
+
+/*----------------------
+▲bath reservation▲
+----------------------*/
+
+/*----------------------
+▼お土産▼
+----------------------*/
+@media (min-width: 600px) {
+.sv_wrap {
+	margin: 20px auto;
+	width: 95%;
+}
+.sv_wrap .sv_box {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+}
+/*サイドバー*/
+.sv_wrap .sv_sidebar_sp {
+	display: none;
+}
+.sv_wrap .sv_box .sidebar_item {
+	width: 25%;
+}
+.sv_wrap .sv_box .sidebar_item .serch {
+	/*検索*/
+	border: solid thin rgba(153,153,153,1);
+	margin: 0 0 30px;
+	width: 100%;
+}
+.sv_wrap .sv_box .sidebar_item .serch .search_item {
+	position: relative;
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+	padding: 10px 0;
+}
+.sv_wrap .sv_box .sidebar_item .serch .keyword_item::placeholder {
+	font-size: 1rem;
+	padding: 0 0 0 10px;
+}
+.sv_wrap .sv_box .sidebar_item .serch .keyword_item {
+	border: none;
+	border-right: solid thin rgba(153,153,153,1);
+	width: 80%;
+}
+.sv_wrap .sv_box .sidebar_item .serch .keyword_btn {
+	background: none;
+	border: none;
+	width: 20%;
+}
+.sv_wrap .sidebar_item .serch img {
+	width: 20px;
+	height: 20px;
+}
+.sv_wrap .sidebar_item input:focus {
+	outline: none;
+}
+.sv_wrap .sv_box .sidebar_item .link_cart {
+	/*リンク_カート*/
+	background: rgba(255,255,235,1);
+	padding: 30px 15px;
+}
+.sv_wrap .sv_box .sidebar_item .link_cart  ul {
+	border-bottom: solid thin rgba(153,153,153,1);
+	margin: 0 0 30px;
+}
+.sv_wrap .sv_box .sidebar_item .link_cart ul li {
+	font-size: 1.3rem;
+	margin: 0 0 15px;
+	text-decoration: underline;
+	width: 100%;
+}
+.sv_wrap .sv_box .sidebar_item .link_cart  ul li:last-of-type {
+	margin: 0 0 30px;
+}
+.sv_wrap .sv_box .sidebar_item .link_cart .cart {
+	background: rgba(166,124,82,1);
+	text-align: center;
+}
+.sv_wrap .sv_box .sidebar_item .link_cart .cart a {
+	display: block;
+	position: relative;
+	color: #FFF;
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding: 15px 0px;
+}
+.sv_wrap .sv_box .sidebar_item .link_cart .cart a img {
+	height: 15px;
+	width: 15px;
+	margin: 0 0px 5px 0;
+}
+.sv_wrap .sv_box .sidebar_item .link_cart .cart a::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 2px 8px;
+	border-bottom: 2px solid #FFF;
+	border-right: 2px solid #FFF;
+	transform: rotate(-45deg);
+}
+
+/*商品一覧*/
+.sv_wrap .sv_box .product_item {
+	width: 70%;
+}
+.sv_wrap .sv_box .product_item .product_box {
+	display:-ms-flexbox;
+    display:-webkit-flex;
+    display:flex;
+    -ms-flex-wrap:wrap;
+    -webkit-flex-wrap:wrap;
+    flex-wrap:wrap;
+	width: 100%;
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item {
+	margin: 0 0 15px;
+	width: 30%;
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item:nth-of-type(3n-1) {
+	margin: 0 5% 15px;
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item .pic {
+	position: relative;
+	margin: 0 0 10px;
+	overflow: hidden;
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item .pic:before{
+	content:"";
+	display: block;
+	width:0;
+	height:0;
+	padding-bottom:75%;
+	width: 100%;
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	-ms-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+	border: solid thin rgba(200,200,200,1);
+	max-height: 100%;
+	width: auto;
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item .title {
+	word-break : break-all;
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item .title p {
+	font-size: 1.3rem;
+	line-height: 15px;
+	margin: 0 0 5px;
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item .price {
+	width: 100%;
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item .price p {
+	color: rgba(102,102,102,1);
+	font-size: 1rem;
+	line-height: 15px;
+	word-break:break-all
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item .price p span {
+	margin: 0 5px;
+}
+/*ページネーション*/
+.sv_wrap .sv_box .product_item .pagination {
+	margin: 30px 0 0;
+	width: 100%;
+}
+.sv_wrap .sv_box .product_item .pagination ol {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+}
+.sv_wrap .sv_box .product_item .pagination ol li {
+	border: solid thin rgba(153,153,153,1);
+	font-size: 1.3rem;
+	padding: 5px 0;
+	margin: 0 .8%;
+	text-align: center;
+	width: 8%;
+}
+.sv_wrap .sv_box .product_item .pagination ol li a {
+	display: block;
+}
+.sv_wrap .sv_box .product_item .pagination ol .prev {
+	margin: 0 .8% 0 0;
+	width: 10%;
+}
+.sv_wrap .sv_box .product_item .pagination ol .next {
+	margin: 0 0 0 .8%;
+	width: 10%;
+}
+.current {
+	background: rgba(204,204,204,1);
+}
+.sv_wrap .sv_box .product_item .pagination_sp {
+	display: none;
+}
+/*商品詳細ページ*/
+.sv_detail_wrap {
+	margin: 20px auto;
+	width: 95%;
+}
+.sv_detail_wrap .title {
+	margin: 0 0 10px;
+	word-break : break-all;
+}
+.sv_detail_wrap .title h2 {
+	font-size: 1.5rem;
+}
+.sv_detail_wrap .pic img {
+	height: auto;
+	margin: 0 0 10px;
+	width: 100%;
+}
+.sv_detail_wrap .txt {
+	margin: 0 0 20px;
+	word-break : break-all;
+}
+.sv_detail_wrap .txt p {
+	font-size: 1.3rem;
+}
+.sv_detail_wrap .box {
+    display:-ms-flexbox;
+    display:-webkit-flex;
+    display:flex;
+    -ms-flex-wrap:wrap;
+    -webkit-flex-wrap:wrap;
+    flex-wrap:wrap;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+	margin: 0 0 20px;
+}
+.sv_detail_wrap .box .item {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	border-bottom: solid thin rgba(153,153,153,1);
+	padding: 10px 0;
+	margin: 0 0 20px;
+	width: 48%;
+}
+.sv_detail_wrap .box .item .txt_1 {
+	padding: 0 10px;
+	word-break : break-all;
+	width: 30%;
+}
+.sv_detail_wrap .box .item .txt_2 {
+	padding: 0 10px;
+	word-break : break-all;
+	width: 70%;
+}
+.sv_detail_wrap .box .item .txt_1 p,
+.sv_detail_wrap .box .item .txt_2 p {
+	font-size: 1.3rem;
+}
+/*商品詳細ページ_合計_カート*/
+.sv_detail_wrap .cart {
+	background: rgba(255,255,235,1);
+	padding: 30px 50px;
+}
+.sv_detail_wrap .cart .price {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	margin: 0 0 30px;
+}
+.sv_detail_wrap .cart .price p {
+	font-size: 1.8rem;
+}
+.sv_detail_wrap .cart .price .txt_1 {
+	width: 30%;
+}
+.sv_detail_wrap .cart .price .txt_2 {
+	width: 70%;
+}
+.sv_detail_wrap .cart .quantity {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	margin: 0 0 30px;
+}
+.sv_detail_wrap .cart .quantity p {
+	font-size: 1.8rem;
+}
+.sv_detail_wrap .cart .quantity .txt_1 {
+	line-height: 50px;
+	width: 30%;
+}
+.sv_detail_wrap .cart .quantity .txt_2 {
+	height: 50px;
+	width: 70%;
+}
+.sv_detail_wrap .cart .putin {
+	background: rgba(166,124,82,1);
+	text-align: center;
+}
+.sv_detail_wrap .cart .putin a {
+	display: block;
+	position: relative;
+	color: #FFF;
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding: 15px 0px;
+}
+.sv_detail_wrap .cart .putin a img {
+	margin: 0 10px 5px 0;
+	height: 20px;
+	width: 20px;
+}
+.sv_detail_wrap .cart .putin a::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 2px 8px;
+	border-bottom: 2px solid #FFF;
+	border-right: 2px solid #FFF;
+	transform: rotate(-45deg);
+}
+/*カートの中身ページ*/
+.sv_cart_wrap {
+	margin: 20px auto;
+	width: 95%;
+}
+.sv_cart_wrap .txt_wrap {
+	background: rgba(255,255,235,1);
+	padding: 20px 0;
+	margin: 0 0 30px;
+	text-align: center;
+}
+.sv_cart_wrap .txt_wrap p {
+	font-size: 1.3rem;
+}
+.sv_cart_wrap .txt_wrap .time_item {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+	background: #fff;
+	border: solid thin rgba(153,153,153,1);
+	margin: 20px auto;
+	padding: 10px 30px;
+	width: 70%;
+}
+.sv_cart_wrap .txt_wrap .time_item p {
+	font-size: 1.3rem;
+}
+.sv_cart_wrap .txt_wrap .time_item p:first-of-type {
+	border-right: solid thin rgba(153,153,153,1);
+	padding: 0 30px 0 0;
+}
+.sv_cart_wrap .txt_wrap .link {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+	background: rgba(255,255,235,1);
+	margin: 0 auto;
+	padding: 20px 0; 
+	width: 70%;
+}
+.sv_cart_wrap .txt_wrap .link a {
+	display: block;
+	background: #FFF;
+	border: solid thin rgba(102,102,102,1);
+	font-size: 1.3rem;
+	padding: 10px 0;
+	text-align: center;
+	width: 48%;
+}
+.sv_cart_wrap .txt_wrap .link a::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 3px 12px;
+	border-bottom: 2px solid #000;
+	border-right: 2px solid #000;
+	transform: rotate(45deg);
+}
+/*カートの中身_購入予定商品*/
+.sv_cart_wrap .purchase_plan {
+	margin: 0 0 30px;
+}
+.sv_cart_wrap .purchase_plan .item {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+	border-bottom: solid thin rgba(153,153,153,1);
+	padding: 30px 20px;
+}
+.sv_cart_wrap .purchase_plan .item .delate {
+	width: 15%;
+}
+.sv_cart_wrap .purchase_plan .item .delate a {
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+.sv_cart_wrap .purchase_plan .item .delate a img {
+	height: auto;
+	margin: 0 10px 0 0;
+	width: 20px;
+}
+.sv_cart_wrap .purchase_plan .item .pic {
+	height: auto;
+	width: 20%;
+}
+.sv_cart_wrap .purchase_plan .item .pic img {
+	height: auto;
+	width: 100%;
+}
+.sv_cart_wrap .purchase_plan .item .title {
+	word-break : break-all;
+	width: 25%;
+}
+.sv_cart_wrap .purchase_plan .item .title p {
+	font-size: 1.5rem;
+}
+.sv_cart_wrap .purchase_plan .item .quantity {
+	text-align: right;
+	width: 10%;
+}
+.sv_cart_wrap .purchase_plan .item .quantity p {
+	font-size: 1.5rem;
+}
+.sv_cart_wrap .purchase_plan .item .price {
+	text-align: right;
+	word-wrap: break-word;
+	width: 20%;
+}
+.sv_cart_wrap .purchase_plan .item .price p {
+	font-size: 1.5rem;
+}
+.sv_cart_wrap .purchase_plan_blank p {
+	/*ブランク*/
+	font-size: 1.5rem;
+	margin: 0 0 30px;
+}
+.sv_cart_wrap .purchase_plan .putin {
+	/*購入確定*/
+	background: rgba(255,255,235,1);
+	padding: 30px 50px;
+	margin: 30px 0 0;
+}
+.sv_cart_wrap .purchase_plan .putin a {
+	background: rgba(166,124,82,1);
+	text-align: center;
+	display: block;
+	position: relative;
+	color: #FFF;
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding: 15px 0px;
+}
+.sv_cart_wrap .purchase_plan .putin a::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 2px 8px;
+	border-bottom: 2px solid #FFF;
+	border-right: 2px solid #FFF;
+	transform: rotate(-45deg);
+}
+
+/*カートの中身_購入確定商品*/
+.sv_cart_wrap .purchase_confirmed {
+	margin: 0 0 30px;
+}
+.sv_cart_wrap .purchase_confirmed .item {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+	border-bottom: solid thin rgba(153,153,153,1);
+	padding: 30px 20px;
+}
+.sv_cart_wrap .purchase_confirmed .item .pic {
+	height: auto;
+	width: 20%;
+}
+.sv_cart_wrap .purchase_confirmed .item .pic img {
+	height: auto;
+	width: 100%;
+}
+.sv_cart_wrap .purchase_confirmed .item .title {
+	word-break : break-all;
+	width: 25%;
+}
+.sv_cart_wrap .purchase_confirmed .item .title p {
+	font-size: 1.5rem;
+}
+.sv_cart_wrap .purchase_confirmed .item .quantity {
+	text-align: right;
+	width: 10%;
+}
+.sv_cart_wrap .purchase_confirmed .item .quantity p {
+	font-size: 1.5rem;
+}
+.sv_cart_wrap .purchase_confirmed .item .price {
+	text-align: right;
+	word-wrap: break-word;
+	width: 20%;
+}
+.sv_cart_wrap .purchase_confirmed .item .price p {
+	font-size: 1.5rem;
+}
+.sv_cart_wrap .purchase_confirmed_blank p {
+	/*ブランク*/
+	font-size: 1.5rem;
+	margin: 0 0 30px;
+}
+
+/*カートの中身_合計金額*/
+.sv_cart_wrap .total_price {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+	border-bottom: solid thin rgba(153,153,153,1);
+	text-align: right;
+	margin-left: auto;
+	padding: 20px 20px 10px;
+	word-wrap: break-word;
+	width: 50%;
+}
+.sv_cart_wrap .total_price p:first-of-type {
+	font-size: 1.5rem;
+	font-weight: bold;
+	word-wrap: break-word;
+	text-align: left;
+	width: 50%;
+}
+.sv_cart_wrap .total_price p:last-of-type {
+	font-size: 1.5rem;
+	font-weight: bold;
+	word-wrap: break-word;
+	width: 50%;
+}
+
+}
+
+@media (max-width:599px){
+.sv_wrap {
+	min-height: 100vh;
+	margin: 20px auto;
+	width: 95%;
+}
+.sv_wrap .sv_box {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+}
+/*サイドバー_sp*/
+.sv_wrap .sv_box .sidebar_item {
+	display: none;
+}
+.sv_wrap .sv_sidebar_sp .serch {
+	/*検索_sp*/
+	border: solid thin rgba(153,153,153,1);
+	margin: 0 0 20px;
+	width: 100%;
+}
+.sv_wrap .sv_sidebar_sp .serch .search_item {
+	position: relative;
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+	padding: 10px 0;
+}
+.sv_wrap .sv_sidebar_sp .serch .keyword_item::placeholder {
+	font-size: 1.3rem;
+	padding: 0 0 0 10px;
+}
+.sv_wrap .sv_sidebar_sp .serch .keyword_item {
+	border: none;
+	border-right: solid thin rgba(153,153,153,1);
+	width: 80%;
+}
+.sv_wrap .sv_sidebar_sp .serch .keyword_btn {
+	background: none;
+	border: none;
+	width: 20%;
+}
+.sv_wrap .sv_sidebar_sp .serch img {
+	width: 20px;
+	height: 20px;
+}
+.sv_wrap .sv_sidebar_sp .serch input[type=text] {
+	border-radius: 0;
+	-webkit-border-radius : 0;
+	-webkit-appearance: none;
+}
+.sv_wrap .sv_sidebar_sp input:focus {
+	outline: none;
+}
+.sv_wrap .sv_sidebar_sp .select .drop_item {
+	/*カテゴリ検索_sp*/
+	border: solid thin rgba(153,153,153,1);
+	height: 40px;
+	margin: 0 0 30px;
+	width: 100%;
+}
+.sv_wrap .sv_sidebar_sp .select p {
+	font-size: 1.5rem;
+	font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+}
+
+/*商品一覧_sp*/
+.sv_wrap .sv_box .product_item {
+	width: 100%;
+}
+.sv_wrap .sv_box .product_item .product_box {
+	width: 100%;
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item {
+	margin: 0 0 25px;
+}
+.sv_item_sp {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+	width: 100%;
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item .pic {
+	position: relative;
+	overflow: hidden;
+	width: 45%;
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item .pic:before{
+	content:"";
+	display: block;
+	width:0;
+	height:0;
+	padding-bottom:75%;
+	width: 100%;
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item .sv_item_txt_sp {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	width: 50%;
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	-ms-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+	border: solid thin rgba(200,200,200,1);
+	height: 100%;
+	width: auto;
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item .title {
+	word-break : break-all;
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item .title p {
+	font-size: 1.5rem;
+	line-height: 18px;
+	width: 100%;
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item .price {
+	margin-top: auto;
+	width: 100%;
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item .price p {
+	color: rgba(102,102,102,1);
+	font-size: 1.5rem;
+	line-height: 15px;
+	word-break:break-all
+}
+.sv_wrap .sv_box .product_item .product_box .sv_item .price p span {
+	margin: 0 5px;
+}
+/*ページネーション_sp*/
+.sv_wrap .sv_box .product_item .pagination {
+	display: none;
+}
+.sv_wrap .sv_box .product_item .pagination_sp ol {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+}
+.sv_wrap .sv_box .product_item .pagination_sp ol a {
+	font-size: 1.5rem;
+	text-decoration: underline;
+}
+/*商品詳細ページ_sp*/
+.sv_detail_wrap {
+	margin: 20px auto;
+	width: 95%;
+}
+.sv_detail_wrap .title {
+	margin: 0 0 10px;
+	word-break : break-all;
+}
+.sv_detail_wrap .title h2 {
+	font-size: 1.5rem;
+}
+.sv_detail_wrap .pic img {
+	height: auto;
+	margin: 0 0 10px;
+	width: 100%;
+}
+.sv_detail_wrap .txt {
+	margin: 0 0 20px;
+	word-break : break-all;
+}
+.sv_detail_wrap .txt p {
+	font-size: 1.5rem;
+}
+.sv_detail_wrap .box {
+	margin: 0 0 20px;
+}
+.sv_detail_wrap .box .item {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	border-bottom: solid thin rgba(153,153,153,1);
+	padding: 10px 0;
+	margin: 0 0 0px;
+	width: 100%;
+}
+.sv_detail_wrap .box .item .txt_1 {
+	padding: 0 10px;
+	word-break : break-all;
+	width: 30%;
+}
+.sv_detail_wrap .box .item .txt_2 {
+	padding: 0 10px;
+	word-break : break-all;
+	width: 70%;
+}
+.sv_detail_wrap .box .item .txt_1 p,
+.sv_detail_wrap .box .item .txt_2 p {
+	font-size: 1.3rem;
+}
+/*商品詳細ページ_合計_カート_sp*/
+.sv_detail_wrap .cart {
+	background: rgba(255,255,235,1);
+	padding: 20px;
+}
+.sv_detail_wrap .cart .price {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	margin: 0 0 30px;
+}
+.sv_detail_wrap .cart .price p {
+	font-size: 1.5rem;
+}
+.sv_detail_wrap .cart .price .txt_1 {
+	margin: 0 10% 0 0;
+	width: 45%;
+}
+.sv_detail_wrap .cart .price .txt_2 {
+	width: 45%;
+}
+.sv_detail_wrap .cart .quantity {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	margin: 0 0 30px;
+}
+.sv_detail_wrap .cart .quantity p {
+	font-size: 1.5rem;
+}
+.sv_detail_wrap .cart .quantity .txt_1 {
+	margin: 0 10% 0 0;
+	line-height: 50px;
+	width: 45%;
+}
+.sv_detail_wrap .cart .quantity .txt_2 {
+	height: 50px;
+	width: 45%;
+}
+.sv_detail_wrap .cart .putin {
+	background: rgba(166,124,82,1);
+	text-align: center;
+}
+.sv_detail_wrap .cart .putin a {
+	display: block;
+	position: relative;
+	color: #FFF;
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding: 15px 0px;
+}
+.sv_detail_wrap .cart .putin a img {
+	margin: 0 10px 5px 0;
+}
+.sv_detail_wrap .cart .putin a::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 2px 8px;
+	border-bottom: 2px solid #FFF;
+	border-right: 2px solid #FFF;
+	transform: rotate(-45deg);
+}
+/*カートの中身ページ_sp*/
+.sv_cart_wrap {
+	margin: 20px auto;
+	width: 95%;
+}
+.sv_cart_wrap .txt_wrap {
+	background: rgba(255,255,235,1);
+	padding: 20px;
+	margin: 0 0 30px;
+}
+.sv_cart_wrap .txt_wrap p {
+	font-size: 1.3rem;
+}
+.sv_cart_wrap .txt_wrap .time_item {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+	background: #fff;
+	border: solid thin rgba(153,153,153,1);
+	margin: 20px auto;
+	padding: 10px 30px;
+	width: 100%;
+}
+.sv_cart_wrap .txt_wrap .time_item p {
+	font-size: 1.3rem;
+}
+.sv_cart_wrap .txt_wrap .time_item p:first-of-type {
+	border-right: solid thin rgba(153,153,153,1);
+	padding: 0 30px 0 0;
+}
+.sv_cart_wrap .txt_wrap .link {
+	background: rgba(255,255,235,1);
+	margin: 0 auto;
+	padding: 20px 0; 
+	width: 100%;
+}
+.sv_cart_wrap .txt_wrap .link a {
+	display: block;
+	background: #FFF;
+	border: solid thin rgba(102,102,102,1);
+	font-size: 1.5rem;
+	padding: 10px 0 10px 20px;
+	margin: 0 0 20px;
+	width: 100%;
+}
+.sv_cart_wrap .txt_wrap .link a:last-of-type {
+	margin: 0;
+}
+.sv_cart_wrap .txt_wrap .link a::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 3px 12px;
+	border-bottom: 2px solid #000;
+	border-right: 2px solid #000;
+	transform: rotate(45deg);
+}
+/*カートの中身_購入予定商品_sp*/
+.sv_cart_wrap .purchase_plan {
+	margin: 0 0 30px;
+}
+.sv_cart_wrap .purchase_plan .item {
+	border-bottom: solid thin rgba(153,153,153,1);
+	padding: 0px 0px 20px;
+	margin: 0 0 20px;
+}
+.sv_cart_wrap .purchase_plan .item .delate {
+	margin: 0 0 10px;
+	width: 100%;
+}
+.sv_cart_wrap .purchase_plan .item .delate a {
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+.sv_cart_wrap .purchase_plan .item .delate a img {
+	height: auto;
+	margin: 0 10px 5px 0;
+	width: 15px;
+}
+.sv_cart_wrap .purchase_plan .item .box_sp {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+}
+.sv_cart_wrap .purchase_plan .item .pic {
+	position: relative;
+	height: auto;
+	overflow: hidden;
+	width: 40%;
+}
+.sv_cart_wrap .purchase_plan .item .pic::before {
+	content: "";
+	display: block;
+	padding-top: 100%;
+}
+.sv_cart_wrap .purchase_plan .item .pic img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	-ms-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+	height: 100%;
+	width: auto;
+}
+.sv_cart_wrap .purchase_plan .item .txt_item_sp {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	width: 55%;
+}
+.sv_cart_wrap .purchase_plan .item .txt_item_sp .under_txt {
+	margin-top: auto;
+}
+.sv_cart_wrap .purchase_plan .item .title {
+	word-break : break-all;
+}
+.sv_cart_wrap .purchase_plan .item .title p {
+	line-height: 20px;
+	font-size: 1.3rem;
+}
+.sv_cart_wrap .purchase_plan .item .quantity {
+}
+.sv_cart_wrap .purchase_plan .item .quantity p {
+	font-size: 1.3rem;
+	line-height: 20px;
+}
+.sv_cart_wrap .purchase_plan .item .price {
+	word-wrap: break-word;
+}
+.sv_cart_wrap .purchase_plan .item .price p {
+	font-size: 1.3rem;
+	line-height: 20px;
+}
+.sv_cart_wrap .purchase_plan_blank p {
+	/*ブランク_sp*/
+	font-size: 1.5rem;
+	margin: 0 0 30px;
+}
+.sv_cart_wrap .purchase_plan .putin {
+	/*購入確定*/
+	background: rgba(255,255,235,1);
+	padding: 20px 20px;
+	margin: 30px 0 0;
+}
+.sv_cart_wrap .purchase_plan .putin a {
+	background: rgba(166,124,82,1);
+	text-align: center;
+	display: block;
+	position: relative;
+	color: #FFF;
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding: 15px 0px;
+}
+.sv_cart_wrap .purchase_plan .putin a::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 2px 8px;
+	border-bottom: 2px solid #FFF;
+	border-right: 2px solid #FFF;
+	transform: rotate(-45deg);
+}
+
+/*カートの中身_購入確定商品_sp*/
+.sv_cart_wrap .purchase_confirmed {
+	margin: 0 0 30px;
+}
+.sv_cart_wrap .purchase_confirmed .item {
+	border-bottom: solid thin rgba(153,153,153,1);
+	padding: 0px 0px 20px;
+	margin: 0 0 20px;
+}
+.sv_cart_wrap .purchase_confirmed .item .box_sp {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+}
+.sv_cart_wrap .purchase_confirmed .item .pic {
+	position: relative;
+	height: auto;
+	overflow: hidden;
+	width: 40%;
+}
+.sv_cart_wrap .purchase_confirmed .item .pic::before {
+	content: "";
+	display: block;
+	padding-top: 100%;
+}
+.sv_cart_wrap .purchase_confirmed .item .pic img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	-ms-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+	height: 100%;
+	width: auto;
+}
+.sv_cart_wrap .purchase_confirmed .item .txt_item_sp {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	width: 55%;
+}
+.sv_cart_wrap .purchase_confirmed .item .txt_item_sp .under_txt {
+	margin-top: auto;
+}
+.sv_cart_wrap .purchase_confirmed .item .title {
+	word-break : break-all;
+}
+.sv_cart_wrap .purchase_confirmed .item .title p {
+	font-size: 1.3rem;
+	line-height: 20px;
+}
+.sv_cart_wrap .purchase_confirmed .item .quantity {
+}
+.sv_cart_wrap .purchase_confirmed .item .quantity p {
+	font-size: 1.3rem;
+	line-height: 20px;
+}
+.sv_cart_wrap .purchase_confirmed .item .price {
+	word-wrap: break-word;
+}
+.sv_cart_wrap .purchase_confirmed .item .price p {
+	font-size: 1.3rem;
+	line-height: 20px;
+}
+.sv_cart_wrap .purchase_confirmed_blank p {
+	/*ブランク_sp*/
+	font-size: 1.5rem;
+	margin: 0 0 30px;
+}
+
+/*カートの中身_合計金額_sp*/
+.sv_cart_wrap .total_price {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+	border-bottom: solid thin rgba(153,153,153,1);
+	text-align: right;
+	margin-left: auto;
+	padding: 20px 10px 5px;
+	margin-bottom: 40px;
+	word-wrap: break-word;
+	width: 80%;
+}
+.sv_cart_wrap .total_price p:first-of-type {
+	font-size: 1.3rem;
+	word-wrap: break-word;
+	text-align: left;
+	width: 50%;
+}
+.sv_cart_wrap .total_price p:last-of-type {
+	font-size: 1.5rem;
+	word-wrap: break-word;
+	width: 50%;
+}
+
+}
+
+
+/*----------------------
+▲お土産▲
+----------------------*/
+
+/*----------------------
+▼よくあるご質問▼
+----------------------*/
+@media (min-width: 600px) {
+.qa_wrap {
+	margin: 20px auto;
+	width: 95%;
+}
+.qa_wrap p {
+	font-size: 1.5rem;
+	margin: 0 0 30px;
+	text-align: center;
+}
+.qa_wrap .link {
+	margin: 0 auto;
+	text-align: center;
+	width: 300px;
+}
+.qa_wrap .link a {
+	display: block;
+	border: solid thin rgba(153,153,153,1);
+	font-size: 1.5rem;
+	padding: 10px 0;
+}
+.qa_wrap .link a::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 3px 12px;
+	border-bottom: 2px solid #000;
+	border-right: 2px solid #000;
+	transform: rotate(-45deg);
+}
+
+}
+
+@media (max-width:599px){
+.qa_wrap {
+	margin: 20px auto;
+	width: 95%;
+}
+.qa_wrap p {
+	font-size: 1.3rem;
+	margin: 0 0 30px;
+}
+.qa_wrap .link {
+	margin: 0 auto 30px;
+	width: 100%;
+}
+.qa_wrap .link a {
+	display: block;
+	border: solid thin rgba(102,102,102,1);
+	font-size: 1.5rem;
+	padding: 10px 0 10px 20px;
+}
+.qa_wrap .link a::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 3px 12px;
+	border-bottom: 2px solid #000;
+	border-right: 2px solid #000;
+	transform: rotate(-45deg);
+}
+
+}
+
+/*----------------------
+▲よくあるご質問▲
+----------------------*/
+
+/*----------------------
+▼交通機関▼
+----------------------*/
+@media (min-width: 600px) {
+.access_wrap {
+	margin: 20px auto;
+	width: 95%;
+}
+.access_wrap .train_area,
+.access_wrap .bus_area {
+	margin: 0 0 30px;
+}
+.access_wrap .map img {
+	height: auto;
+	margin: 0 0 30px;
+	width: 100%;
+}
+.access_wrap .map a {
+	display: none;
+}
+.access_wrap .box {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+	margin: 0 0 10px;
+}
+.access_wrap .box h3 {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: center;
+	-ms-justify-content: center;
+	justify-content: center;
+	-webkit-align-items: center;
+	-ms-align-items: center;
+	align-items: center;
+	background: rgba(240,240,240,1);
+	text-align: center;
+	font-size: 1.5rem;
+	padding: 10px 0;
+	width: 20%;
+}
+.access_wrap .box p {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-align-items: center;
+	-ms-align-items: center;
+	align-items: center;
+	font-size: 1.5rem;
+	width: 75%;
+}
+
+}
+
+@media (max-width:599px){
+.access_wrap {
+	margin: 20px auto;
+	width: 95%;
+}
+.access_wrap .train_area,
+.access_wrap .bus_area {
+	margin: 0 0 30px;
+}
+.access_wrap .map img {
+	height: auto;
+	margin: 0 0 10px;
+	width: 100%;
+}
+.access_wrap .map .link {
+	text-align: right;
+	margin: 0 0 30px;
+}
+.access_wrap .map .link a {
+	font-size: 1.3rem;
+	font-weight: bold;
+	text-decoration: underline;
+}
+.access_wrap .box {
+	margin: 0 0 20px;
+}
+.access_wrap .box h3 {
+	background: rgba(240,240,240,1);
+	font-size: 1.3rem;
+	padding: 5px 0 5px 10px;
+	margin: 0 0 5px;
+}
+.access_wrap .box p {
+	font-size: 1.3rem;
+	padding: 0 10px;
+}
+
+}
+
+/*----------------------
+▲交通機関▲
+----------------------*/
+
+/*----------------------
+▼館内マップ▼
+----------------------*/
+@media (min-width: 600px) {
+.service_wrap {
+	margin: 20px auto;
+	width: 95%;
+}
+.service_wrap .map_area,
+.service_wrap .guide_area {
+	margin: 0 0 30px;
+}
+.service_wrap .map img {
+	height: auto;
+	margin: 0 0 30px;
+	width: 100%;
+}
+.service_wrap .map .link {
+	text-align: center;
+	margin: 0 0 30px;
+}
+.service_wrap .map a {
+	font-size: 1.5rem;
+	font-weight: bold;
+	text-decoration: underline;
+	text-align: center;
+}
+.service_wrap .box {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+	margin: 0 0 10px;
+}
+.service_wrap .box h3 {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-justify-content: center;
+	-ms-justify-content: center;
+	justify-content: center;
+	-webkit-align-items: center;
+	-ms-align-items: center;
+	align-items: center;
+	background: rgba(240,240,240,1);
+	text-align: center;
+	font-size: 1.5rem;
+	padding: 10px 0;
+	width: 20%;
+}
+.service_wrap .box p {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-align-items: center;
+	-ms-align-items: center;
+	align-items: center;
+	font-size: 1.5rem;
+	width: 75%;
+}
+
+}
+
+@media (max-width:599px){
+.service_wrap {
+	margin: 20px auto;
+	width: 95%;
+}
+.service_wrap .map_area,
+.service_wrap .guide_area {
+	margin: 0 0 30px;
+}
+.service_wrap .map img {
+	height: auto;
+	margin: 0 0 10px;
+	width: 100%;
+}
+.service_wrap .map .link {
+	text-align: right;
+	margin: 0 0 30px;
+}
+.service_wrap .map .link a {
+	font-size: 1.3rem;
+	font-weight: bold;
+	text-decoration: underline;
+}
+.service_wrap .box {
+	margin: 0 0 20px;
+}
+.service_wrap .box h3 {
+	background: rgba(240,240,240,1);
+	font-size: 1.3rem;
+	padding: 5px 0 5px 10px;
+	margin: 0 0 5px;
+}
+.service_wrap .box p {
+	font-size: 1.3rem;
+	padding: 0 10px;
+}
+
+}
+
+/*----------------------
+▲館内マップ▲
+----------------------*/
+
+/*----------------------
+▼観光マップ▼
+----------------------*/
+@media (min-width: 600px) {
+.travel_wrap {
+	margin: 20px auto;
+	width: 95%;
+}
+.travel_wrap .map img {
+	height: auto;
+	margin: 0 0 30px;
+	width: 100%;
+}
+.travel_wrap .map .link {
+	text-align: right;
+	margin: 0 0 30px;
+}
+.travel_wrap .map .link a {
+	font-size: 1.3rem;
+	font-weight: bold;
+	text-decoration: underline;
+}
+.travel_wrap .link_arima {
+	margin: 0 auto;
+	text-align: center;
+	width: 300px;
+}
+.travel_wrap .link_arima a {
+	display: block;
+	border: solid thin rgba(153,153,153,1);
+	font-size: 1.5rem;
+	padding: 10px 0;
+}
+.travel_wrap .link_arima a::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 3px 12px;
+	border-bottom: 2px solid #000;
+	border-right: 2px solid #000;
+	transform: rotate(-45deg);
+}
+
+}
+
+@media (max-width:599px){
+.travel_wrap {
+	margin: 20px auto;
+	width: 95%;
+}
+.travel_wrap .map img {
+	height: auto;
+	margin: 0 0 10px;
+	width: 100%;
+}
+.travel_wrap .map .link {
+	text-align: right;
+	margin: 0 0 30px;
+}
+.travel_wrap .map .link a {
+	font-size: 1.3rem;
+	font-weight: bold;
+	text-decoration: underline;
+}
+.travel_wrap .link_arima {
+	margin: 0 auto 30px;
+	width: 100%;
+}
+.travel_wrap .link_arima a {
+	display: block;
+	border: solid thin rgba(102,102,102,1);
+	font-size: 1.5rem;
+	padding: 10px 0 10px 20px;
+}
+.travel_wrap .link_arima a::after {
+	content:"";
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin: 0 0 3px 12px;
+	border-bottom: 2px solid #000;
+	border-right: 2px solid #000;
+	transform: rotate(-45deg);
+}
+
+}
+
+/*----------------------
+▲観光マップ▲
+----------------------*/
+
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+@keyframes ripple {
+    0% {
+        box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0);
+    }
+    50% {
+        box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0.1);
+    }
+    100% {
+        box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0);
+    }
+}
+.md-radio {
+    margin: 20px 0;
+}
+.md-radio.md-radio-inline {
+    display: inline-block;
+}
+.md-radio input[type="radio"] {
+    display: none;
+}
+.md-radio input[type="radio"]:checked + label:before {
+    border-color: #337ab7;
+    animation: ripple 0.2s linear forwards;
+}
+.md-radio input[type="radio"]:checked + label:after {
+    transform: scale(1);
+}
+.md-radio label {
+    display: inline-block;
+    min-height: 20px;
+    position: relative;
+    padding: 0 30px;
+    margin-bottom: 0;
+    cursor: pointer;
+    vertical-align: bottom;
+    width:200px;
+}
+.md-radio label:before, .md-radio label:after {
+    position: absolute;
+    content: '';
+    border-radius: 50%;
+    transition: all .3s ease;
+    transition-property: transform, border-color;
+}
+.md-radio label:before {
+    left: 0;
+    top: 6px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.54);
+}
+.md-radio label:after {
+    top: 11px;
+    left: 5px;
+    width: 10px;
+    height: 10px;
+    transform: scale(0);
+    background: #337ab7;
+}
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+.langage {
+    font-size:20px;
+    width:300px;
+    margin-left:auto;
+    margin-right:auto;
+}
+section.langage {
+    background: white;
+    margin: 0 auto;
+    padding: 4em;
+    max-width: 800px;
+}
+section.langage h1 {
+    font-size:25px;
+    margin: 0 0 2em;
+}
+

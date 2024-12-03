@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no,address=no,email=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css">
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style-en.css">
+<script type="text/javascript" src="/js/style.js"></script>
+<link rel="shortcut icon" href="/img/favicon.ico">
+<title>私人温泉的预约</title>
+</head>
+
+<body>
+<header>
+<?php include('/var/www/html/zh-cn/header-cn.html'); ?>
+
+</header>
+<main>
+<section>
+<div class="hero_under">
+<img class="tb" src="/img/top_img-bath.jpg" alt="">
+<img class="sp" src="/img/top_img-bath-sp.jpg" alt="">
+    <div class="txt">
+        <h1>私人温泉的预约</h1>
+    </div>
+</div><!--hero_under-->
+</section>
+
+<ol class="breadcrumbs_comm">
+    <li class="link_txt"><a href="/zh-cn/index.html">首页</a></li>
+    <li>私人温泉的预约</li>
+</ol><!--breadcrumbs_comm-->
+<!-- ナビボタン -->
+<div class="link_btn_comm">
+    <a href="#bath_link">露天温泉的介绍</a>
+    <a href="#bath_link_2">室内温泉的介绍</a>
+    <a href="#reservation_link">预约</a>
+</div><!--link_btn_comm-->
+
+<div class="reservation_2">
+    <div class="box">
+    <p>私人温泉的预约情况</p>
+        <p><span class="left">预约温泉</span><span class="right">一号温泉</span></p>
+        <p><span class="left">可接受预约的时间段</span><span class="right">16:00～16:45</span></p>
+        <p>在预约时间开始前5分钟，请到前台领取钥匙和毛巾。</p>
+    </div><!--box-->
+    <div class="link">
+        <a id="reserve_cancel" class="arrow">取消订单</a>
+    </div>
+</div><!--reservation_2-->
+
+<section>
+<div id="bath_link" class="bath_wrap">
+	<div class="title_comm">
+    <h2>私人温泉介绍</h2>
+    </div><!--title_comm-->
+    <!-- 一の湯～四の湯 -->
+    <div class="box">
+        <div class="item">
+            <h2>一号温泉（金泉·银泉）</h2>
+            <div class="item_box">
+	            <div class="pic">
+                <img src="/img/bath_one.jpg" alt="">
+                </div>
+	            <p>备有大型银泉及圆形金泉<br>
+                请享受岩石耸立、野趣横生的大山带给您的惬意<br>
+                可供七至八位客人同时使用的大型温泉</p>
+            </div><!--item_box-->
+        </div><!--item-->
+        <div class="item">
+            <h2>二号温泉（金泉·银泉）</h2>
+            <div class="item_box">
+	            <div class="pic">
+	            <img src="/img/bath_two.jpg" alt="">
+                </div>
+    	        <p>大型银泉及方形金泉、庭院内雾气氤氲、青苔覆于岩石上的美景为特征。<br>
+				可供七至八位客人同时使用的大型温泉</p>
+            </div><!--item_box-->
+        </div><!--item-->
+        <div class="item">
+            <h2>三号温泉（金泉·银泉）</h2>
+            <div class="item_box">
+	            <div class="pic">
+	            <img src="/img/bath_three.jpg" alt="">
+                </div>
+	            <p>可供两至三位客人使用的方形特色金泉<br>
+				请享用恰好供一人或两人使用的特色温泉</p>
+            </div><!--item_box-->
+        </div><!--item-->
+        <div class="item">
+            <h2>四号温泉(金泉)</h2>
+            <div class="item_box">
+	            <div class="pic">
+	            <img src="/img/bath_four.jpg" alt="">
+                </div>
+	            <p>备有圆形外观的金泉及银泉<br>
+				享受大山深处绿意盎然的温泉体验<br>
+				请尽情使用家族特色温泉</p>
+            </div><!--item_box-->
+        </div><!--item-->
+    </div><!--box-->
+    <!-- ナビボタン -->
+	<div class="link_btn_comm_bth_tb">
+    <a href="#reservation_link">私人温泉的预约</a>
+    </div><!--link_btn_comm_bth_tb-->
+    <!-- 五の湯～八の湯 -->
+    <div id="bath_link_2"></div>
+	<div class="title_comm">
+    <h2>室内温泉的介绍</h2>
+    </div><!--title_comm-->
+    <div class="txt">
+    <p>如需使用五号汤至八号汤，请您咨询前台。</p>
+    </div><!--txt-->
+    <div class="box">
+        <div class="item">
+            <h2>五号温泉(银泉)</h2>
+            <div class="item_box">
+	            <div class="pic">
+                <img src="/img/bath_five.jpg">
+                </div>
+                <p>可供四至五位客人使用的八边形特色银泉<br>
+				请您与家人或朋友尽情使用</p>
+            </div><!--item_box-->
+        </div><!--item-->
+        <div class="item">
+            <h2>六号温泉（金泉·银泉）</h2>
+            <div class="item_box">
+	            <div class="pic">
+                <img src="/img/bath_six.jpg">
+                </div>
+	            <p>可提供外观方形的金泉及银泉<br>
+				推荐四至五位成员的家庭使用</p>
+            </div><!--item_box-->
+        </div><!--item-->
+        <div class="item">
+            <h2>七号温泉(金泉)</h2>
+            <div class="item_box">
+	            <div class="pic">
+                <img src="/img/bath_seven.jpg">
+                </div>
+	            <p>可提供两至三位客人使用的金泉及银泉<br>
+				家族温泉</p>
+            </div><!--item_box-->
+        </div><!--item-->
+        <div class="item">
+            <h2>八号温泉(金泉)</h2>
+            <div class="item_box">
+	            <div class="pic">
+                <img src="/img/bath_eight.jpg">
+                </div>
+	            <p>方形金泉池最多可供四位客人使用<br>
+				请尽情享用有马温泉之特色金泉</p>
+            </div><!--item_box-->
+        </div><!--item-->
+    </div><!--box-->
+    <!-- 内線案内 -->
+    <div class="guidance_2">
+        <p>如需使用五号汤至八号汤，请您咨询前台。</p>
+        <p><img class="eg_icon" src="/img/eg_icon.svg">内线号码：9号</p>
+    </div><!--guidance_2-->
+</div><!--bath_wrap-->
+</section>
+
+<section>
+<div id="reservation_link" class="reservation_wrap">
+	<div class="title_comm">
+    <h2>预约私人温泉<br class="sp">（只限一号汤至四号汤）</h2>
+    </div><!--title_comm-->
+    <div class="txt">
+    <p>从网上预约私人温泉，一间客房只能预约一次。<br>
+	如果您想要追加使用的话，请联络9号前台。</p>
+    </div>
+    <!-- 予約表 -->
+    <table>
+      <tr>
+        <th>时间段</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+      </tr>
+      <tr>
+        <td>15:00<span>～</span>15:45</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+      </tr>
+      <tr>
+        <td>16:00<span>～</span>16:45</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+      </tr>
+      <tr>
+        <td>17:00<span>～</span>17:45</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+      </tr>
+      <tr>
+        <td>18:00<span>～</span>18:45</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+      </tr>
+      <tr>
+        <td>19:00<span>～</span>19:45</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+      </tr>
+      <tr>
+        <td>20:00<span>～</span>20:45</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+      </tr>
+      <tr>
+        <td>21:00<span>～</span>21:45</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+      </tr>
+      <tr>
+        <td>22:00<span>～</span>22:45</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+      </tr>
+      <tr>
+        <td>23:00<span>～</span>23:45</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+      </tr>
+      <tr>
+        <td>次&nbsp;6:30<span>～</span>7:15</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+      </tr>
+      <tr>
+        <td>次&nbsp;7:30<span>～</span>8:15</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+      </tr>
+      <tr>
+        <td>次&nbsp;8:30<span>～</span>9:15</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+      </tr>
+      <tr>
+        <td>次&nbsp;9:30<span>～</span>10:15</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+        <td class="impossible">×</td>
+      </tr>
+    </table>
+</div><!--reservation_wrap-->
+</section>
+
+<div id="modal_wrap_2">
+<!--予約キャンセル-->
+    <div id="modal_item_2">
+            <div class="txt">
+                <p>预约温泉：<span>一号温泉</span></p>
+                <p>可接受预约的时间段：<span>16:00～16:45</span></p>
+            </div>
+            <div class="link">
+                <a class="arrow">取消订单</a>
+            </div>
+	</div>
+</div><!--modal_wrap_2-->
+
+</main>
+
+<footer>
+</footer>
+
+<!-- pagetop -->
+<div id="scroll">
+    <a href="#" class="scroll"><img src="/img/page_top.svg"><span class="tb">向上</span></a>
+</div>
+
+<script>
+$(function() {
+	$('#reserve_cancel').click(function(){
+	  $('#modal_wrap_2, #modal_item_2').fadeTo(200,1);
+	});
+	$('#modal_wrap_2').click(function(){
+	  $('#modal_wrap_2, #modal_item_2').fadeTo(200,0).hide();
+	});
+});
+</script>
+
+</body>
+</html>

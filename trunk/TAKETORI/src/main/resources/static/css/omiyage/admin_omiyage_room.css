@@ -1,0 +1,27 @@
+#omiyageName {
+	width: 500px;
+}
+#num {
+	width: 100px;
+}
+.update_date {
+	text-align: right;
+}
+.room {
+	width: 150px;
+}
+.omiyage_name {
+	width: 400px;
+}
+.price {
+	text-align:right;
+	width: 150px;
+}
+.num {
+	text-align:right;
+	width: 100px;
+}
+.action {
+	text-align:right;
+	width: 200px;
+}

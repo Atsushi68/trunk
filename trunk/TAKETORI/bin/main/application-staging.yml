@@ -1,0 +1,47 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taketori_db
+    username: taketori
+    password: 7PF7qcLXcSpw
+    driver-class-name: org.postgresql.Driver
+  thymeleaf:
+    cache: false
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 500MB
+      location: /var/myapp/tmp_data
+
+# springframeworkはWARN以上を出力、当アプリ独自のログは、debugで出す。
+logging:
+  path: "/var/myapp/log"
+  level:
+    root: INFO
+    org:
+      springframework:
+        web: WARN
+    aplcategory: DEBUG
+
+omiyage:
+  no-image: /img/omiyage/no_image.png
+  image-dir: /var/www/html/img/omiyage/
+  order-to-hour: "08" #お土産購入の期限（時間）
+  report:
+    img-dir: /var/www/order/report/img/
+    jasper-dir: /var/www/order/report/
+    output-pdf-dir: /var/www/order/pdf/omiyage/
+    output-invoice-file: invoice.pdf
+    output-checklist-file: checklist.pdf
+
+room:
+  login-url: https://v163-44-167-249.a064.g.tyo1.static.cnode.io/order/user/login
+  login-success-url: https://v163-44-167-249.a064.g.tyo1.static.cnode.io/
+  login-to-hour: "10" #ログインの有効期限の時間（チェックインに合わせる）
+  qr-code-dir: /var/www/order/qr/
+  cookie-save-time: 8640000 #部屋情報クッキーの保存時間
+  login-qr-code-w: 300
+  login-qr-code-h: 300
+  report:
+    output-new-dir: /var/www/order/pdf/new/
+    output-re-dir: /var/www/order/pdf/re/
+    output-login-file: login.pdf

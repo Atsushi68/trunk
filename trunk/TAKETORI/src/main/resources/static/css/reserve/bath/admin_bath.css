@@ -1,0 +1,27 @@
+.receipt {
+	margin: 20px;
+}
+
+
+.reserve {
+	width: 1000px;
+	table-layout: fixed;
+	margin-bottom: 50px;
+}
+.reserve th,
+.reserve td {
+	width: 200px;
+	text-align: center;
+}
+
+.over_time {
+	background-color: #eee;
+}
+
+.update_date {
+	text-align: right;
+}
+
+.boldLine {
+    border-top: 5px solid black;
+}

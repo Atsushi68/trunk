@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<included>
+  <!-- LOG_PATH は Spring Boot が設定している logging.path から取得される。-->
+  <property name="APP_LOG_FILENAME" value="${LOG_FILE}"/>
+  <appender name="APPLICATION_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${APP_LOG_FILENAME}</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${APP_LOG_FILENAME}.%d{yyyyMMdd}.zip</fileNamePattern>
+      <maxHistory>30</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <charset>UTF-8</charset>
+     <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}</pattern>
+    </encoder>
+  </appender>
+  <appender name="ASYNC_APPLICATION_LOG_FILE" class="ch.qos.logback.classic.AsyncAppender">
+    <appender-ref ref="APPLICATION_LOG_FILE"/>
+  </appender>
+</included>

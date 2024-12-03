@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+  <head>
+    <!--/* 共通ヘッダ */-->
+    <meta th:replace="common/meta_header" />
+
+    <link rel="stylesheet" th:href="@{/css/reserve/bath/admin_bath.css}" />
+    <script
+      th:src="|@{/js/reserve/bath/admin_bath_usage.js}?v=${#calendars.format(#calendars.createNow(), 'yyyyMMddHHmmss')}|"
+    ></script>
+
+    <title>貸切風呂利用状況 | 竹取亭フロント</title>
+  </head>
+
+  <body>
+    <!--/* 管理者サイドメニュー */-->
+    <div id="side_menu" th:replace="common/admin_side_menu"></div>
+
+    <main>
+      <div class="container">
+        <!--/* ナビゲーションバー */-->
+        <div class="row">
+          <nav>
+            <div class="nav-wrapper">
+              <div class="col s12">
+                <a th:href="@{/admin}" class="breadcrumb">TOP</a>
+                <a href="#!" class="breadcrumb">貸切風呂利用状況</a>
+              </div>
+            </div>
+          </nav>
+        </div>
+
+        <!--/* エラーメッセージエリア */-->
+        <div id="error_field" th:replace="common/admin_message_field"></div>
+
+        <div class="row border_bottom_thin">
+          <p>
+            貸切風呂の予約状況です。時間が過ぎていない予約は、部屋番号をクリックすると取り消しできます。
+          </p>
+          <form
+            th:object="${form}"
+            th:action="@{/admin/bath/usage/}"
+            method="post"
+          >
+            <div class="input-field col">
+              <input type="date" th:field="*{reserveInputDate}" />
+              <label for="reserveInputDate">営業日</label>
+            </div>
+            <button class="btn waves-effect waves-light receipt">
+              <i class="material-icons left">search</i> 検索
+            </button>
+          </form>
+          <form
+            th:object="${form}"
+            th:action="@{/admin/bath/usage/cancel}"
+            method="post"
+          >
+            <input type="hidden" th:field="*{reserveDate}" />
+            <input type="hidden" id="timeCd" name="timeCd" />
+            <input type="hidden" id="bathCd" name="bathCd" />
+            <input type="hidden" id="roomNo" name="roomNo" />
+            <div class="col s12" id="reserveTable">
+              <table class="reserve">
+                <thead>
+                  <tr>
+                    <th th:text="*{displayDate}"></th>
+                    <th>一の湯</th>
+                    <th>二の湯</th>
+                    <th>三の湯</th>
+                    <th>四の湯</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <th:block th:each="item : ${adminBathYoyakuFormList}">
+                    <th:block th:if="${item.bathType} == '露天風呂'">
+                      <!-- 当日 -->
+                      <th:block th:if="${item.dateRange} == 0">
+                        <!-- 時間を超えている -->
+                        <th:block th:if="${item.overTime}">
+                          <tr
+                            th:data-time_cd="${item.timeCd}"
+                            th:data-time_nm="${item.timeNm}"
+                            th:data-reserve_date="*{reserveDate}"
+                            class="over_time"
+                            th:classappend="${(item.timeCd == '22' ? 'boldLine' : '')}"
+                          >
+                            <td>
+                              <b th:text="${item.timeNm}">15:00～15:45</b>
+                            </td>
+
+                            <th:block th:if="${item.bath1RoomNo} != ''">
+                              <td
+                                th:data-reserve_date="*{reserveDate}"
+                                th:data-room_no="${item.bath1RoomNo}"
+                                data-bath_cd="1"
+                              >
+                                <div
+                                  th:text="|${item.bath1RoomNo}号室(${item.bath1Count}回目)|"
+                                >
+                                  201号室
+                                </div>
+                              </td>
+                            </th:block>
+                            <th:block th:unless="${item.bath1RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath2RoomNo} != ''">
+                              <td
+                                th:data-reserve_date="*{reserveDate}"
+                                th:data-room_no="${item.bath2RoomNo}"
+                                data-bath_cd="2"
+                              >
+                                <div
+                                  th:text="|${item.bath2RoomNo}号室(${item.bath2Count}回目)|"
+                                >
+                                  201号室
+                                </div>
+                              </td>
+                            </th:block>
+                            <th:block th:unless="${item.bath2RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath3RoomNo} != ''">
+                              <td
+                                th:data-reserve_date="*{reserveDate}"
+                                th:data-room_no="${item.bath3RoomNo}"
+                                data-bath_cd="3"
+                              >
+                                <div
+                                  th:text="|${item.bath3RoomNo}号室(${item.bath3Count}回目)|"
+                                >
+                                  201号室
+                                </div>
+                              </td>
+                            </th:block>
+                            <th:block th:unless="${item.bath3RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath4RoomNo} != ''">
+                              <td
+                                th:data-reserve_date="*{reserveDate}"
+                                th:data-room_no="${item.bath4RoomNo}"
+                                data-bath_cd="4"
+                              >
+                                <div
+                                  th:text="|${item.bath4RoomNo}号室(${item.bath4Count}回目)|"
+                                >
+                                  201号室
+                                </div>
+                              </td>
+                            </th:block>
+                            <th:block th:unless="${item.bath4RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+                          </tr>
+                        </th:block>
+
+                        <!-- 時間を超えていない -->
+                        <th:block th:unless="${item.overTime}">
+                          <tr
+                            th:data-time_cd="${item.timeCd}"
+                            th:data-time_nm="${item.timeNm}"
+                            th:data-reserve_date="*{reserveDate}"
+                            th:classappend="${(item.timeCd == '22' ? 'boldLine' : '')}"
+                          >
+                            <td>
+                              <b th:text="${item.timeNm}">15:00～15:45</b>
+                            </td>
+
+                            <th:block th:if="${item.bath1RoomNo} != ''">
+                              <th:block th:if="${item.bath1Count} == 1">
+                                <td
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath1RoomNo}"
+                                  data-bath_cd="1"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath1RoomNo}号室(${item.bath1Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                              <th:block th:unless="${item.bath1Count} == 1">
+                                <td
+                                  style="background-color: #ebf5fb"
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath1RoomNo}"
+                                  data-bath_cd="1"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath1RoomNo}号室(${item.bath1Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                            </th:block>
+                            <th:block th:unless="${item.bath1RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath2RoomNo} != ''">
+                              <th:block th:if="${item.bath2Count} == 1">
+                                <td
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath2RoomNo}"
+                                  data-bath_cd="2"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath2RoomNo}号室(${item.bath2Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                              <th:block th:unless="${item.bath2Count} == 1">
+                                <td
+                                  style="background-color: #ebf5fb"
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath2RoomNo}"
+                                  data-bath_cd="2"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath2RoomNo}号室(${item.bath2Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                            </th:block>
+                            <th:block th:unless="${item.bath2RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath3RoomNo} != ''">
+                              <th:block th:if="${item.bath3Count} == 1">
+                                <td
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath3RoomNo}"
+                                  data-bath_cd="3"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath3RoomNo}号室(${item.bath3Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                              <th:block th:unless="${item.bath3Count} == 1">
+                                <td
+                                  style="background-color: #ebf5fb"
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath3RoomNo}"
+                                  data-bath_cd="3"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath3RoomNo}号室(${item.bath3Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                            </th:block>
+                            <th:block th:unless="${item.bath3RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath4RoomNo} != ''">
+                              <th:block th:if="${item.bath4Count} == 1">
+                                <td
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath4RoomNo}"
+                                  data-bath_cd="4"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath4RoomNo}号室(${item.bath4Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                              <th:block th:unless="${item.bath4Count} == 1">
+                                <td
+                                  style="background-color: #ebf5fb"
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath4RoomNo}"
+                                  data-bath_cd="4"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath4RoomNo}号室(${item.bath4Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                            </th:block>
+                            <th:block th:unless="${item.bath4RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+                          </tr>
+                        </th:block>
+                      </th:block>
+
+                      <!-- 当日以外 -->
+                      <th:block th:unless="${item.dateRange} == 0">
+                        <!-- 過去 -->
+                        <th:block th:if="${item.dateRange} > 0">
+                          <tr
+                            th:data-time_cd="${item.timeCd}"
+                            th:data-time_nm="${item.timeNm}"
+                            th:data-reserve_date="*{reserveDate}"
+                            class="over_time"
+                            th:classappend="${(item.timeCd == '22' ? 'boldLine' : '')}"
+                          >
+                            <td>
+                              <b th:text="${item.timeNm}">15:00～15:45</b>
+                            </td>
+
+                            <th:block th:if="${item.bath1RoomNo} != ''">
+                              <td
+                                th:data-reserve_date="*{reserveDate}"
+                                th:data-room_no="${item.bath1RoomNo}"
+                                data-bath_cd="1"
+                              >
+                                <div
+                                  th:text="|${item.bath1RoomNo}号室(${item.bath1Count}回目)|"
+                                >
+                                  201号室
+                                </div>
+                              </td>
+                            </th:block>
+                            <th:block th:unless="${item.bath1RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath2RoomNo} != ''">
+                              <td
+                                th:data-reserve_date="*{reserveDate}"
+                                th:data-room_no="${item.bath2RoomNo}"
+                                data-bath_cd="2"
+                              >
+                                <div
+                                  th:text="|${item.bath2RoomNo}号室(${item.bath2Count}回目)|"
+                                >
+                                  201号室
+                                </div>
+                              </td>
+                            </th:block>
+                            <th:block th:unless="${item.bath2RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath3RoomNo} != ''">
+                              <td
+                                th:data-reserve_date="*{reserveDate}"
+                                th:data-room_no="${item.bath3RoomNo}"
+                                data-bath_cd="3"
+                              >
+                                <div
+                                  th:text="|${item.bath3RoomNo}号室(${item.bath3Count}回目)|"
+                                >
+                                  201号室
+                                </div>
+                              </td>
+                            </th:block>
+                            <th:block th:unless="${item.bath3RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath4RoomNo} != ''">
+                              <td
+                                th:data-reserve_date="*{reserveDate}"
+                                th:data-room_no="${item.bath4RoomNo}"
+                                data-bath_cd="4"
+                              >
+                                <div
+                                  th:text="|${item.bath4RoomNo}号室(${item.bath4Count}回目)|"
+                                >
+                                  201号室
+                                </div>
+                              </td>
+                            </th:block>
+                            <th:block th:unless="${item.bath4RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+                          </tr>
+                        </th:block>
+
+                        <!-- 未来 -->
+                        <th:block th:unless="${item.dateRange} > 0">
+                          <tr
+                            th:data-time_cd="${item.timeCd}"
+                            th:data-time_nm="${item.timeNm}"
+                            th:data-reserve_date="*{reserveDate}"
+                            th:classappend="${(item.timeCd == '22' ? 'boldLine' : '')}"
+                          >
+                            <td>
+                              <b th:text="${item.timeNm}">15:00～15:45</b>
+                            </td>
+
+                            <th:block th:if="${item.bath1RoomNo} != ''">
+                              <th:block th:if="${item.bath1Count} == 1">
+                                <td
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath1RoomNo}"
+                                  data-bath_cd="1"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath1RoomNo}号室(${item.bath1Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                              <th:block th:unless="${item.bath1Count} == 1">
+                                <td
+                                  style="background-color: #ebf5fb"
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath1RoomNo}"
+                                  data-bath_cd="1"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath1RoomNo}号室(${item.bath1Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                            </th:block>
+                            <th:block th:unless="${item.bath1RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath2RoomNo} != ''">
+                              <th:block th:if="${item.bath2Count} == 1">
+                                <td
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath2RoomNo}"
+                                  data-bath_cd="2"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath2RoomNo}号室(${item.bath2Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                              <th:block th:unless="${item.bath2Count} == 1">
+                                <td
+                                  style="background-color: #ebf5fb"
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath2RoomNo}"
+                                  data-bath_cd="2"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath2RoomNo}号室(${item.bath2Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                            </th:block>
+                            <th:block th:unless="${item.bath2RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath3RoomNo} != ''">
+                              <th:block th:unless="${item.bath3Count} == 1">
+                                <td
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath3RoomNo}"
+                                  data-bath_cd="3"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath3RoomNo}号室(${item.bath3Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                              <th:block th:unless="${item.bath3Count} == 1">
+                                <td
+                                  style="background-color: #ebf5fb"
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath3RoomNo}"
+                                  data-bath_cd="3"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath3RoomNo}号室(${item.bath3Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                            </th:block>
+                            <th:block th:unless="${item.bath3RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath4RoomNo} != ''">
+                              <th:block th:if="${item.bath4Count} == 1">
+                                <td
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath4RoomNo}"
+                                  data-bath_cd="4"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath4RoomNo}号室(${item.bath4Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                              <th:block th:unless="${item.bath4Count} == 1">
+                                <td
+                                  style="background-color: #ebf5fb"
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath4RoomNo}"
+                                  data-bath_cd="4"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath4RoomNo}号室(${item.bath4Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                            </th:block>
+                            <th:block th:unless="${item.bath4RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+                          </tr>
+                        </th:block>
+                      </th:block>
+                    </th:block>
+                  </th:block>
+                </tbody>
+              </table>
+            </div>
+            <div class="col s12" id="reserveTable">
+              <table class="reserve">
+                <thead>
+                  <tr>
+                    <th th:text="*{displayDate}"></th>
+                    <th>五の湯</th>
+                    <th>六の湯</th>
+                    <th>七の湯</th>
+                    <th>八の湯</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <th:block th:each="item : ${adminBathYoyakuFormList}">
+                    <th:block th:if="${item.bathType} == '家族風呂'">
+                      <!-- 当日 -->
+                      <th:block th:if="${item.dateRange} == 0">
+                        <!-- 時間を超えている -->
+                        <th:block th:if="${item.overTime}">
+                          <tr
+                            th:data-time_cd="${item.timeCd}"
+                            th:data-time_nm="${item.timeNm}"
+                            th:data-reserve_date="*{reserveDate}"
+                            class="over_time"
+                            th:classappend="${(item.timeCd == '23' ? 'boldLine' : '')}"
+                          >
+                            <td>
+                              <b th:text="${item.timeNm}">15:00～15:45</b>
+                            </td>
+
+                            <th:block th:if="${item.bath5RoomNo} != ''">
+                              <td
+                                th:data-reserve_date="*{reserveDate}"
+                                th:data-room_no="${item.bath5RoomNo}"
+                                data-bath_cd="5"
+                              >
+                                <div
+                                  th:text="|${item.bath5RoomNo}号室(${item.bath5Count}回目)|"
+                                >
+                                  201号室
+                                </div>
+                              </td>
+                            </th:block>
+                            <th:block th:unless="${item.bath5RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath6RoomNo} != ''">
+                              <td
+                                th:data-reserve_date="*{reserveDate}"
+                                th:data-room_no="${item.bath6RoomNo}"
+                                data-bath_cd="6"
+                              >
+                                <div
+                                  th:text="|${item.bath6RoomNo}号室(${item.bath6Count}回目)|"
+                                >
+                                  201号室
+                                </div>
+                              </td>
+                            </th:block>
+                            <th:block th:unless="${item.bath6RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath7RoomNo} != ''">
+                              <td
+                                th:data-reserve_date="*{reserveDate}"
+                                th:data-room_no="${item.bath7RoomNo}"
+                                data-bath_cd="7"
+                              >
+                                <div
+                                  th:text="|${item.bath7RoomNo}号室(${item.bath7Count}回目)|"
+                                >
+                                  201号室
+                                </div>
+                              </td>
+                            </th:block>
+                            <th:block th:unless="${item.bath7RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath8RoomNo} != ''">
+                              <td
+                                th:data-reserve_date="*{reserveDate}"
+                                th:data-room_no="${item.bath8RoomNo}"
+                                data-bath_cd="8"
+                              >
+                                <div
+                                  th:text="|${item.bath8RoomNo}号室(${item.bath8Count}回目)|"
+                                >
+                                  201号室
+                                </div>
+                              </td>
+                            </th:block>
+                            <th:block th:unless="${item.bath8RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+                          </tr>
+                        </th:block>
+
+                        <!-- 時間を超えていない -->
+                        <th:block th:unless="${item.overTime}">
+                          <tr
+                            th:data-time_cd="${item.timeCd}"
+                            th:data-time_nm="${item.timeNm}"
+                            th:data-reserve_date="*{reserveDate}"
+                            th:classappend="${(item.timeCd == '23' ? 'boldLine' : '')}"
+                          >
+                            <td>
+                              <b th:text="${item.timeNm}">15:00～15:45</b>
+                            </td>
+
+                            <th:block th:if="${item.bath5RoomNo} != ''">
+                              <th:block th:if="${item.bath5Count} == 1">
+                                <td
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath5RoomNo}"
+                                  data-bath_cd="5"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath5RoomNo}号室(${item.bath5Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                              <th:block th:unless="${item.bath5Count} == 1">
+                                <td
+                                  style="background-color: #ebf5fb"
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath5RoomNo}"
+                                  data-bath_cd="5"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath5RoomNo}号室(${item.bath5Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                            </th:block>
+                            <th:block th:unless="${item.bath5RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath6RoomNo} != ''">
+                              <th:block th:if="${item.bath6Count} == 1">
+                                <td
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath6RoomNo}"
+                                  data-bath_cd="6"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath6RoomNo}号室(${item.bath6Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                              <th:block th:unless="${item.bath6Count} == 1">
+                                <td
+                                  style="background-color: #ebf5fb"
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath6RoomNo}"
+                                  data-bath_cd="6"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath6RoomNo}号室(${item.bath6Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                            </th:block>
+                            <th:block th:unless="${item.bath6RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath7RoomNo} != ''">
+                              <th:block th:if="${item.bath7Count} == 1">
+                                <td
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath7RoomNo}"
+                                  data-bath_cd="7"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath7RoomNo}号室(${item.bath7Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                              <th:block th:unless="${item.bath7Count} == 1">
+                                <td
+                                  style="background-color: #ebf5fb"
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath7RoomNo}"
+                                  data-bath_cd="7"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath7RoomNo}号室(${item.bath7Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                            </th:block>
+                            <th:block th:unless="${item.bath7RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath8RoomNo} != ''">
+                              <th:block th:if="${item.bath8Count} == 1">
+                                <td
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath8RoomNo}"
+                                  data-bath_cd="8"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath8RoomNo}号室(${item.bath8Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                              <th:block th:unless="${item.bath8Count} == 1">
+                                <td
+                                  style="background-color: #ebf5fb"
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath8RoomNo}"
+                                  data-bath_cd="8"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath8RoomNo}号室(${item.bath8Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                            </th:block>
+                            <th:block th:unless="${item.bath8RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+                          </tr>
+                        </th:block>
+                      </th:block>
+
+                      <!-- 当日以外 -->
+                      <th:block th:unless="${item.dateRange} == 0">
+                        <!-- 過去 -->
+                        <th:block th:if="${item.dateRange} > 0">
+                          <tr
+                            th:data-time_cd="${item.timeCd}"
+                            th:data-time_nm="${item.timeNm}"
+                            th:data-reserve_date="*{reserveDate}"
+                            class="over_time"
+                            th:classappend="${(item.timeCd == '23' ? 'boldLine' : '')}"
+                          >
+                            <td>
+                              <b th:text="${item.timeNm}">15:00～15:45</b>
+                            </td>
+
+                            <th:block th:if="${item.bath5RoomNo} != ''">
+                              <td
+                                th:data-reserve_date="*{reserveDate}"
+                                th:data-room_no="${item.bath5RoomNo}"
+                                data-bath_cd="5"
+                              >
+                                <div
+                                  th:text="|${item.bath5RoomNo}号室(${item.bath5Count}回目)|"
+                                >
+                                  201号室
+                                </div>
+                              </td>
+                            </th:block>
+                            <th:block th:unless="${item.bath5RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath6RoomNo} != ''">
+                              <td
+                                th:data-reserve_date="*{reserveDate}"
+                                th:data-room_no="${item.bath6RoomNo}"
+                                data-bath_cd="6"
+                              >
+                                <div
+                                  th:text="|${item.bath6RoomNo}号室(${item.bath6Count}回目)|"
+                                >
+                                  201号室
+                                </div>
+                              </td>
+                            </th:block>
+                            <th:block th:unless="${item.bath6RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath7RoomNo} != ''">
+                              <td
+                                th:data-reserve_date="*{reserveDate}"
+                                th:data-room_no="${item.bath7RoomNo}"
+                                data-bath_cd="7"
+                              >
+                                <div
+                                  th:text="|${item.bath7RoomNo}号室(${item.bath7Count}回目)|"
+                                >
+                                  201号室
+                                </div>
+                              </td>
+                            </th:block>
+                            <th:block th:unless="${item.bath7RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath8RoomNo} != ''">
+                              <td
+                                th:data-reserve_date="*{reserveDate}"
+                                th:data-room_no="${item.bath8RoomNo}"
+                                data-bath_cd="8"
+                              >
+                                <div
+                                  th:text="|${item.bath8RoomNo}号室(${item.bath8Count}回目)|"
+                                >
+                                  201号室
+                                </div>
+                              </td>
+                            </th:block>
+                            <th:block th:unless="${item.bath8RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+                          </tr>
+                        </th:block>
+
+                        <!-- 未来 -->
+                        <th:block th:unless="${item.dateRange} > 0">
+                          <tr
+                            th:data-time_cd="${item.timeCd}"
+                            th:data-time_nm="${item.timeNm}"
+                            th:data-reserve_date="*{reserveDate}"
+                            th:classappend="${(item.timeCd == '23' ? 'boldLine' : '')}"
+                          >
+                            <td>
+                              <b th:text="${item.timeNm}">15:00～15:45</b>
+                            </td>
+
+                            <th:block th:if="${item.bath5RoomNo} != ''">
+                              <th:block th:if="${item.bath5Count} == 1">
+                                <td
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath5RoomNo}"
+                                  data-bath_cd="5"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath5RoomNo}号室(${item.bath5Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                              <th:block th:unless="${item.bath5Count} == 1">
+                                <td
+                                  style="background-color: #ebf5fb"
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath5RoomNo}"
+                                  data-bath_cd="5"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath5RoomNo}号室(${item.bath5Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                            </th:block>
+                            <th:block th:unless="${item.bath5RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath6RoomNo} != ''">
+                              <th:block th:if="${item.bath6Count} == 1">
+                                <td
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath6RoomNo}"
+                                  data-bath_cd="6"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath6RoomNo}号室(${item.bath6Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                              <th:block th:unless="${item.bath6Count} == 1">
+                                <td
+                                  style="background-color: #ebf5fb"
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath6RoomNo}"
+                                  data-bath_cd="6"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath6RoomNo}号室(${item.bath6Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                            </th:block>
+                            <th:block th:unless="${item.bath6RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath7RoomNo} != ''">
+                              <th:block th:unless="${item.bath7Count} == 1">
+                                <td
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath7RoomNo}"
+                                  data-bath_cd="7"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath7RoomNo}号室(${item.bath7Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                              <th:block th:unless="${item.bath7Count} == 1">
+                                <td
+                                  style="background-color: #ebf5fb"
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath7RoomNo}"
+                                  data-bath_cd="7"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath7RoomNo}号室(${item.bath7Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                            </th:block>
+                            <th:block th:unless="${item.bath7RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+
+                            <th:block th:if="${item.bath8RoomNo} != ''">
+                              <th:block th:if="${item.bath8Count} == 1">
+                                <td
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath8RoomNo}"
+                                  data-bath_cd="8"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath8RoomNo}号室(${item.bath8Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                              <th:block th:unless="${item.bath8Count} == 1">
+                                <td
+                                  style="background-color: #ebf5fb"
+                                  th:data-reserve_date="*{reserveDate}"
+                                  th:data-room_no="${item.bath8RoomNo}"
+                                  data-bath_cd="8"
+                                >
+                                  <button
+                                    class="cancel_room"
+                                    th:text="|${item.bath8RoomNo}号室(${item.bath8Count}回目)|"
+                                  >
+                                    201号室
+                                  </button>
+                                </td>
+                              </th:block>
+                            </th:block>
+                            <th:block th:unless="${item.bath8RoomNo} != ''"
+                              ><td></td
+                            ></th:block>
+                          </tr>
+                        </th:block>
+                      </th:block>
+                    </th:block>
+                  </th:block>
+                </tbody>
+              </table>
+              <div id="update_date"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

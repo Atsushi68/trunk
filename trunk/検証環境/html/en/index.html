@@ -1,0 +1,93 @@
+<!DOCTYPE html> 
+<html lang="en"><!--英語-->
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no,address=no,email=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css">
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+<link rel="shortcut icon" href="/img/favicon.ico">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style-en.css">
+<script type="text/javascript" src="/js/style.js"></script>
+<title>TOP</title>
+</head>
+<body>
+<header>
+<div class="head_box">
+    <div class="logo_item">
+    <a href="/en/index.html"><img src="/img/logo.svg" alt=""></a>
+    </div><!--logo_item-->
+</div><!--head_box-->
+</header>
+<main>
+<section>
+<div class="hero">
+<img class="tb" src="/img/main-pic-en.jpg" alt="メイン画像">
+<img class="sp" src="/img/main-pic-sp.jpg" alt="メイン画像">
+    <div class="txt">
+        <p>welcome to taketoritei maruyama</p>
+        <h1>We are grateful for the pleasure of serving you</h1>
+    </div>
+</div><!--hero-->
+</section>
+
+<section class="langage">
+  <h1>Language</h1>
+  <div>
+    <div class="md-radio">
+      <input id="1" type="radio" name="g" class="bath-link">
+      <label for="1">日本語</label>
+    </div>
+    <div class="md-radio">
+      <input id="2" type="radio" name="g" class="bath-link">
+      <label for="2">English</label>
+    </div>
+    <div class="md-radio">
+      <input id="3" type="radio" name="g" class="bath-link">
+      <label for="3">简体中文</label>
+    </div>
+    <div class="md-radio">
+      <input id="4" type="radio" name="g" class="bath-link">
+      <label for="4">繁體中文</label>
+    </div>
+    <div class="md-radio">
+      <input id="5" type="radio" name="g" class="bath-link">
+      <label for="5">한국어</label>
+    </div>
+  </div>
+</section>
+<div class="guidance">
+	<p>If you have inquiries or requests, please contact the Front Desk.</p>
+	<p><img class="eg_icon" src="/img/eg_icon.svg">Extension number：9</p>
+</div><!--guidance-->
+</main>
+
+<footer>
+</footer>
+
+<!-- pagetop -->
+<div id="scroll">
+    <a href="#" class="scroll"><img src="/img/page_top.svg"><span class="tb">Back to Top</span></a>
+</div>
+<script>
+$(function() {
+	$(".drop ul").css("display","none");
+    $(".drop").on("click", function() {
+	$(".drop ul").slideToggle();
+		if ($('.drop').hasClass('active')) {			
+		$('.drop').removeClass('active');				
+		}
+		else {
+			$('.drop').addClass('active');			
+		}
+    });
+});
+</script>
+
+</body>
+</html>

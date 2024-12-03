@@ -1,0 +1,10 @@
+<div class="error_global" th:if="${check}">
+  <th:block th:each="c, stat:${check}">
+    <span th:text="${c}" />
+    <br>
+  </th:block>
+</div>
+
+<div class="message_global" th:if="${message}">
+   <span th:text="${message}" />
+</div>

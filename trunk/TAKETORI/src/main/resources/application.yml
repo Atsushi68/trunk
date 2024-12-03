@@ -1,0 +1,36 @@
+spring:
+  profiles:
+    active: dev
+
+---
+
+spring:
+  datasource:
+    tomcat:
+      max-active: 10
+      max-idle: 5
+      min-idle: 1
+      initial-size: 0
+      remove-abandoned: true
+      remove-abandoned-timeout: 1800
+  thymeleaf:
+    prefix: "classpath:/templates/"
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 500MB
+    
+server:
+  port: 10443
+  servlet:
+    context-path: /order
+    session:
+      timeout: 18000
+  tomcat:
+    max-http-form-post-size: 200MB
+    max-swallow-size: 200MB

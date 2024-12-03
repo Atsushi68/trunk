@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+firstStartup=false
+org.eclipse.team.svn.ui.compare.ComparePanel.height=792
+org.eclipse.team.svn.ui.compare.ComparePanel.width=1710
+org.eclipse.team.svn.ui.lock.LockResourcesPanel.height=99
+org.eclipse.team.svn.ui.lock.LockResourcesPanel.width=470
+org.eclipse.team.svn.ui.panel.local.CommitPanel.height=677
+org.eclipse.team.svn.ui.panel.local.CommitPanel.width=1103
+org.eclipse.team.svn.ui.properties.ResourcePropertyEditPanel.height=516
+org.eclipse.team.svn.ui.properties.ResourcePropertyEditPanel.width=590
+preference.share.enableAuto=false

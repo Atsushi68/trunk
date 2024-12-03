@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;application-release.yml&apos; to &apos;TAKETORI/src/main/resources&apos;&#x0D;&#x0A;- 元のプロジェクト: &apos;TAKETORI&apos;&#x0D;&#x0A;- 宛先要素: &apos;TAKETORI/src/main/resources&apos;&#x0D;&#x0A;- オリジナル要素: &apos;application-release.yml&apos;" description="ファイルをコピー" destination="/src\/main\/resources=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/" element1="src/main/resources/application-release.yml" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1612340785058" units="0" version="1.0"/>
+</session>

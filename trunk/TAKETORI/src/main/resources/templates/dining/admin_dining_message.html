@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+  <head>
+    <!--/* 共通ヘッダ */-->
+    <meta th:replace="common/meta_header" />
+
+    <link rel="stylesheet" th:href="@{/css/dining/admin_dining_message.css}" />
+    <script th:src="|@{/js/dining/admin_dining_message.js}?v=${#calendars.format(#calendars.createNow(), 'yyyyMMddHHmmss')}|"></script>
+
+    <title>伝言事項 | 竹取亭フロント</title>
+
+  </head>
+
+  <body>
+    <!--/* 管理者サイドメニュー */-->
+    <div id="side_menu" th:replace="common/admin_side_menu"></div>
+
+    <main>
+      <div class="container">
+        <!--/* ナビゲーションバー */-->
+        <div class="row">
+          <nav>
+            <div class="nav-wrapper">
+              <div class="col s12">
+                <a th:href="@{/admin}" class="breadcrumb">TOP</a>
+                <a href="#!" class="breadcrumb">伝言事項</a>
+              </div>
+            </div>
+          </nav>
+        </div>
+
+        <!--/* エラーメッセージエリア */-->
+        <div id="error_field" th:replace="common/admin_message_field"></div>
+
+        <div class="row">
+            <p>伝言事項を確認する日付を選択し、検索ボタンを押してください。</p>
+            <form th:action="@{/admin/dining/place}" method="get" th:object="${form}">
+                <div class="input-field col">
+                    <input type="date" th:field="*{displayDays}"/>
+                    <label for="displayDays">営業日</label>
+                </div>
+                <div class="input-field col">
+                </div>
+                <br>
+                <button id="search-days" class="btn waves-effect waves-light receipt">
+                    <i class="material-icons left">search</i> 検索
+                </button>
+                <button style="margin-left: 30px;" id="prev-days" class="btn blue">
+                    <i class="material-icons left">keyboard_double_arrow_left</i> 前の日へ
+                </button>
+                <button id="next-days" class="btn blue">
+                    <i class="material-icons right">keyboard_double_arrow_right</i> 次の日へ
+                </button>
+            </form>
+		</div>
+
+        <div class="col s12" id="reserveTable">
+            <table class="reserve">
+                <thead>
+                  <tr>
+                    <th style="width: 150px;"></th>
+                    <th style="width: 120px;">場所</th>
+                    <th>伝言</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <th:block th:each="item : ${diningMessageList}">
+                    <tr>
+                        <td>
+                            <button class="waves-effect waves-light btn edit_btn" th:data-days="${form.displayDays}" th:data-place_id="${item.get('id')}"><i class="material-icons left">edit</i>編集</button>
+                        </td>
+                        <td>
+                            <b th:text="${item.get('dinner_place')}">睦月</b>
+                        </td>
+                        <td>
+                            <b class="nl2bre" th:text="${item.get('message')}">xxxxxxxxxxxx</b>
+                        </td>
+                    </tr>
+                  </th:block>
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+
+<!--/* 共通ヘッダ */-->
+<meta th:replace="common/meta_header">
+
+<link rel="stylesheet" th:href="@{/css/login/admin_top.css}">
+<script th:src="@{/js/login/admin_top.js}"></script>
+
+<title>竹取亭フロント</title>
+</head>
+
+<body>
+
+	<!--/* 管理者サイドメニュー */-->
+	<div id="side_menu" th:replace="common/admin_side_menu"></div>
+
+	<main>
+	<div class="container">
+
+		<div class="row center">
+
+			<div class="row border_bottom_thin">
+				<h4 class="header">竹取亭フロント</h4>
+			</div>
+
+			<div id="lostOrderTable"></div>
+
+			<div class="row border_bottom_thin">
+				<h5>貸切風呂予約</h5>
+				<div class="col s12" id="reserveTable">
+					<table class="reserve">
+						<thead>
+						<tr>
+							<th></th>
+							<th>一の湯</th><th>二の湯</th><th>三の湯</th><th>四の湯</th>
+						</tr>
+						</thead>
+						<tbody>
+							<tr th:each="item : ${adminBathYoyakuFormList}">
+							    <th:block th:if="${item.bathType} == '露天風呂'">
+								<th:block th:if="${item.overTime} == false">
+									<td><b th:text="${item.timeNm}"></b></td>
+
+									<th:block th:if="${item.bath1RoomNo} != ''">
+										<th:block th:if="${item.bath1Count} == 1">
+											<td th:text="|${item.bath1RoomNo}号室(${item.bath1Count}回目)|">201号室</td>
+										</th:block>
+										<th:block th:unless="${item.bath1Count} == 1">
+											<td style="background-color: #EBF5FB;" th:text="|${item.bath1RoomNo}号室(${item.bath1Count}回目)|">201号室</td>
+										</th:block>
+									</th:block>
+									<th:block th:unless="${item.bath1RoomNo} != ''"><td></td></th:block>
+
+									<th:block th:if="${item.bath2RoomNo} != ''">
+										<th:block th:if="${item.bath2Count} == 1">
+											<td th:text="|${item.bath2RoomNo}号室(${item.bath2Count}回目)|">201号室</td>
+										</th:block>
+										<th:block th:unless="${item.bath2Count} == 1">
+											<td style="background-color: #EBF5FB;" th:text="|${item.bath2RoomNo}号室(${item.bath2Count}回目)|">201号室</td>
+										</th:block>
+									</th:block>
+									<th:block th:unless="${item.bath2RoomNo} != ''"><td></td></th:block>
+
+									<th:block th:if="${item.bath3RoomNo} != ''">
+										<th:block th:if="${item.bath3Count} == 1">
+											<td th:text="|${item.bath3RoomNo}号室(${item.bath3Count}回目)|">201号室</td>
+										</th:block>
+										<th:block th:unless="${item.bath3Count} == 1">
+											<td style="background-color: #EBF5FB;" th:text="|${item.bath3RoomNo}号室(${item.bath3Count}回目)|">201号室</td>
+										</th:block>
+									</th:block>
+									<th:block th:unless="${item.bath3RoomNo} != ''"><td></td></th:block>
+
+									<th:block th:if="${item.bath4RoomNo} != ''">
+										<th:block th:if="${item.bath4Count} == 1">
+											<td th:text="|${item.bath4RoomNo}号室(${item.bath4Count}回目)|">201号室</td>
+										</th:block>
+										<th:block th:unless="${item.bath4Count} == 1">
+											<td style="background-color: #EBF5FB;" th:text="|${item.bath4RoomNo}号室(${item.bath4Count}回目)|">201号室</td>
+										</th:block>
+									</th:block>
+									<th:block th:unless="${item.bath4RoomNo} != ''"><td></td></th:block>
+								</th:block>
+								</th:block>
+							</tr>
+						</tbody>
+	    			</table>
+				</div>
+
+				<div class="col s12" id="reserveTable">
+					<table class="reserve">
+						<thead>
+						<tr>
+							<th></th>
+							<th>五の湯</th><th>六の湯</th><th>七の湯</th><th>八の湯</th>
+						</tr>
+						</thead>
+						<tbody>
+							<tr th:each="item : ${adminBathYoyakuFormList}">
+							    <th:block th:if="${item.bathType} == '家族風呂'">
+								<th:block th:if="${item.overTime} == false">
+									<td><b th:text="${item.timeNm}"></b></td>
+
+									<th:block th:if="${item.bath5RoomNo} != ''">
+										<th:block th:if="${item.bath5Count} == 1">
+											<td th:text="|${item.bath5RoomNo}号室(${item.bath5Count}回目)|">201号室</td>
+										</th:block>
+										<th:block th:unless="${item.bath5Count} == 1">
+											<td style="background-color: #EBF5FB;" th:text="|${item.bath5RoomNo}号室(${item.bath5Count}回目)|">201号室</td>
+										</th:block>
+									</th:block>
+									<th:block th:unless="${item.bath5RoomNo} != ''"><td></td></th:block>
+
+									<th:block th:if="${item.bath6RoomNo} != ''">
+										<th:block th:if="${item.bath6Count} == 1">
+											<td th:text="|${item.bath6RoomNo}号室(${item.bath6Count}回目)|">201号室</td>
+										</th:block>
+										<th:block th:unless="${item.bath6Count} == 1">
+											<td style="background-color: #EBF5FB;" th:text="|${item.bath6RoomNo}号室(${item.bath6Count}回目)|">201号室</td>
+										</th:block>
+									</th:block>
+									<th:block th:unless="${item.bath6RoomNo} != ''"><td></td></th:block>
+
+									<th:block th:if="${item.bath7RoomNo} != ''">
+										<th:block th:if="${item.bath7Count} == 1">
+											<td th:text="|${item.bath7RoomNo}号室(${item.bath7Count}回目)|">201号室</td>
+										</th:block>
+										<th:block th:unless="${item.bath7Count} == 1">
+											<td style="background-color: #EBF5FB;" th:text="|${item.bath7RoomNo}号室(${item.bath7Count}回目)|">201号室</td>
+										</th:block>
+									</th:block>
+									<th:block th:unless="${item.bath7RoomNo} != ''"><td></td></th:block>
+
+									<th:block th:if="${item.bath8RoomNo} != ''">
+										<th:block th:if="${item.bath8Count} == 1">
+											<td th:text="|${item.bath8RoomNo}号室(${item.bath8Count}回目)|">201号室</td>
+										</th:block>
+										<th:block th:unless="${item.bath8Count} == 1">
+											<td style="background-color: #EBF5FB;" th:text="|${item.bath8RoomNo}号室(${item.bath8Count}回目)|">201号室</td>
+										</th:block>
+									</th:block>
+									<th:block th:unless="${item.bath8RoomNo} != ''"><td></td></th:block>
+								</th:block>
+								</th:block>
+							</tr>
+						</tbody>
+	    			</table>
+	    			<div id="update_date"></div>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+</html>

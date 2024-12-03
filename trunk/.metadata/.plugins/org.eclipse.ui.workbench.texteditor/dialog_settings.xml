@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value=""/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="true"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="log4j2"/>
+			<item value="log"/>
+			<item value="bath.23"/>
+			<item value="bath.14"/>
+			<item value="&lt;h2&gt;"/>
+			<item value="M_TIME"/>
+			<item value="1st - 4th Hot Springs"/>
+			<item value="bath.27="/>
+			<item value="bath.5"/>
+			<item value="bath4"/>
+			<item value="bath3"/>
+			<item value="bath2"/>
+			<item value="bath1"/>
+			<item value="reserveTable"/>
+			<item value="adminBathYoyakuFormList"/>
+		</list>
+		<list key="replacehistory">
+			<item value="bath8"/>
+			<item value="bath7"/>
+			<item value="bath6"/>
+			<item value="bath5"/>
+			<item value=""/>
+			<item value="号室($"/>
+			<item value="bath"/>
+			<item value="No"/>
+			<item value="totalCartPrice"/>
+			<item value="#order_modal,#delete_modal"/>
+			<item value="#order_modal"/>
+			<item value="order_btn"/>
+			<item value="modal_buy"/>
+			<item value="${#lists.size(cartFormList) == 0}"/>
+			<item value="null == ${cartFormList}"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="1334"/>
+		<item key="DIALOG_Y_ORIGIN" value="266"/>
+		<item key="DIALOG_WIDTH" value="330"/>
+		<item key="DIALOG_HEIGHT" value="390"/>
+		<item key="DIALOG_FONT_NAME" value="1|Yu Gothic UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Yu Gothic UI"/>
+	</section>
+</section>

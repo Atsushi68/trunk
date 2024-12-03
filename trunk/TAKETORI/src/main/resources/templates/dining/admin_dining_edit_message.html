@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+
+<!--/* 共通ヘッダ */-->
+<meta th:replace="common/meta_header">
+
+<link rel="stylesheet" th:href="@{/css/dining/admin_dining_message.css}">
+<script th:src="@{/js/dining/admin_dining_message_edit.js}"></script>
+<title>伝言事項 | 竹取亭フロント</title>
+<script>
+$(function() {    
+    // メモ欄のサイズ調整
+    M.textareaAutoResize($('#memo'));
+});
+</script>
+</head>
+
+<body>
+
+	<!--/* 管理者サイドメニュー */-->
+	<div id="side_menu" th:replace="common/admin_side_menu"></div>
+	<main>
+	<div class="container">
+
+		<!--/* ナビゲーションバー */-->
+		<div class="row">
+			<nav>
+				<div class="nav-wrapper">
+					<div class="col s12">
+						<a th:href="@{/admin}" class="breadcrumb">TOP</a>
+						<a href="#" class="breadcrumb">伝言事項編集</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+
+		<!--/* エラーメッセージエリア */-->
+		<div id="error_field" th:replace="common/admin_message_field"></div>
+
+		<div class="row">
+            <div>
+                <button style="width: 100px;" class="btn blue darken-1" id="backbtn" type="submit"><i class="material-icons left">arrow_back</i>戻る</button>
+            </div>
+        </div>
+
+        <div class="row" style="font-size: 18px;">
+            <form class="col s12" th:action="@{/admin/dining/message/regist}" method="post" id="registForm">
+                <div class="row" style="padding-left: 20px;">
+                    <div>
+                        営業日が「<span style="font-weight: bold;" th:text="${form.displayDays}"></span>」、
+                        場所が「<span style="font-weight: bold;" th:text="${selectedPlaceName}"></span>」
+                        の情報を編集します。
+                    </div>
+                    <p>伝言事項を入力し、更新ボタンを押してください。</p>
+                    <input type="hidden" class="displayDays" name="displayDays" id="displayDays" th:value="${form.displayDays}" />
+                    <input type="hidden" name="diningPlaceId" th:value="${form.diningPlaceId}" />
+                </div>
+                <div style="padding-left: 20px;">
+                    <label for="textarea1">伝言</label>
+                    <textarea id="textarea1" name="message" class="materialize-textarea" th:text="${form.getMessage()}"></textarea>                    
+                </div>
+                <div style="margin: 30px 0px;">
+                    <button class="btn-large red darken-1 updatebtn" type="submit">
+                        更新
+                    </button>
+                </div>
+            </form>
+		</div>
+    </div>
+    </main>
+</body>
+</html>

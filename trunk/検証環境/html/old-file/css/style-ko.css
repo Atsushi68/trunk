@@ -1,0 +1,57 @@
+body { font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;}
+
+@media (min-width: 600px) {
+/* ページトップ */
+#scroll {
+    position: fixed;
+    right: 10px;
+	z-index: 100;
+}
+#scroll a {
+	color: #FFF;
+	font-size: 1rem;
+}
+.scroll {
+	background: rgba(0,0,0,.8);
+	border-radius: 0%;
+    color: #fff;
+    width: 70px;
+	height: 70px;
+    padding: 13px 0;
+    text-align: center;
+    display: block;
+}
+.scroll img {
+	display: block;
+	margin: 0 auto 5px;
+	height: 25px;
+	width: 25px;
+}
+
+}
+
+@media (min-width: 1000px) {
+/* ナビOPEN時 */
+#global_nav {
+	background: rgba(0,00,0,.7);
+	font-size: 1.5rem;
+	height: auto;
+  	overflow-y: auto; /*scroll用*/
+	z-index: 999;
+/* 開いてないとき画面外配置 */
+	position: fixed;
+	right: -900px;
+	top: 80px;
+	-webkit-transition: .5s ease-in-out;
+	-moz-transition: .5s ease-in-out;
+	transition: .5s ease-in-out;
+	width: 50%;
+	-webkit-overflow-scrolling:touch; /*IOS対策*/
+}
+
+}
+
+@media (max-width:599px){
+}
+
+

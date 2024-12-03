@@ -1,0 +1,1 @@
+INDEX VERSION 1.4+D:\work\bravetact\有馬\src\trunk\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes

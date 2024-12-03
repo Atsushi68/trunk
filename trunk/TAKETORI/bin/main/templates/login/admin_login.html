@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+
+<!--/* 共通ヘッダ */-->
+<meta th:replace="common/meta_header">
+<link rel="stylesheet" th:href="@{/css/login.css}">
+<title>ログイン | 竹取亭フロント</title>
+</head>
+<body>
+
+	<div class="container">
+
+		<div class="row center">
+
+			<div class="row s6 border_bottom_thin">
+				<h3 class="header">竹取亭フロント</h3>
+			</div>
+
+			<div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null" class="error">ログインに失敗しました</div>
+
+			<form th:action="@{/admin/auth}" method="post">
+				<div class="row s6">
+					<div class="input-field row col login_input_text">
+						<input id="id" name="id" type="text" class="validate"> <label for="id">ユーザーID</label>
+					</div>
+					<div class="input-field col login_input_text">
+						<input id="pass" name="pass" type="password" class="validate"> <label for="pass">パスワード</label>
+					</div>
+				</div>
+				<div class="row center">
+					<button class="btn waves-effect waves-light" type="submit" name="action">
+						<i class="material-icons left">lock</i> ログイン
+					</button>
+				</div>
+			</form>
+
+		</div>
+
+	</div>
+
+</body>
+</html>

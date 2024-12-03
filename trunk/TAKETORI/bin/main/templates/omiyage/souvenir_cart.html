@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-248C37K8Y7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-248C37K8Y7');
+</script>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no,address=no,email=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css">
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+<link rel="stylesheet" href="/css/style.css">
+<script type="text/javascript" src="/js/style.js"></script>
+<link rel="shortcut icon" href="/img/favicon.ico">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" th:href="@{/css/omiyage/souvenir_cart.css}">
+<script type="text/javascript" th:src="@{/js/omiyage/souvenir_cart.js}"></script>
+<link rel="stylesheet" th:href="@{/css/user.css}">
+
+<title th:text="#{cart.6}">カートの中身</title>
+</head>
+
+<body>
+<header>
+	<th:block th:replace="common/header"></th:block>
+    <div class="sv_cart_sp">
+    <a th:href="@{/__${#locale}__/sv/cart}"><img src="/img/cart-sp.svg" alt=""></a>
+    </div><!--sv_cart_sp-->
+</header>
+<section>
+<div class="hero_under">
+<img class="tb" src="/img/top_img.jpg" alt="">
+<img class="sp" src="/img/top_img-sp.jpg" alt="">
+    <div class="txt">
+        <h1 th:text="#{cart.6}">カートの中身</h1>
+    </div>
+</div><!--hero_under-->
+</section>
+
+<ol class="breadcrumbs_comm">
+    <li class="link_txt"><a th:href="|/${#locale}/index.html|">TOP</a></li>
+    <li class="link_txt"><a th:href="@{/__${#locale}__/sv}" th:text="#{top.7}">お土産のご購入</a></li>
+    <li th:text="#{cart.6}">カートの中身</li>
+</ol><!--breadcrumbs_comm-->
+
+<!--/* メッセージエリア */-->
+<div th:replace="common/message_field"></div>
+
+<section>
+<div class="sv_cart_wrap">
+    <div class="txt_wrap">
+    	<th:block th:if="${#lists.size(cartFormList) != 0}">
+	        <p class="alert" th:if="${checkToDate}">
+	        	<th:block th:text="#{cart.21}">カートに入れた商品はまだ確定されていません。</th:block>
+	        	<br>
+	        	<th:block th:text="#{cart.22}">以下のお時間までに「商品を購入する」ボタンを押してください。</th:block>
+	        </p>
+	        <p class="alert" th:unless="${checkToDate}">
+	        	<th:block th:text="#{omiyage.14}">お土産購入可能期限が過ぎています。購入できません。</th:block>
+	        </p>
+        </th:block>
+        <div class="time_item">
+        	<p th:text="#{cart.23}">ご購入期限</p>
+        	<p class="to_time" th:text="${toDateTime}">2021/01/01 08:00:00</p>
+        </div>
+        <p>
+        	<!--
+        	<th:block th:text="#{cart.24}">商品をキャンセルされる場合は「削除する」からキャンセルしてください。</th:block>
+        	<br>
+        	-->
+			<th:block th:text="#{cart.25}">ご購入が確定した商品はお帰りの際にフロントにて合計金額をお支払いいただきます。</th:block>
+		</p>
+        <div class="link tb link_btn_container">
+            <a th:if="${#lists.size(cartFormList) == 0}" href="#plan_link" class="link_btn" th:text="#{cart.26}">カートの商品</a>
+            <a th:unless="${#lists.size(cartFormList) == 0}" href="#cart_link" class="link_btn" th:text="#{cart.26}">カートの商品</a>
+            <a href="#conf_link" class="link_btn" th:text="#{cart.13}">ご購入が確定した商品</a>
+        </div>
+        <div class="sp">
+        <div class="link">
+            <a th:if="${#lists.size(cartFormList) == 0}" href="#plan_link" th:text="#{cart.26}">カートの商品</a>
+            <a th:unless="${#lists.size(cartFormList) == 0}" href="#cart_link_2" th:text="#{cart.26}">カートの商品</a>
+            <a href="#conf_link_2" th:text="#{cart.13}">ご購入が確定した商品</a>
+        </div>
+        </div>
+    </div>
+    <!--txt_wrap-->
+
+	<!-- カート空 -->
+   	<div th:if="${#lists.size(cartFormList) == 0}" id="plan_link" class="purchase_plan_blank">
+        <div class="title_comm">
+        	<h2 th:text="#{cart.26}">カートの商品</h2>
+        </div>
+        <div class="item">
+			<p th:text="#{cart.19}">現在購入予定の商品はありません</p>
+        </div>
+	</div>
+	<!--purchase_plan-->
+
+	<!-- カート内商品ありtb -->
+	<div th:unless="${#lists.size(cartFormList) == 0}" id="cart_link" class="purchase_plan tb">
+        <div class="title_comm">
+        <h2 th:text="#{cart.26}">カートの商品</h2>
+        </div>
+
+        <!--item-->
+        <div class="item" th:each="cart : ${cartFormList}">
+            <div class="delate">
+	            <a href="" class="delate_button" th:data-omiyage="${cart.getOmiyageId()}" th:data-price="${cart.getPrice()}" th:data-name="${cart.getName()}" th:data-carttoken="${cart.getCartToken()}">
+	            	<img src="/img/dust-icom.svg"><th:block th:text="#{cart.14}">削除</th:block>
+	            </a>
+            </div>
+            <div class="pic">
+            	<img th:src="|/img/omiyage/${cart.getOmiyageId()}.${cart.getImageExt()}|" onerror="this.src='/img/omiyage/noimg.png';">
+            </div>
+            <div class="title">
+            	<p th:text="${cart.getName()}">商品タイトル</p>
+            </div>
+            <div class="quantity">
+            	<p><span th:text="${cart.getNum()}">1</span><th:block th:text="#{cart.15}">個</th:block></p>
+            </div>
+            <div class="price">
+            	<p>&yen;&nbsp;<span th:text="${#numbers.formatInteger(cart.getNum() * cart.getPrice(), 3, 'COMMA')}">000,000</span></p>
+            </div>
+        </div>
+        <!--item-->
+
+        <div class="total_price">
+        	<p><th:block th:text="#{cart.16}">合計予定金額</th:block><th:block th:text="#{cart.18}">(税込)</th:block></p>
+        	<p>&yen;&nbsp;<span th:text="${#numbers.formatInteger(totalCartPrice, 3, 'COMMA')}">0</span></p>
+        </div>
+        <!--total_price-->
+        <div class="putin" th:if="${checkToDate}">
+            <a href="" class="order_btn" th:text="#{cart.27}">商品を購入する</a>
+        </div>
+        <!--putin-->
+	</div>
+	<!--purchase_plan tb-->
+
+	<!-- カート内商品ありスマホ -->
+	<div th:unless="${#lists.size(cartFormList) == 0}" id="cart_link_2" class="purchase_plan sp">
+        <div class="title_comm">
+        <h2 th:text="#{cart.26}">カートの商品</h2>
+        </div>
+        <div class="item" th:each="cart : ${cartFormList}">
+            <div class="delate">
+            	<a href="" class="delate_button" th:data-omiyage="${cart.getOmiyageId()}" th:data-price="${cart.getPrice()}" th:data-name="${cart.getName()}" th:data-carttoken="${cart.getCartToken()}">
+            		<img src="/img/dust-icom.svg"><th:block th:text="#{cart.14}">削除</th:block>
+            	</a>
+            </div>
+            <div class="box_sp">
+                <div class="pic">
+                    <img th:src="|/img/omiyage/${cart.getOmiyageId()}.${cart.getImageExt()}|" onerror="this.src='/img/omiyage/noimg.png';">
+                </div>
+                <div class="txt_item_sp">
+                    <div class="title">
+                    	<p th:text="${cart.getName()}">商品タイトル</p>
+                    </div>
+                    <div class="under_txt">
+                        <div class="quantity">
+                        <p><span th:text="${cart.getNum()}">1</span><th:block th:text="#{cart.15}">個</th:block></p>
+                        </div>
+                        <div class="price">
+                        <p>&yen;&nbsp;<span th:text="${#numbers.formatInteger(cart.getNum() * cart.getPrice(), 3, 'COMMA')}">000,000</span></p>
+                        </div>
+                    </div>
+                </div><!--txt_item_sp-->
+            </div><!--box_sp-->
+        </div>
+
+        <div class="total_price">
+        <p><th:block th:text="#{cart.16}">合計予定金額</th:block><th:block th:text="#{cart.18}">(税込)</th:block></p>
+        <p>&yen;&nbsp;<span th:text="${#numbers.formatInteger(totalCartPrice, 3, 'COMMA')}">0</span></p>
+        </div><!--total_price-->
+        <div class="putin" th:if="${checkToDate}">
+            <a href="" class="order_btn" th:text="#{cart.27}">商品を購入する</a>
+        </div><!--putin-->
+	</div>
+	<!--purchase_plan sp-->
+
+	<!-- 購入済無し -->
+	<div th:if="${#lists.size(orderFormList) == 0}" id="conf_link" class="purchase_confirmed_blank"><!--blank-->
+        <div class="title_comm">
+	    	<h2 th:text="#{cart.13}">ご購入が確定した商品</h2>
+		</div>
+        <div class="item">
+        	<p th:text="#{cart.20}">現在購入が確定した商品はありません。</p>
+        </div>
+    </div>
+    <!--purchase_confirmed_blank-->
+
+	<!-- 購入済tb -->
+    <div th:unless="${#lists.size(orderFormList) == 0}" id="conf_link" class="purchase_confirmed tb">
+        <div class="title_comm">
+	    	<h2 th:text="#{cart.13}">ご購入が確定した商品</h2>
+		</div>
+
+        <!--item-->
+        <div class="item" th:each="order : ${orderFormList}">
+            <div class="pic">
+            	<img th:src="|/img/omiyage/${order.getOmiyageId()}.${order.getImageExt()}|" onerror="this.src='/img/omiyage/noimg.png';">
+            </div>
+            <div class="title">
+            	<p th:text="${order.getName()}">商品タイトル</p>
+            </div>
+            <div class="quantity">
+            <p><span  th:text="${order.getNum()}">1</span><th:block th:text="#{cart.15}">個</th:block></p>
+            </div>
+            <div class="price">
+            <p>&yen;&nbsp;<span th:text="${#numbers.formatInteger(order.getNum() * order.getPrice(), 3, 'COMMA')}">000,000</span></p>
+            </div>
+        </div>
+        <!--item-->
+
+        <div class="total_price">
+        	<p><th:block th:text="#{cart.17}">合計金額</th:block><th:block th:text="#{cart.18}">(税込)</th:block></p>
+        	<p>&yen;&nbsp;<span th:text="${#numbers.formatInteger(totalOrderPrice, 3, 'COMMA')}">0</span></p>
+        </div><!--total_price-->
+    </div>
+    <!--purchase_confirmed tb-->
+
+	<!-- 購入済スマホ -->
+    <div th:unless="${#lists.size(orderFormList) == 0}" id="conf_link_2" class="purchase_confirmed sp">
+        <div class="title_comm">
+	    	<h2 th:text="#{cart.13}">ご購入が確定した商品</h2>
+		</div>
+
+        <!-- item -->
+        <div class="item" th:each="order : ${orderFormList}">
+            <div class="box_sp">
+            <div class="pic">
+                <img th:src="|/img/omiyage/${order.getOmiyageId()}.${order.getImageExt()}|" onerror="this.src='/img/omiyage/noimg.png';">
+            </div>
+            <div class="txt_item_sp">
+                <div class="title">
+                <p th:text="${order.getName()}">商品タイトル</p>
+                </div>
+                <div class="under_txt">
+                    <div class="quantity">
+                    <p><span  th:text="${order.getNum()}">1</span><th:block th:text="#{cart.15}">個</th:block></p>
+                    </div>
+                    <div class="price">
+                    <p>&yen;&nbsp;<span th:text="${#numbers.formatInteger(order.getNum() * order.getPrice(), 3, 'COMMA')}">000,000</span></p>
+                    </div>
+                </div><!--under_txt-->
+            </div><!--txt_item_sp-->
+            </div><!--box_sp-->
+        </div>
+        <!--item-->
+
+        <div class="total_price">
+        	<p><th:block th:text="#{cart.17}">合計金額</th:block><th:block th:text="#{cart.18}">(税込)</th:block></p>
+        	<p>&yen;&nbsp;<span th:text="${#numbers.formatInteger(totalOrderPrice, 3, 'COMMA')}">0</span></p>
+        </div>
+        <!--total_price-->
+    </div>
+    <!--purchase_confirmed sp-->
+</div>
+<!--sv_cart_wrap-->
+</section>
+
+<div id="modal_wrap">
+    <div id="delete_modal">
+    	<form th:action="@{/__${#locale}__/sv/cart/delete}" method="post" id="delete_form">
+	    	<div class="txt">
+	            <p th:text="#{cart.29}">商品タイトル</p>
+	        </div>
+	        <div class="link">
+	            <a href="" class="arrow" id="delete_modal_omiyage"><th:block th:text="#{cart.14}">削除する</th:block></a>
+	        </div>
+	        <input type="hidden" id="delete_omiyage_id" name="omiyage_id" value="" />
+			<input type="hidden" id="delete_price" name="price" value="" />
+			<input type="hidden" id="delete_omiyage_name" name="omiyage_name" value="" />
+		</form>
+	</div>
+	<div id="order_modal">
+    	<form th:action="@{/__${#locale}__/sv/cart/order}" method="post" id="order_form">
+	    	<div class="txt">
+	            <p th:text="#{cart.32}">カートの商品を購入します</p>
+	        </div>
+	        <div class="link">
+	            <a href="" class="arrow" id="order_modal_omiyage"><th:block th:text="#{cart.27}">購入する</th:block></a>
+	        </div>
+		</form>
+	</div>
+</div>
+
+<!--cart modal_wrap-->
+
+<footer>
+</footer>
+
+<!-- pagetop -->
+<div id="scroll">
+    <a href="#" class="scroll">
+    	<img src="/img/page_top.svg"><span class="tb" th:text="#{top.13}">上へ</span>
+    </a>
+</div>
+
+</body>
+</html>

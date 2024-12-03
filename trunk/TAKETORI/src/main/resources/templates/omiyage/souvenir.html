@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-248C37K8Y7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-248C37K8Y7');
+</script>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no,address=no,email=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css">
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+<link rel="stylesheet" href="/css/style.css">
+<script type="text/javascript" src="/js/style.js"></script>
+<link rel="shortcut icon" href="/img/favicon.ico">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" th:href="@{/css/omiyage/souvenir.css}">
+<script type="text/javascript" th:src="@{/js/omiyage/souvenir.js}"></script>
+<link rel="stylesheet" th:href="@{/css/user.css}">
+
+<title th:text=#{top.7}>お土産のご購入</title>
+</head>
+<body>
+<header>
+	<th:block th:replace="common/header"></th:block>
+    <div class="sv_cart_sp">
+    <a th:href="@{/__${#locale}__/sv/cart}"><img src="/img/cart-sp.svg" alt=""></a>
+    </div><!--sv_cart_sp-->
+</header>
+<div class="hero_under">
+<img class="tb" src="/img/top_img.jpg" alt="">
+<img class="sp" src="/img/top_img-sp.jpg" alt="">
+    <div class="txt">
+        <h1 th:text=#{top.7}>お土産のご購入</h1>
+    </div>
+</div><!--hero_under-->
+
+<ol class="breadcrumbs_comm">
+    <li class="link_txt"><a th:href="|/${#locale}/index.html|">TOP</a></li>
+    <li th:text=#{top.7}>お土産のご購入</li>
+</ol><!--breadcrumbs_comm-->
+
+<section>
+<div class="sv_wrap">
+<div class="sv_sidebar_sp">
+    <div class="serch">
+    <form class="search_item" th:action="@{/__${#locale}__/sv}" method="get">
+    	<!-- キーワードで探す -->
+        <input class="keyword_item" type="text" name="freeword" th:value="${searchForm.getFreeword()}" th:placeholder="#{omiyage.1}">
+        <input type="hidden" name="page" value="1">
+        <button type="submit" class="keyword_btn"><img src="/img/sv_search.png" class="Box-Btn-Icon" alt=""></button>
+    </form>
+    </div>
+    <div class="select">
+    <p th:text="#{omiyage.15}">商品カテゴリ</p>
+    <select class="drop_item" id="drop" name="category">
+	    <option value="">--</option>
+	    <option th:each="category : ${categoryMap}" th:selected="${category.value} == ${selectCategory}" th:value="${category.value}" th:text="${category.value}">商品カテゴリ</option>
+    </select>
+    </div>
+</div><!--sv_sidebar_sp-->
+<div class="sv_box">
+    <div class="sidebar_item">
+        <div class="serch">
+        <form class="search_item" th:action="@{/__${#locale}__/sv}" method="get">
+	        <!-- キーワードで探す -->
+            <input class="keyword_item" type="text" name="freeword" th:value="${searchForm.getFreeword()}" th:placeholder="#{omiyage.1}">
+            <input type="hidden" name="page" value="1">
+            <button type="submit" class="keyword_btn"><img src="/img/sv_search.png" class="Box-Btn-Icon" alt=""></button>
+        </form>
+        </div>
+        <div class="link_cart">
+        <ul>
+        <li th:each="category : ${categoryMap}">
+        	<a th:href="|@{/__${#locale}__/sv}?category=${category.value}&page=1|" th:text="${category.value}">商品カテゴリ</a>
+        </li>
+        </ul>
+        <div class="cart">
+        <a th:href="@{/__${#locale}__/sv/cart}">
+        	<img src="/img/cart.svg"><th:block th:text="#{omiyage.2}">カートを見る</th:block>
+        </a>
+        </div>
+        </div><!--link_cart-->
+    </div><!--sidebar_item-->
+
+	<!-- 検索結果なし -->
+	<div th:if="${#lists.size(omiyageList)} == 0" class="product_item">
+        <div class="product_box">
+    		<div class="error_global" th:text="#{omiyage.8}"></div>
+    	</div>
+    </div>
+
+    <!-- 検索結果あり -->
+    <div th:unless="${#lists.size(omiyageList)} == 0" class="product_item">
+        <div class="product_box">
+            <div class="sv_item" th:each="omiyage : ${omiyageList}">
+	            <a th:href="@{/__${#locale}__/sv/detail/__${omiyage.getOmiyageId()}__}">
+	    	        <div class="sv_item_sp">
+	        	        <div class="pic">
+	        	        	<img th:src="|/img/omiyage/${omiyage.getOmiyageId()}.${omiyage.getImageExt()}|" onerror="this.src='/img/omiyage/noimg.png';">
+	        	        </div>
+	            	    <div class="sv_item_txt_sp">
+	                		<div class="title"><p th:text="${omiyage.getName()}">商品のタイトル</p></div>
+	                		<div class="price"><p>&yen;<span th:text="${#numbers.formatInteger(omiyage.getPrice(), 3, 'COMMA')}">1000</span><th:block th:text="#{cart.18}">（税込）</th:block></p></div>
+	                	</div><!--sv_item_txt_sp-->
+	                </div><!--sv_item_sp-->
+                </a>
+            </div><!--sv_item-->
+
+			<!-- ページング -->
+			<div class="pagination">
+			  <ol>
+			  <li class="prev">
+			  	<a class="page-link" th:href="@{/__${#locale}__/sv/?freeword=__${searchForm.getFreeword()}__&category=__${searchForm.getCategory()}__&page=1}" aria-label="Previous"><span aria-hidden="true">＜＜</span></a>
+			  </li>
+			  <li>
+			    <a th:href="@{/__${#locale}__/sv/?freeword=__${searchForm.getFreeword()}__&category=__${searchForm.getCategory()}__&page={page} (page = ${pagination.prevBlock})}">＜</a>
+			  </li>
+			  <th:block th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
+			      <li th:class="${pagination.page} == ${pageButton} ? current : not_current" th:with="start = ${pagination.startPage}, end = ${pagination.endPage}" th:each="pageButton : ${#numbers.sequence(start, end)}">
+					<a th:href="@{/__${#locale}__/sv/?freeword=__${searchForm.getFreeword()}__&category=__${searchForm.getCategory()}__&page={page} (page = ${pageButton})}" th:text=${pageButton}></a>
+			      </li>
+			  </th:block>
+			  <li>
+			    <a th:href="@{/__${#locale}__/sv/?freeword=__${searchForm.getFreeword()}__&category=__${searchForm.getCategory()}__&page={page} (page = ${pagination.nextBlock})}" aria-label="Next">＞</a>
+			  </li>
+			  <li class="next">
+			  	<a th:href="@{/__${#locale}__/sv/?freeword=__${searchForm.getFreeword()}__&category=__${searchForm.getCategory()}__&page={page} (page = ${pagination.totalPageCnt})}" aria-label="Previous">＞＞</a>
+			  </li>
+			  </ol>
+			</div>
+        </div>
+        <div class="pagination_sp">
+            <ol>
+            <li class="prev"><a th:href="@{/__${#locale}__/sv/?freeword=__${searchForm.getFreeword()}__&category=__${searchForm.getCategory()}__&page={page} (page = ${pagination.prevBlock})}">＜&nbsp;前へ</a></li>
+            <li class="next"><a th:href="@{/__${#locale}__/sv/?freeword=__${searchForm.getFreeword()}__&category=__${searchForm.getCategory()}__&page={page} (page = ${pagination.nextBlock})}" aria-label="Next">次へ&nbsp;＞</a></li>
+            </ol>
+        </div><!--pagination_sp-->
+    </div><!--product_item-->
+</div><!--sv_box-->
+</div><!--sv_wrap-->
+</section>
+
+<footer>
+</footer>
+
+<!-- pagetop -->
+<div id="scroll">
+    <a href="#" class="scroll"><img src="/img/page_top.svg"><span class="tb" th:text="#{top.13}">上へ</span></a>
+</div>
+</body>
+</html>

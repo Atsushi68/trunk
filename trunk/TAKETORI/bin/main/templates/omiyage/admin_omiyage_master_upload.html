@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+
+<!--/* 共通ヘッダ */-->
+<meta th:replace="common/meta_header">
+
+<link rel="stylesheet" th:href="@{/css/omiyage/admin_omiyage_master.css}">
+
+<title>お土産マスタアップロード | 竹取亭フロント</title>
+</head>
+
+<body>
+
+	<!--/* 管理者サイドメニュー */-->
+	<div id="side_menu" th:replace="common/admin_side_menu"></div>
+
+	<main>
+	<div class="container">
+
+		<!--/* ナビゲーションバー */-->
+		<div class="row">
+			<nav>
+				<div class="nav-wrapper">
+					<div class="col s12">
+						<a th:href="@{/admin}" class="breadcrumb">TOP</a>
+						<a class="breadcrumb">お土産マスタアップロード</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+
+		<!--/* エラーメッセージエリア */-->
+		<div id="error_field" th:replace="common/admin_message_field"></div>
+
+		<div class="row">
+
+			<form th:object="${form}" th:action="@{/admin/omiyage/master/upload}" method="post" enctype="multipart/form-data">
+				<div class="row center">
+					<p>この処理はアップロードファイルで追加処理をします</p>
+					<input type="file" name="upload_file" class="waves-effect waves-light"  />
+				</div>
+				<div class="row center">
+					<button class="btn waves-effect waves-light" type="submit" name="action">
+						<i class="material-icons left">cloud_upload</i> アップロード
+					</button>
+				</div>
+			</form>
+
+		</div>
+
+	</div>
+	</main>
+</body>
+</html>

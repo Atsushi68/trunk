@@ -1,0 +1,30 @@
+.error_global {
+	width: 80%;
+	margin-left:auto;
+	margin-right:auto;
+	padding: 15px;
+	text-align: left;
+	border:  1px solid rgba(200, 50, 50, 0.5);
+	color: rgba(200, 0, 0, 0.8);
+	font-size: 1.5rem;
+	background-color: #ffebeb;
+}
+
+.message_global {
+	width: 80%;
+	margin-left:auto;
+	margin-right:auto;
+	padding: 15px;
+	text-align: left;
+	border:  1px solid rgba(50, 50, 200, 0.5);
+	color: rgba(0, 0, 200, 0.8);
+	font-size: 1.5rem;
+	background-color: #f7f7ff;
+}
+
+.sv_cart_sp {
+    position: fixed;
+    right: 80px;
+    top: 9px;
+    z-index: 1001;
+}

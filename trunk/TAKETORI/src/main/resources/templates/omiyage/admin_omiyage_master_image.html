@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+
+<!--/* 共通ヘッダ */-->
+<meta th:replace="common/meta_header">
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+
+<link rel="stylesheet" th:href="@{/css/omiyage/admin_omiyage_image.css}">
+
+<title>お土産画像 | 竹取亭フロント</title>
+</head>
+
+<body>
+
+	<!--/* 管理者サイドメニュー */-->
+	<div id="side_menu" th:replace="common/admin_side_menu"></div>
+
+	<main>
+	<div class="container">
+		<div class="row">
+			<nav>
+				<div class="nav-wrapper">
+					<div class="col s12">
+						<a th:href="@{/admin}" class="breadcrumb">TOP</a>
+						<a th:href="@{/admin/omiyage/master}" class="breadcrumb">お土産マスタ</a>
+						<a class="breadcrumb">お土産画像</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+
+		<!--/* エラーメッセージエリア */-->
+		<div id="error_field" th:replace="common/admin_message_field"></div>
+
+		<div class="row">
+
+			<form th:object="${form}" th:action="@{/admin/omiyage/master/image/regist}" method="post" enctype="multipart/form-data">
+
+				<input type="hidden" th:field="*{omiyageId}"/>
+				<input type="hidden" th:field="*{imageExt}"/>
+
+				<div class="row">
+					<h6>商品画像</h6>
+				</div>
+				<div class="row center">
+					<img th:if="*{imageExt}"     th:src="'/img/omiyage/' + *{omiyageId} + '.' + *{imageExt}" >
+					<img th:unless="*{imageExt}" th:src="${@environment.getProperty('omiyage.no-image')}">
+				</div>
+
+				<div class="row center">
+					<input type="file" name="upload_file" class="waves-effect waves-light"  />
+				</div>
+				<div class="row center">
+					<button class="btn waves-effect waves-light" type="submit">
+						<i class="material-icons left">add_photo_alternate</i> 登録
+					</button>
+				</div>
+			</form>
+			<form th:object="${form}" th:action="@{/admin/omiyage/master/image/delete}" method="post" enctype="multipart/form-data">
+
+				<input type="hidden" th:field="*{omiyageId}"/>
+				<input type="hidden" th:field="*{imageExt}"/>
+
+				<div class="row center" th:if="*{imageExt}">
+					<button class="btn waves-effect waves-light red" type="submit">
+						<i class="material-icons left">delete</i> 削除
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	</main>
+</body>
+</html>
+
+
+

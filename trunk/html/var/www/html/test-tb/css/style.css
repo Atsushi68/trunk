@@ -1,0 +1,234 @@
+@charset "UTF-8";
+
+/*reset-----------*/
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: serif;
+}
+
+@media all and (-ms-high-contrast:none) {
+  body {
+    overflow-x: hidden;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  vertical-align: middle;
+}
+
+/*-----------reset*/
+
+/*メイン画像-----------*/
+
+.top_img {
+  color: #ffffff;
+}
+
+.top_img img {
+  width: 90%;
+  margin: 0 5%;
+  position: absolute;
+  z-index: 1;
+}
+
+.mainvisual_item {
+  position: relative;
+  z-index: 2;
+}
+
+.mainvisual_content {
+  padding-top: 1.75%;
+  text-align: center;
+  line-height: 30px;
+}
+
+/* welcome to taketoritei maruyama*/
+.char1 {
+  font-family: "Coronet";
+  font-size: 280%;
+  opacity: 0.8;
+}
+
+/* 極上の癒しを皆様に */
+.char2 {
+  font-size: 150%;
+}
+
+/* 竹取亭円山をご堪能ください */
+.char3 {
+  font-size: 200%;
+}
+
+/*-----------メイン画像*/
+
+/*トップメニュー-----------*/
+
+.main_char {
+  font-size: 155%;
+  padding: 5% 27% 1.5%;
+  font-weight: bold;
+  letter-spacing: 2.5px;
+}
+
+.flex_item p {
+  font-size: 108%;
+  font-weight: bold;
+  margin: 0 16%;
+  padding: 0.05rem 1rem;
+  border-left: 8px solid #666666;
+}
+
+.top_item img {
+  margin: 10px 16%;
+  width: 92%;
+}
+
+.flex_container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex_item {
+  width: 30%;
+  margin: 0.5%;
+  position: relative;
+  z-index: 2;
+}
+
+.flex_item::after {
+  content: '';
+  background-color: #4D4D4D;
+  opacity: 0.6;
+  position: absolute;
+  left: 94.5%;
+  right: -8%;
+  top: 12.5%;
+  bottom: 11.3%;
+  z-index: 1;
+}
+
+.arrow {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+.arrow::before,
+.arrow::after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  content: "";
+  vertical-align: middle;
+  z-index: 3;
+}
+
+.arrow_btn::before {
+  left: 370px;
+  bottom: 225px;
+  width: 15px;
+  height: 15px;
+  border-top: 5px solid #ffffff;
+  border-right: 5px solid #ffffff;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/*-----------トップメニュー*/
+
+
+/*内線案内-----------*/
+
+.extension_guidance {
+  position: absolute;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.box {
+  padding: 2rem 2rem;
+  margin: 2% 0 15%;
+  background: #fbffe6;
+  opacity: 0.8;
+}
+
+/* ご質問ご用命等～*/
+.char8 {
+  font-size: 18px
+}
+
+/* 内線番号:9; */
+.eg_icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 1%;
+}
+
+.char9 {
+  font-size: 25px;
+  opacity: 0.9;
+}
+
+/*-----------内線案内*/
+
+/*トップページに戻る-----------*/
+
+.page_top {
+  width: 70px;
+  height: 70px;
+  position: fixed;
+  right: 30px;
+  bottom: 20px;
+  background: #000000;
+  opacity: 0.8;
+  border-radius: 50%;
+  font-size: 18px;
+  z-index: 3;
+  text-align: center;
+}
+
+.page_top a {
+  position: relative;
+  font-size: 62.5%;
+  font-weight: bold;
+  color: #ffffff;
+  font-family: "游ゴシック";
+}
+
+.page_top img {
+  width: 72%;
+  height: 72%;
+  position: relative;
+  padding: 0 6.5px;
+}
+
+/*-----------トップページに戻る*/

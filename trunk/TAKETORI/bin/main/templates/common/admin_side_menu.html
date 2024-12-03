@@ -1,0 +1,66 @@
+<header>
+
+	<ul th:if="${session.isAdmin == true}" id="navi-mobile" class="sidenav sidenav-fixed" style="transform: translateX(0px);">
+		<li class="bold border_bottom_thin">
+			<h5 class="bold">
+				<a th:href="@{/admin}">フロント</a>
+			</h5>
+		</li>
+		<li class="bold">
+			<a th:href="@{/admin/room/qrcode/new}" class=""><i class="material-icons left">person</i>客室用QRコード新規発行</a>
+		</li>
+		<li class="bold">
+			<a th:href="@{/admin/room/qrcode/edit}" class=""><i class="material-icons left">edit</i>客室用QRコード編集</a>
+		</li>
+		<li class="bold">
+			<a th:href="@{/admin/omiyage}" class=""><i class="material-icons left">card_giftcard</i>お土産注文</a>
+		</li>
+		<li class="bold">
+			<a th:href="@{/admin/bath}" class=""><i class="material-icons left">hot_tub</i>貸切風呂予約</a>
+		</li>
+		<li class="bold border_bottom_thin strongBold">
+			<a th:href="@{/admin/bath/usage}" class=""><i class="material-icons left">hot_tub</i>貸切風呂利用状況</a>
+		</li>
+        <li class="bold">
+			<a th:href="@{/admin/dining/regist}" class=""><i class="material-icons left">restaurant</i>朝飯・夕食登録</a>
+		</li>
+        <li class="bold strongBold">
+			<a th:href="@{/admin/dining/place}" class=""><i class="material-icons left">restaurant</i>朝飯・夕食（場所別）</a>
+		</li>
+        <li class="bold">
+			<a th:href="@{/admin/dining/time}" class=""><i class="material-icons left">restaurant</i>朝飯・夕食（時間別）</a>
+		</li>
+        <li class="bold border_bottom_thin">
+			<a th:href="@{/admin/dining/message}" class=""><i class="material-icons left">edit</i>伝言事項</a>
+		</li>
+        <li class="bold">
+			<a th:href="@{/admin/omiyage/master}" class=""><i class="material-icons left">miscellaneous_services</i>お土産マスタ</a>
+		</li>
+        <li class="bold">
+			<a href="#" class="logoutlink"><i class="material-icons left">exit_to_app</i>ログアウト</a>
+		</li>
+	</ul>
+
+    <ul th:if="${session.isViewer == true}" id="navi-mobile" class="sidenav sidenav-fixed" style="transform: translateX(0px);">
+		<li class="bold border_bottom_thin">
+			<h5 class="bold">
+				<a th:href="@{/admin/dining}">VIEWER TOP</a>
+			</h5>
+		</li>
+        <!--
+        <li class="bold">
+			<a th:href="@{/admin/dining}" class=""><i class="material-icons left">restaurant</i>朝飯・夕食</a>
+		</li>
+        -->
+        <li class="bold">
+			<a th:href="@{/admin/dining/place}" class=""><i class="material-icons left">restaurant</i>朝飯・夕食（場所別）</a>
+		</li>
+        <li class="bold">
+			<a th:href="@{/admin/dining/time}" class=""><i class="material-icons left">restaurant</i>朝飯・夕食（時間別）</a>
+		</li>
+        <li class="bold border_bottom_thin">
+			<a href="#" class="logoutlink"><i class="material-icons left">exit_to_app</i>ログアウト</a>
+		</li>
+	</ul>
+    <form th:action="@{/admin/logout}" method="post" id="logoutForm"></form>
+</header>

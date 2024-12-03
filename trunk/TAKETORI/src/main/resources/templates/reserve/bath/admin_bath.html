@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+  <head>
+    <!--/* 共通ヘッダ */-->
+    <meta th:replace="common/meta_header" />
+
+    <link rel="stylesheet" th:href="@{/css/reserve/bath/admin_bath.css}" />
+    <script th:src="@{/js/reserve/bath/admin_bath.js}"></script>
+
+    <title>貸切風呂予約 | 竹取亭フロント</title>
+  </head>
+
+  <body>
+    <!--/* 管理者サイドメニュー */-->
+    <div id="side_menu" th:replace="common/admin_side_menu"></div>
+
+    <main>
+      <div class="container">
+        <!--/* ナビゲーションバー */-->
+        <div class="row">
+          <nav>
+            <div class="nav-wrapper">
+              <div class="col s12">
+                <a th:href="@{/admin}" class="breadcrumb">TOP</a>
+                <a href="#!" class="breadcrumb">貸切風呂予約</a>
+              </div>
+            </div>
+          </nav>
+        </div>
+
+        <!--/* エラーメッセージエリア */-->
+        <div id="error_field" th:replace="common/admin_message_field"></div>
+
+        <div class="row">
+          <form
+            th:object="${form}"
+            th:action="@{/admin/bath/regist}"
+            method="post"
+          >
+            <div class="col s12">
+              <div class="row">
+                <p>フロントから貸切風呂の予約を行います。</p>
+                <div class="input-field col">
+                  <input type="date" th:field="*{reserveDate}" />
+                  <label for="reserveDate">営業日</label>
+                </div>
+                <div class="input-field col" style="width: 230px">
+                  <select th:field="*{timeCd}">
+                    <option value=""></option>
+                    <option
+                      th:each="time : ${timeList}"
+                      th:value="${time.timeCd}"
+                      th:text="${time.next} + ${time.dispText} + (${time.bathType} == '露天風呂' ? '　(露)' : '　(内)')"
+                      th:selected="${time.timeCd} == *{timeCd}"
+                    >
+                      202
+                    </option>
+                  </select>
+                  <label for="timeCd">時間帯</label>
+                </div>
+                <div class="input-field col">
+                  <select th:field="*{bathCd}">
+                    <option value=""></option>
+                    <option
+                      th:each="bath : ${bathEnum}"
+                      th:value="${bath.code}"
+                      th:text="${bath.label}"
+                      th:selected="${bath.code} == *{bathCd}"
+                    >
+                      一の湯
+                    </option>
+                  </select>
+                  <label for="bathCd">貸切風呂</label>
+                </div>
+                <div class="input-field col">
+                  <select th:field="*{roomNo}">
+                    <option value=""></option>
+                    <option
+                      th:each="room : ${roomList}"
+                      th:value="${room.roomNo}"
+                      th:text="${room.roomNo}"
+                      th:selected="${room.roomNo} == *{roomNo}"
+                    >
+                      202
+                    </option>
+                  </select>
+                  <label for="bathCd">客室</label>
+                </div>
+                <button
+                  class="btn waves-effect waves-light receipt"
+                  type="submit"
+                >
+                  <i class="material-icons left">receipt</i> 登録
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

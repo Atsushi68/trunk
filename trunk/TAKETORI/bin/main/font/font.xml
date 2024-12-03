@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fontFamilies>
+  <fontFamily name="ipaexg">
+    <normal>font/ipaexg.ttf</normal>
+    <pdfEncoding>Identity-H</pdfEncoding>
+    <pdfEmbedded>true</pdfEmbedded>
+  </fontFamily>
+  <fontFamily name="ipaexm">
+    <normal>font/ipaexm.ttf</normal>
+    <pdfEncoding>Identity-H</pdfEncoding>
+    <pdfEmbedded>true</pdfEmbedded>
+  </fontFamily>
+  <fontFamily name="genshin-b">
+    <normal>font/GenShinGothic-Bold.ttf</normal>
+    <pdfEncoding>Identity-H</pdfEncoding>
+    <pdfEmbedded>true</pdfEmbedded>
+  </fontFamily>
+  <fontFamily name="genshin-r">
+    <normal>font/GenShinGothic-Regular.ttf</normal>
+    <pdfEncoding>Identity-H</pdfEncoding>
+    <pdfEmbedded>true</pdfEmbedded>
+  </fontFamily>
+  <fontFamily name="simsun001">
+    <normal>font/simsun001.ttf</normal>
+    <pdfEncoding>Identity-H</pdfEncoding>
+    <pdfEmbedded>true</pdfEmbedded>
+  </fontFamily>
+</fontFamilies>

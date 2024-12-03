@@ -1,0 +1,16 @@
+.category div {
+  margin-left: 10px;
+  width: 500px;
+}
+
+.lang input {
+  width: 232px !important;
+}
+.lang_textarea div {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.del_check {
+  width: 300px;
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html> 
+<html lang="zh-cn"><!--簡体字-->
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no,address=no,email=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css">
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+<link rel="shortcut icon" href="/img/favicon.ico">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style-cn.css">
+<script type="text/javascript" src="/js/style.js"></script>
+<title>首页</title>
+</head>
+
+<body>
+<header>
+<div class="head_box">
+    <div class="logo_item">
+    <a href="/zh-cn/index.html"><img src="/img/logo.svg" alt=""></a>
+    </div><!--logo_item-->
+    <div class="language">
+            <li class="drop">语言<span></span>
+                <ul>
+                <li><a href="/index.html">日本语</a></li>
+                <li><a href="/en/index.html">英语</a></li>
+                <li><a href="/zh-cn/index.html">简体中文</a></li>
+                <li><a href="/zh-tw/index.html">繁体中文</a></li>
+                <li><a href="/ko/index.html">韩语</a></li>
+                </ul>
+			</li>
+    </div><!--language-->
+    <div id="top_head">
+        <div id="mobile_head"><div class="menu"></div>
+            <div id="nav_toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+            </div>
+        </div><!-- mobile_head -->
+        <nav id="global_nav">
+        <ul>
+        <li><a href="/zh-cn/service.html">馆内向导图</a></li>
+        <li><a href="/order/zh-cn/bath">预约私人温泉</a></li>
+        <li><a href="/zh-cn/travel.html">观光向导图</a></li>
+        <!--<li><a href="/order/zh-cn/sv">购买特产</a></li>-->
+        <li><a href="/zh-cn/access.html">交通方式</a></li>
+        <li><a href="/zh-cn/qa.html">问答锦集</a></li>
+        <li id="close">画面关闭</li>
+        </ul>
+        </nav>
+    </div><!-- top_head end -->
+</div><!--head_box-->
+</header>
+<main>
+<section>
+<div class="hero">
+<img class="tb" src="/img/main-pic-zhcn.jpg" alt="メイン画像">
+<img class="sp" src="/img/main-pic-sp.jpg" alt="メイン画像">
+    <div class="txt">
+        <p>welcome to taketoritei maruyama</p>
+        <h1>真诚地感谢您本次入住我们旅馆</h1>
+    </div>
+</div><!--hero-->
+</section>
+
+<section>
+<div class="top_wrap">
+    <div class="box">
+        <div class="item">
+            <p>馆内向导图</p>
+            <div class="pic_content">
+                <a href="/zh-cn/service.html">
+                <img src="/img/top_service.jpg">
+                <span class="back_arrow"></span>
+                </a>
+            </div><!--pic_content-->
+        </div><!--item-->
+        <div class="item">
+            <p>预约私人温泉</p>
+            <div class="pic_content">
+            <a href="/order/zh-cn/bath/"><img src="../img/top_bath.jpg">
+            <span class="back_arrow"></span>
+			</a>
+            </div><!--pic_content-->
+        </div><!--item-->
+        <div class="item">
+            <p>观光向导图</p>
+            <div class="pic_content">
+            <a href="/zh-cn/travel.html"><img src="/img/top_travel.jpg">
+            <span class="back_arrow"></span>
+			</a>
+            </div><!--pic_content-->
+        </div><!--item-->
+        <!--<div class="item">
+            <p>购买特产</p>
+            <div class="pic_content">
+            <a href="/order/zh-cn/sv/"><img src="/img/top_sv.jpg">
+            <span class="back_arrow"></span>
+			</a>
+            </div><!--pic_content-->
+        <!--</div><!--item-->
+        <div class="item">
+            <p>交通方式</p>
+            <div class="pic_content">
+            <a href="/zh-cn/access.html"><img src="/img/top_access_zh-cn.jpg">
+            <span class="back_arrow"></span>
+			</a>
+            </div><!--pic_content-->
+        </div><!--item-->
+        <div class="item">
+            <p>问答锦集</p>
+            <div class="pic_content">
+            <a href="/zh-cn/qa.html" class="arrow"><img src="/img/top_qa.jpg">
+            <span class="back_arrow"></span>
+			</a>
+            </div><!--pic_content-->
+        </div><!--item-->
+    </div><!--box-->
+</div><!--top_wrap-->
+</section>
+
+<div class="guidance">
+	<p>如需帮助或吩咐，请随时咨询前台，我们竭诚为您服务</p>
+	<p><img class="eg_icon" src="/img/eg_icon.svg">内线号码：9号</p>
+</div><!--guidance-->
+</main>
+
+<footer>
+</footer>
+
+<!-- pagetop -->
+<div id="scroll">
+    <a href="#" class="scroll"><img src="/img/page_top.svg"><span class="tb">向上</span></a>
+</div>
+<script>
+$(function() {
+	$(".drop ul").css("display","none");
+    $(".drop").on("click", function() {
+	$(".drop ul").slideToggle();
+		if ($('.drop').hasClass('active')) {			
+		$('.drop').removeClass('active');				
+		}
+		else {
+			$('.drop').addClass('active');			
+		}
+    });
+});
+</script>
+
+</body>
+</html>

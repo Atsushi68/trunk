@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="com.jaspersoft.studio.property.color.chooser.ColorDialog">
+		<item key="dialogX" value="660"/>
+		<item key="dialogY" value="187"/>
+		<item key="dialogWidth" value="600"/>
+		<item key="dialogHeight" value="500"/>
+		<item key="DIALOG_X_ORIGIN" value="92"/>
+		<item key="DIALOG_Y_ORIGIN" value="47"/>
+		<item key="DIALOG_WIDTH" value="600"/>
+		<item key="DIALOG_HEIGHT" value="500"/>
+		<item key="DIALOG_FONT_NAME" value="1|Yu Gothic UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Yu Gothic UI"/>
+	</section>
+	<section name="com.jaspersoft.studio.property.descriptor.expression.dialog.JRExpressionEditor">
+		<item key="dialogX" value="585"/>
+		<item key="dialogY" value="67"/>
+		<item key="dialogWidth" value="750"/>
+		<item key="dialogHeight" value="680"/>
+		<item key="DIALOG_X_ORIGIN" value="593"/>
+		<item key="DIALOG_Y_ORIGIN" value="75"/>
+		<item key="DIALOG_WIDTH" value="750"/>
+		<item key="DIALOG_HEIGHT" value="680"/>
+		<item key="DIALOG_FONT_NAME" value="1|Yu Gothic UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Yu Gothic UI"/>
+	</section>
+	<section name="com.jaspersoft.studio.model.image.command.dialog.ImageCreationDialog">
+		<item key="dialogX" value="704"/>
+		<item key="dialogY" value="137"/>
+		<item key="dialogWidth" value="512"/>
+		<item key="dialogHeight" value="575"/>
+		<item key="DIALOG_X_ORIGIN" value="712"/>
+		<item key="DIALOG_Y_ORIGIN" value="145"/>
+		<item key="DIALOG_WIDTH" value="512"/>
+		<item key="DIALOG_HEIGHT" value="575"/>
+		<item key="DIALOG_FONT_NAME" value="1|Yu Gothic UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Yu Gothic UI"/>
+	</section>
+	<section name="com.jaspersoft.studio.property.descriptor.classname.dialog.ImportDialog">
+		<item key="dialogX" value="699"/>
+		<item key="dialogY" value="194"/>
+		<item key="dialogWidth" value="522"/>
+		<item key="dialogHeight" value="490"/>
+		<item key="DIALOG_X_ORIGIN" value="707"/>
+		<item key="DIALOG_Y_ORIGIN" value="202"/>
+		<item key="DIALOG_WIDTH" value="522"/>
+		<item key="DIALOG_HEIGHT" value="490"/>
+		<item key="DIALOG_FONT_NAME" value="1|Yu Gothic UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Yu Gothic UI"/>
+	</section>
+	<section name="com.jaspersoft.studio.jface.dialogs.ImageSelectionDialog">
+		<item key="dialogX" value="704"/>
+		<item key="dialogY" value="137"/>
+		<item key="dialogWidth" value="512"/>
+		<item key="dialogHeight" value="575"/>
+		<item key="DIALOG_X_ORIGIN" value="712"/>
+		<item key="DIALOG_Y_ORIGIN" value="145"/>
+		<item key="DIALOG_WIDTH" value="512"/>
+		<item key="DIALOG_HEIGHT" value="575"/>
+		<item key="DIALOG_FONT_NAME" value="1|Yu Gothic UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Yu Gothic UI"/>
+	</section>
+</section>

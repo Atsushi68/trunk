@@ -1,0 +1,49 @@
+
+.search_input {
+	margin-bottom: 0px;
+}
+.freeword {
+	width: 700px;
+}
+.output_check {
+	width: 300px;
+}
+
+.omiyage {
+}
+.del_omiyage {
+	background-color: #eee;
+}
+
+.omomi {
+	width: 80px;
+	text-align: center;
+}
+.image {
+	width: 60px;
+	padding-top: 7px;
+	padding-bottom: 2px;
+}
+.image img {
+	width: 60px;
+	object-fit: contain;
+	border: 1px solid;
+	border-color: #ddd;
+}
+
+.category {
+	width: 250px;
+	font-size: 14px;
+}
+.name {
+	width: 430px;
+	font-size: 14px;
+}
+.price {
+	width: 100px;
+	text-align: right;
+}
+.del {
+	width: 100px;
+	text-align: center;
+}

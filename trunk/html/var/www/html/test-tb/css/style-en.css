@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+/*reset-----------*/
+
+html {font-size: 62.5%;}
+/*size10px*/
+
+* {
+margin: 0;
+padding: 0;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+@media all and (-ms-high-contrast:none) {
+body { overflow-x: hidden;}
+}
+
+a {text-decoration: none;}
+a:link {color: #000;}
+a:visited{ color: #000;}
+ul,ol {list-style: none;}
+h1,h2,h3,h4,h5,h6 { font-weight: normal; font-size:1rem; line-height: 2.5rem;}
+p { font-size:1rem; line-height: 2.5rem;}
+img {vertical-align: middle;}
+
+/*-----------reset*/
+
+p {
+	font-size: 1.5rem;
+	color: #F00;
+}
+
+

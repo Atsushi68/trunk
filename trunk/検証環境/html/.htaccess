@@ -1,0 +1,5 @@
+#ja‚ª‚ ‚Á‚Ä‚à‚È‚­‚·
+RewriteEngine on
+RewriteRule ^https://v163-44-167-249.a064.g.tyo1.static.cnode.io/ja$ https://v163-44-167-249.a064.g.tyo1.static.cnode.io/ [L,R=301] 
+RewriteRule ^ja(.*)$ $1 [L,R=301] 
+

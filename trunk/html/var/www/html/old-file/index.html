@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no,address=no,email=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css">
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/style.js"></script>
+<link rel="shortcut icon" href="images/favicon.ico">
+<title>TOP</title>
+</head>
+
+<body>
+<header>
+<div class="head_box">
+    <div class="logo_item">
+    <a href="index.html"><img src="img/logo.svg" alt=""></a>
+    </div><!--logo_item-->
+    <div class="language">
+            <li class="drop">言語の切り替え<span></span>
+                <ul>
+                <li><a href="en/index.html" target="_blank">英語</a></li>
+                <li><a href="zh-cn/index.html" target="_blank">簡体字</a></li>
+                <li><a href="zh-tw/index.html" target="_blank">繁体字</a></li>
+                <li><a href="ko/index.html" target="_blank">韓国語</a></li>
+                </ul>
+			</li>
+    </div><!--language-->
+    <div id="top_head">
+        <div id="mobile_head"><div class="menu"></div>
+            <div id="nav_toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+            </div>
+        </div><!-- mobile_head -->
+        <nav id="global_nav">
+        <ul>
+        <li><a href="service.html">館内マップ</a></li>
+        <li><a href="travel.html">観光マップ</a></li>
+        <li><a href="sv.html">お土産のご購入</a></li>
+        <li><a href="bath.html">貸切風呂のご予約</a></li>
+        <li><a href="access.html">交通機関</a></li>
+        <li><a href="qa.html">よくあるご質問</a></li>
+        <li id="close">メニューを閉じる</li>
+        </ul>
+        </nav>
+    </div><!-- top_head end -->
+</div><!--head_box-->
+</header>
+<main>
+<section>
+<div class="hero">
+<img src="img/top_mainvisual.jpg" alt="メイン画像">
+    <div class="txt">
+        <p>welcome to taketoritei maruyama</p>
+        <h1>極上の癒しを皆さまに<span>竹取亭円山をご堪能ください</span></h1>
+    </div>
+</div><!--hero-->
+</section>
+
+<section>
+<div class="top_wrap">
+	<div class="txt">
+    <p>この度は当館をお選びいただき誠にありがとうございます。</p>
+    </div>
+    <div class="box">
+        <div class="item">
+            <p>館内マップ</p>
+            <div class="pic_content">
+                <a href="service.html">
+                <img src="img/top_service.jpg">
+                <span class="back_arrow"></span>
+                </a>
+            </div><!--pic_content-->
+        </div><!--item-->
+        <div class="item">
+            <p>観光マップ</p>
+            <div class="pic_content">
+            <a href="travel.html"><img src="img/top_travel.jpg">
+            <span class="back_arrow"></span>
+			</a>
+            </div><!--pic_content-->
+        </div><!--item-->
+        <div class="item">
+            <p>お土産のご購入</p>
+            <div class="pic_content">
+            <a href="sv.html"><img src="img/top_sv.jpg">
+            <span class="back_arrow"></span>
+			</a>
+            </div><!--pic_content-->
+        </div><!--item-->
+        <div class="item">
+            <p>貸切風呂のご予約</p>
+            <div class="pic_content">
+            <a href="bath.html"><img src="img/top_bath.jpg">
+            <span class="back_arrow"></span>
+			</a>
+            </div><!--pic_content-->
+        </div><!--item-->
+        <div class="item">
+            <p>交通機関</p>
+            <div class="pic_content">
+            <a href="access.html"><img src="img/top_access.jpg">
+            <span class="back_arrow"></span>
+			</a>
+            </div><!--pic_content-->
+        </div><!--item-->
+        <div class="item">
+            <p>よくあるご質問</p>
+            <div class="pic_content">
+            <a href="qa.html" class="arrow"><img src="img/top_qa.jpg">
+            <span class="back_arrow"></span>
+			</a>
+            </div><!--pic_content-->
+        </div><!--item-->
+    </div><!--box-->
+</div><!--top_wrap-->
+</section>
+
+<div class="guidance">
+	<p>ご質問ご用命等あれば遠慮なくフロントまでお申し付けください。</p>
+	<p><img class="eg_icon" src="img/eg_icon.svg">内線番号：9</p>
+</div><!--guidance-->
+</main>
+
+<footer>
+</footer>
+
+<!-- pagetop -->
+<div id="scroll">
+    <a href="#" class="scroll"><img src="img/page_top.svg">上へ</a>
+</div>
+<script>
+$(function() {
+	$(".drop ul").css("display","none");
+    $(".drop").on("click", function() {
+	$(".drop ul").slideToggle();
+		if ($('.drop').hasClass('active')) {			
+		$('.drop').removeClass('active');				
+		}
+		else {
+			$('.drop').addClass('active');			
+		}
+    });
+});
+</script>
+
+</body>
+</html>

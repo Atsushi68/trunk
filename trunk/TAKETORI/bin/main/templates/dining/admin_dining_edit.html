@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+
+<!--/* 共通ヘッダ */-->
+<meta th:replace="common/meta_header">
+
+<link rel="stylesheet" th:href="@{/css/dining/admin_dining.css}">
+<script th:src="@{/js/dining/admin_dining_edit.js}"></script>
+<title>朝食・夕食 | 竹取亭フロント</title>
+<script>
+$(function() {    
+    // メモ欄のサイズ調整
+    M.textareaAutoResize($('#memo'));
+});
+</script>
+</head>
+
+<body>
+
+	<!--/* 管理者サイドメニュー */-->
+	<div id="side_menu" th:replace="common/admin_side_menu"></div>
+	<main>
+	<div class="container">
+
+		<!--/* ナビゲーションバー */-->
+		<div class="row">
+			<nav>
+				<div class="nav-wrapper">
+					<div class="col s12">
+						<a th:href="@{/admin}" class="breadcrumb">TOP</a>
+						<a href="#" class="breadcrumb">朝食・夕食編集</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+
+		<!--/* エラーメッセージエリア */-->
+		<div id="error_field" th:replace="common/admin_message_field"></div>
+
+		<div class="row">
+            <div>
+                <button style="width: 100px;" class="btn blue darken-1" id="backbtn" type="submit"><i class="material-icons left">arrow_back</i>戻る</button>
+            </div>
+        </div>
+
+        <div class="row" style="font-size: 18px;">
+            <form class="col s12" th:action="@{/admin/dining}" method="post" id="registForm">
+                <div class="row" style="padding-left: 20px;">
+                    <div>営業日が「<span style="font-weight: bold;" th:text="${diningForm.displayDays}"></span>」の客室「<span style="font-weight: bold;" th:text="${diningForm.getRoomNo()}"></span>」の情報を編集します。</div>
+                    <p>夕食・朝食の内容を入力し、更新ボタンを押してください。</p>
+                    <input type="hidden" class="displayDays" name="displayDays" id="displayDays" th:value="${diningForm.getDisplayDays()}" />
+                    <input type="hidden" name="roomNo" th:value="${diningForm.getRoomNo()}" />
+                </div>
+                <div style="padding:10px 10px; margin-bottom: 20px;" class="col s12 grey lighten-4">夕食</div>
+                <div style="padding-left: 20px; width: 200px;">
+                    <label for="">食事</label>
+                    <select class="dinner" name="dinner">
+                        <option value="">未設定</option>
+                        <th:block th:each="dinner : ${dinnerEnum}">
+                            <option th:value="${dinner.getCode()}" th:text="${dinner.getLabel()}" selected="selected" th:if="${dinner.getCode() == diningForm.getDinner()}"></option>
+                            <option th:value="${dinner.getCode()}" th:text="${dinner.getLabel()}" th:unless="${dinner.getCode() == diningForm.getDinner()}"></option>
+                        </th:block>
+                    </select>
+                </div>
+                <div style="padding-left: 20px; width: 200px;">
+                    <label for="">時間</label>
+                    <select class="dinner_time" name="dinnerTime">
+                        <option value=""></option>
+                        <th:block th:each="dinnerTime : ${dinnerTimeEnum}">
+                            <option th:value="${dinnerTime.getCode()}" th:text="${dinnerTime.getLabel()}" selected="selected" th:if="${dinnerTime.getCode() == diningForm.getDinnerTime()}"></option>
+                            <option th:value="${dinnerTime.getCode()}" th:text="${dinnerTime.getLabel()}" th:unless="${dinnerTime.getCode() == diningForm.getDinnerTime()}"></option>
+                        </th:block>
+                    </select>
+                </div>
+                <div style="padding-left: 20px; width: 350px;">
+                    <label for="">場所</label>
+                    <select class="dinner_place" name="dinnerPlace">
+                        <option></option>
+                        <th:block th:each="dp : ${diningPlaceList}">
+                            <option th:value="${dp.getDinnerPlace()}" th:text="${dp.getDinnerPlace()}" selected="selected" th:if="${dp.getDinnerPlace() == diningForm.getDinnerPlace()}"></option>
+                            <option th:value="${dp.getDinnerPlace()}" th:text="${dp.getDinnerPlace()}" th:unless="${dp.getDinnerPlace() == diningForm.getDinnerPlace()}"></option>
+                        </th:block>
+                    </select>
+                </div>
+                <div style="padding:10px 10px; margin: 20px 0px;" class="col s12 grey lighten-4">朝食</div>
+                <div class="row" style="padding-left: 20px;">
+                    <!-- 和食 -->
+                    <div class="col s3">
+                        <label style="padding-right: 20px;">和食</label>
+                        <select class="breakfast_japanese" name="breakfastJapanese">
+                            <option value=""></option>
+                            <th:block th:each="i : ${#numbers.sequence(1,10)}">
+                                <option th:value="${i}" th:text="${i}" selected="selected" th:if="${i == diningForm.getBreakfastJapanese()}"></option>
+                                <option th:value="${i}" th:text="${i}" th:unless="${i == diningForm.getBreakfastJapanese()}"></option>    
+                            </th:block>
+                        </select>
+                    </div>
+                    <!-- 洋食 -->
+                    <div class="col s3">
+                        <label style="padding-right: 20px;">洋食</label>
+                        <select class="breakfast_western" name="breakfastWestern">
+                            <option value=""></option>
+                            <th:block th:each="i : ${#numbers.sequence(1,10)}">
+                                <option th:value="${i}" th:text="${i}" selected="selected" th:if="${i == diningForm.getBreakfastWestern()}"></option>
+                                <option th:value="${i}" th:text="${i}" th:unless="${i == diningForm.getBreakfastWestern()}"></option>    
+                            </th:block>
+                        </select>
+                    </div>
+                </div>
+                <div style="padding-left: 20px; width: 200px;">
+                    <label for="">時間</label>
+                    <select class="breakfast_time" name="breakfastTime">
+                        <option></option>
+                        <th:block th:each="breakfastTime : ${breakfastTimeEnum}">
+                            <option th:value="${breakfastTime.getCode()}" th:text="${breakfastTime.getLabel()}" selected="selected" th:if="${breakfastTime.getCode() == diningForm.getBreakfastTime()}"></option>
+                            <option th:value="${breakfastTime.getCode()}" th:text="${breakfastTime.getLabel()}" th:unless="${breakfastTime.getCode() == diningForm.getBreakfastTime()}"></option>
+                        </th:block>
+                    </select>
+                </div>
+                <div style="padding-left: 20px; width: 350px;">
+                    <label for="">場所</label>
+                    <select class="breakfast_place" name="breakfastPlace">
+                        <option></option>
+                        <th:block th:each="dp : ${diningPlaceList}">
+                            <option th:value="${dp.getDinnerPlace()}" th:text="${dp.getDinnerPlace()}" selected="selected" th:if="${dp.getDinnerPlace() == diningForm.getBreakfastPlace()}"></option>
+                            <option th:value="${dp.getDinnerPlace()}" th:text="${dp.getDinnerPlace()}" th:unless="${dp.getDinnerPlace() == diningForm.getBreakfastPlace()}"></option>
+                        </th:block>
+                    </select>
+                </div>
+                <div style="padding:10px 10px; margin: 20px 0px;" class="col s12 grey lighten-4">備考</div>
+                <div>
+                    <textarea id="memo" cols="50" rows="5" name="memo" th:text="${diningForm.getMemo()}"></textarea>
+                </div>
+                <div style="margin: 30px 0px;">
+                    <button class="btn-large red darken-1 updatebtn" type="submit">
+                        更新
+                    </button>
+                </div>
+            </form>
+		</div>
+    </div>
+    </main>
+</body>
+</html>

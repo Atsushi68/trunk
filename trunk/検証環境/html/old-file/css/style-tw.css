@@ -1,0 +1,37 @@
+@media (min-width: 600px) {
+/* ページトップ */
+#scroll {
+    position: fixed;
+    right: 10px;
+	z-index: 100;
+}
+#scroll a {
+	color: #FFF;
+	font-size: 1rem;
+}
+.scroll {
+	background: rgba(0,0,0,.8);
+	border-radius: 0%;
+    color: #fff;
+    width: 70px;
+	height: 70px;
+    padding: 13px 0;
+    text-align: center;
+    display: block;
+}
+.scroll img {
+	display: block;
+	margin: 0 auto 5px;
+	height: 25px;
+	width: 25px;
+}
+}
+
+@media (min-width: 1000px) {
+
+}
+
+@media (max-width:599px){
+}
+
+
