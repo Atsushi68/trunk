@@ -3,6 +3,7 @@ package com.taketoritei.order.dining.controller;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.taketoritei.order.common.Consts;
+import com.taketoritei.order.common.DateUtil;
 import com.taketoritei.order.common.controller.FrontBaseController;
+import com.taketoritei.order.config.IllegalException;
 import com.taketoritei.order.dining.form.AdminDiningForm;
 import com.taketoritei.order.dining.service.DiningService;
+import com.taketoritei.order.jooq.tables.records.DDiningRecord;
 import com.taketoritei.order.login.form.User;
 import com.taketoritei.order.room.service.RoomService;
 
@@ -41,21 +45,78 @@ public class DiningController extends FrontBaseController {
 	 * @throws ParseException
 	 */
 	@GetMapping("/{locale}/dining")
-	public String bath(@RequestParam(name = "date", required = false) String reserveDate, Locale locale, Model model,
+	public String dining(@RequestParam(name = "date", required = false) String reserveDate, Locale locale, Model model,
 			UsernamePasswordAuthenticationToken token) throws ParseException {
 
 		User user = (User) token.getPrincipal();
-		String roomnumber = "100";
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+		// 部屋番号の指定
+		String roomNo = user.getRoomNo();
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+
+		// reserveDateがnullの時、現在の日付を取得
+		if (reserveDate == null) {
+			reserveDate = dateFormat.format(new Date());
+		}
+
 		Date displayDate = new Date();
 		String displayDateStr = dateFormat.format(displayDate);
 
-		AdminDiningForm diningForm = new AdminDiningForm();
-		diningForm.setDays(displayDate);
-		diningForm.setDisplayDays(displayDateStr);
+		String dateFrom = new SimpleDateFormat("yyyyMMdd").format(user.getFormDt());
+		String dateTo = DateUtil.getBussinessUserDateYmd(user.getToDt());
 
-		// 朝食・夕食
-		model.addAttribute("diningForm", diningForm);
+		// 日付が範囲内かをチェック
+		if (Integer.parseInt(reserveDate) < Integer.parseInt(dateFrom) //
+				|| Integer.parseInt(reserveDate) > Integer.parseInt(dateTo))
+			throw new IllegalException("不正なアクセスです。");
+
+		// 日付設定
+		model.addAttribute("reserveDispDate",
+				reserveDate.substring(0, 4) + "/" + reserveDate.substring(4, 6) + "/" + reserveDate.substring(6, 8));
+
+		model.addAttribute("beforeReserveDate", null);
+
+		if (Integer.parseInt(reserveDate) > Integer.parseInt(dateFrom)) {
+			// SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+			Date date = dateFormat.parse(reserveDate);
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(date);
+			calendar.add(Calendar.DAY_OF_MONTH, -1);
+			model.addAttribute("beforeReserveDate", dateFormat.format(calendar.getTime()));
+		}
+
+		if (Integer.parseInt(reserveDate) < Integer.parseInt(dateTo) - 1) {
+			// SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+			Date date = dateFormat.parse(reserveDate);
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(date);
+			calendar.add(Calendar.DAY_OF_MONTH, 1);
+			model.addAttribute("afterReserveDate", dateFormat.format(calendar.getTime()));
+		}
+
+		model.addAttribute("reserveDate", reserveDate);
+
+		// 指定した日付と部屋番号の朝食と夕食のデータを取得
+		DDiningRecord diningRecord = diningService.getUserDining(roomNo, reserveDate);
+		model.addAttribute("diningRecord", diningRecord);
+
+		if (diningRecord != null) {
+			AdminDiningForm diningForm = new AdminDiningForm();
+			// diningForm.setDays(displayDate);
+			// diningForm.setDisplayDays(displayDateStr);
+			diningForm.setDinnerTime(diningRecord.getDinnerTime());
+			diningForm.setDinnerPlace(diningRecord.getDinnerPlace());
+			diningForm.setBreakfastTime(diningRecord.getBreakfastTime());
+			diningForm.setBreakfastPlace(diningRecord.getBreakfastPlace());
+			diningForm.setBreakfastJapanese(diningRecord.getBreakfastJapanese());
+			diningForm.setBreakfastWestern(diningRecord.getBreakfastWestern());
+			diningForm.setLunchNum(diningRecord.getLunchNum());
+
+			model.addAttribute("diningForm", diningForm);
+		} else {
+			model.addAttribute("diningForm", null);
+		}
 
 		// 各マスタ情報取得
 		model.addAttribute("roomList", roomService.getRoomList());
