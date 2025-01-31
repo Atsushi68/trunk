@@ -4,9 +4,12 @@ import static com.taketoritei.order.jooq.tables.DDining.*;
 import static com.taketoritei.order.jooq.tables.MDiningPlace.*;
 import static com.taketoritei.order.jooq.tables.DDiningMessage.*;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Date;
 
 import org.jooq.Record;
 import org.jooq.Result;
@@ -88,10 +91,11 @@ public class DiningService extends BaseService {
     public void upsertDiningByForm(AdminDiningForm form) {
 
         // sqlのdateに変換
-        java.sql.Date sqlDate = java.sql.Date.valueOf(form.getDisplayDays());
+        String dateString = new SimpleDateFormat("yyyy-MM-dd").format(form.getDays());
+        java.sql.Date sqlDate = java.sql.Date.valueOf(dateString);
 
         // 既にデータが存在するか
-        DDiningRecord rec = getDiningByUniq(form.getDisplayDays(), form.getRoomNo());
+        DDiningRecord rec = getDiningByUniq(dateString, form.getRoomNo());
         if (rec == null) {
             jooq //
                     .insertInto(
@@ -230,17 +234,25 @@ public class DiningService extends BaseService {
 
     /**
      * 指定した部屋番号の食事データを取得
-     * 
+     *
      * @param roomNo 部屋番号
      * @return DDiningRecord
      */
 
-    public DDiningRecord getUserDining(String roomNo, String reserveDate) {
+    public DDiningRecord getUserDining(String roomNo, String displayDays) {
         // 日付を取得
-        // String todayStr =
-        // LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        LocalDate todayStr = LocalDate.parse(reserveDate, DateTimeFormatter.ofPattern("yyyyMMdd"));
-        java.sql.Date sqlDate = java.sql.Date.valueOf(todayStr);
+
+        // Date型からLocalDate型に変換
+        // LocalDate localDate = days.toInstant()
+        // .atZone(ZoneId.systemDefault())
+        // .toLocalDate();
+        // java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
+
+        // Strng型からLocalDate型に変換
+        // LocalDate todayStr = LocalDate.parse(displayDays,
+        // DateTimeFormatter.ofPattern("yyyyMMdd"));
+
+        java.sql.Date sqlDate = java.sql.Date.valueOf(displayDays);
 
         // SQLクエリで食事データを取得
         return jooq.selectFrom(D_DINING)
@@ -248,4 +260,5 @@ public class DiningService extends BaseService {
                 .and(D_DINING.ROOM_NO.eq(roomNo))
                 .fetchOne();
     }
+
 }

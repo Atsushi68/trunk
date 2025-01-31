@@ -1,85 +1,88 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
+
 <head>
 
-<!--/* 共通ヘッダ */-->
-<meta th:replace="common/meta_header">
+    <!--/* 共通ヘッダ */-->
+    <meta th:replace="common/meta_header">
 
-<link rel="stylesheet" th:href="@{/css/dining/admin_dining.css}">
-<script th:src="@{/js/dining/admin_dining_regist.js}"></script>
-<title>朝食・夕食 | 竹取亭フロント</title>
+    <link rel="stylesheet" th:href="@{/css/dining/admin_dining.css}">
+    <script th:src="@{/js/dining/admin_dining_regist.js}"></script>
+    <title>朝食・夕食 | 竹取亭フロント</title>
 </head>
 
 <body>
 
-	<!--/* 管理者サイドメニュー */-->
-	<div id="side_menu" th:replace="common/admin_side_menu"></div>
-	<main>
-	<div class="container">
+    <!--/* 管理者サイドメニュー */-->
+    <div id="side_menu" th:replace="common/admin_side_menu"></div>
+    <main>
+        <div class="container">
 
-		<!--/* ナビゲーションバー */-->
-		<div class="row">
-			<nav>
-				<div class="nav-wrapper">
-					<div class="col s12">
-						<a th:href="@{/admin}" class="breadcrumb">TOP</a>
-						<a href="#" class="breadcrumb">朝食・夕食編集</a>
-					</div>
-				</div>
-			</nav>
-		</div>
-
-		<!--/* エラーメッセージエリア */-->
-		<div th:if="${not #strings.isEmpty(errorMsg)}" class="error">
-            <ul>
-                <li th:utext="${errorMsg}"></li>
-            </ul>
-        </div>
-
-        <div class="row" style="font-size: 18px;">
-            <form class="col s12" th:action="@{/admin/dining}" method="post" id="registForm">
-                <div class="row">
-                    <div class="col s2">
-                        <label for="">営業日</label>
-                        <input type="date" name="date" th:value="${diningForm.displayDays}" />
-                    </div>
-                    <div class="col s2">
-                        <label for="">客室</label>
-                        <select id="roomNo" name="roomNo">
-                            <option></option>
-                            <th:block th:each="room : ${roomList}">
-                                <th:block th:if="${diningForm.getRoomNo() == room.getRoomNo()}">
-                                    <option selected="selected" th:value="${room.getRoomNo()}" th:text="${room.getRoomNo()}"></option>
-                                </th:block>
-                                <th:block th:unless="${diningForm.getRoomNo() == room.getRoomNo()}">
-                                    <option th:value="${room.getRoomNo()}" th:text="${room.getRoomNo()}"></option>
-                                </th:block>
-                            </th:block>
-                        </select>
-                    </div>
-                    <input type="hidden" class="displayDays" name="displayDays" id="displayDays" th:value="${diningForm.getDisplayDays()}" />
-                </div>
-                <div class="row">
-                    <div class="col s4">
-                        <!-- 夕食 -->
-                        <div style="padding:10px 10px;" class="col s12 grey lighten-4">夕食</div>
-                        <!-- 人数 -->
-                        <div class="row">
-                            <div class="col s6">
-                                <label for="customerNum">人数</label>
-                                <select id="customerNum" name="customerNum">
-                                    <th:block th:each="i : ${#numbers.sequence(1,14)}">
-                                        <th:block th:if="${i == diningForm.getCustomerNum()}">
-                                            <option selected="selected" th:value="${i}" th:text="${i}"></option>
-                                        </th:block>
-                                        <th:block th:unless="${i == diningForm.getCustomerNum()}">
-                                            <option th:value="${i}" th:text="${i}"></option>
-                                        </th:block>
-                                    </th:block>
-                                </select>
-                            </div>
+            <!--/* ナビゲーションバー */-->
+            <div class="row">
+                <nav>
+                    <div class="nav-wrapper">
+                        <div class="col s12">
+                            <a th:href="@{/admin}" class="breadcrumb">TOP</a>
+                            <a href="#" class="breadcrumb">朝食・夕食編集</a>
                         </div>
-                        <!--
+                    </div>
+                </nav>
+            </div>
+
+            <!--/* エラーメッセージエリア */-->
+            <div th:if="${not #strings.isEmpty(errorMsg)}" class="error">
+                <ul>
+                    <li th:utext="${errorMsg}"></li>
+                </ul>
+            </div>
+
+            <div class="row" style="font-size: 18px;">
+                <form class="col s12" th:action="@{/admin/dining}" method="post" id="registForm">
+                    <div class="row">
+                        <div class="col s2">
+                            <label for="">営業日</label>
+                            <input type="date" name="displayDays" th:value="${diningForm.displayDays}" />
+                        </div>
+                        <div class="col s2">
+                            <label for="">客室</label>
+                            <select id="roomNo" name="roomNo">
+                                <option></option>
+                                <th:block th:each="room : ${roomList}">
+                                    <th:block th:if="${diningForm.getRoomNo() == room.getRoomNo()}">
+                                        <option selected="selected" th:value="${room.getRoomNo()}"
+                                            th:text="${room.getRoomNo()}"></option>
+                                    </th:block>
+                                    <th:block th:unless="${diningForm.getRoomNo() == room.getRoomNo()}">
+                                        <option th:value="${room.getRoomNo()}" th:text="${room.getRoomNo()}"></option>
+                                    </th:block>
+                                </th:block>
+                            </select>
+                        </div>
+                        <!-- <input type="hidden" class="displayDays" name="displayDays" id="displayDays"
+                            th:value="${diningForm.getDisplayDays()}" /> -->
+                    </div>
+                    <div class="row">
+                        <div class="col s4">
+                            <!-- 夕食 -->
+                            <div style="padding:10px 10px;" class="col s12 grey lighten-4">夕食</div>
+                            <!-- 人数 -->
+                            <div class="row">
+                                <div class="col s6">
+                                    <label for="customerNum">人数</label>
+                                    <select id="customerNum" name="customerNum">
+                                        <th:block th:each="i : ${#numbers.sequence(1,14)}">
+                                            <th:block th:if="${i == diningForm.getCustomerNum()}">
+                                                <option selected="selected" th:value="${i}" th:text="${i}"></option>
+                                            </th:block>
+                                            <th:block th:unless="${i == diningForm.getCustomerNum()}">
+                                                <option th:value="${i}" th:text="${i}"></option>
+                                            </th:block>
+                                        </th:block>
+                                    </select>
+                                </div>
+                            </div>
+                            <!--
                         <div class="row">
                             <div class="col s6">
                                 <label for="">食事</label>
@@ -93,134 +96,169 @@
                             </div>
                         </div>
                         -->
-                        <div class="row">
-                            <div class="col s6">
-                                <label for="">時間</label>
-                                <select class="dinner_time" name="dinnerTime">
-                                    <option value=""></option>
-                                    <th:block th:each="dinnerTime : ${dinnerTimeEnum}">
-                                        <option th:value="${dinnerTime.getCode()}" th:text="${dinnerTime.getLabel()}" selected="selected" th:if="${dinnerTime.getCode() == diningForm.getDinnerTime()}"></option>
-                                        <option th:value="${dinnerTime.getCode()}" th:text="${dinnerTime.getLabel()}" th:unless="${dinnerTime.getCode() == diningForm.getDinnerTime()}"></option>
-                                    </th:block>
-                                </select>
+                            <div class="row">
+                                <div class="col s6">
+                                    <label for="">時間</label>
+                                    <select class="dinner_time" name="dinnerTime">
+                                        <option value=""></option>
+                                        <th:block th:each="dinnerTime : ${dinnerTimeEnum}">
+                                            <option th:value="${dinnerTime.getCode()}"
+                                                th:text="${dinnerTime.getLabel()}" selected="selected"
+                                                th:if="${dinnerTime.getCode() == diningForm.getDinnerTime()}"></option>
+                                            <option th:value="${dinnerTime.getCode()}"
+                                                th:text="${dinnerTime.getLabel()}"
+                                                th:unless="${dinnerTime.getCode() == diningForm.getDinnerTime()}">
+                                            </option>
+                                        </th:block>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    <label for="">場所</label>
+                                    <select class="dinner_place" name="dinnerPlace">
+                                        <option></option>
+                                        <th:block th:each="dp : ${diningPlaceList}">
+                                            <option th:value="${dp.getDinnerPlace()}" th:text="${dp.getDinnerPlace()}"
+                                                selected="selected"
+                                                th:if="${dp.getDinnerPlace() == diningForm.getDinnerPlace()}"></option>
+                                            <option th:value="${dp.getDinnerPlace()}" th:text="${dp.getDinnerPlace()}"
+                                                th:unless="${dp.getDinnerPlace() == diningForm.getDinnerPlace()}">
+                                            </option>
+                                        </th:block>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col s6">
-                                <label for="">場所</label>
-                                <select class="dinner_place" name="dinnerPlace">
-                                    <option></option>
-                                    <th:block th:each="dp : ${diningPlaceList}">
-                                        <option th:value="${dp.getDinnerPlace()}" th:text="${dp.getDinnerPlace()}" selected="selected" th:if="${dp.getDinnerPlace() == diningForm.getDinnerPlace()}"></option>
-                                        <option th:value="${dp.getDinnerPlace()}" th:text="${dp.getDinnerPlace()}" th:unless="${dp.getDinnerPlace() == diningForm.getDinnerPlace()}"></option>
-                                    </th:block>
-                                </select>
+                        <div class="col s4">
+                            <!-- 朝食 -->
+                            <div style="padding:10px 10px;" class="col s12 grey lighten-4">朝食</div>
+                            <div class="row">
+                                <!-- 和食 -->
+                                <div class="col s6">
+                                    <label>和食</label>
+                                    <select class="breakfast_japanese" name="breakfastJapanese">
+                                        <option value=""></option>
+                                        <th:block th:each="i : ${#numbers.sequence(1,14)}">
+                                            <option th:value="${i}" th:text="${i}" selected="selected"
+                                                th:if="${i == diningForm.getBreakfastJapanese()}"></option>
+                                            <option th:value="${i}" th:text="${i}"
+                                                th:unless="${i == diningForm.getBreakfastJapanese()}"></option>
+                                        </th:block>
+                                    </select>
+                                </div>
+                                <!-- 洋食 -->
+                                <div class="col s6">
+                                    <label>洋食</label>
+                                    <select class="breakfast_western" name="breakfastWestern">
+                                        <option value=""></option>
+                                        <th:block th:each="i : ${#numbers.sequence(1,14)}">
+                                            <option th:value="${i}" th:text="${i}" selected="selected"
+                                                th:if="${i == diningForm.getBreakfastWestern()}"></option>
+                                            <option th:value="${i}" th:text="${i}"
+                                                th:unless="${i == diningForm.getBreakfastWestern()}"></option>
+                                        </th:block>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    <label for="">時間</label>
+                                    <select class="breakfast_time" name="breakfastTime">
+                                        <option></option>
+                                        <th:block th:each="breakfastTime : ${breakfastTimeEnum}">
+                                            <option th:value="${breakfastTime.getCode()}"
+                                                th:text="${breakfastTime.getLabel()}" selected="selected"
+                                                th:if="${breakfastTime.getCode() == diningForm.getBreakfastTime()}">
+                                            </option>
+                                            <option th:value="${breakfastTime.getCode()}"
+                                                th:text="${breakfastTime.getLabel()}"
+                                                th:unless="${breakfastTime.getCode() == diningForm.getBreakfastTime()}">
+                                            </option>
+                                        </th:block>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    <label for="">場所</label>
+                                    <select class="breakfast_place" name="breakfastPlace">
+                                        <option></option>
+                                        <th:block th:each="dp : ${diningPlaceList}">
+                                            <option th:value="${dp.getDinnerPlace()}" th:text="${dp.getDinnerPlace()}"
+                                                selected="selected"
+                                                th:if="${dp.getDinnerPlace() == diningForm.getBreakfastPlace()}">
+                                            </option>
+                                            <option th:value="${dp.getDinnerPlace()}" th:text="${dp.getDinnerPlace()}"
+                                                th:unless="${dp.getDinnerPlace() == diningForm.getBreakfastPlace()}">
+                                            </option>
+                                        </th:block>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 弁当 -->
+                        <div class="col s4">
+                            <div style="padding:10px 10px;" class="col s12 grey lighten-4">弁当</div>
+                            <div class="row">
+                                <div class="col s6">
+                                    <label>個数</label>
+                                    <select class="lunch_japanese" name="lunchNum">
+                                        <option value=""></option>
+                                        <th:block th:each="i : ${#numbers.sequence(1,14)}">
+                                            <option th:value="${i}" th:text="${i}" selected="selected"
+                                                th:if="${i == diningForm.getLunchNum()}"></option>
+                                            <option th:value="${i}" th:text="${i}"
+                                                th:unless="${i == diningForm.getLunchNum()}"></option>
+                                        </th:block>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    <label for="">時間</label>
+                                    <select class="breakfast_time" name="lunchTime">
+                                        <option></option>
+                                        <th:block th:each="breakfastLunchTime : ${breakfastLunchTimeEnum}">
+                                            <option th:value="${breakfastLunchTime.getCode()}"
+                                                th:text="${breakfastLunchTime.getLabel()}" selected="selected"
+                                                th:if="${breakfastLunchTime.getCode() == diningForm.getLunchTime()}">
+                                            </option>
+                                            <option th:value="${breakfastLunchTime.getCode()}"
+                                                th:text="${breakfastLunchTime.getLabel()}"
+                                                th:unless="${breakfastLunchTime.getCode() == diningForm.getLunchTime()}">
+                                            </option>
+                                        </th:block>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col s4">
-                        <!-- 朝食 -->
-                        <div style="padding:10px 10px;" class="col s12 grey lighten-4">朝食</div>
-                        <div class="row">
-                            <!-- 和食 -->
-                            <div class="col s6">
-                                <label>和食</label>
-                                <select class="breakfast_japanese" name="breakfastJapanese">
-                                    <option value=""></option>
-                                    <th:block th:each="i : ${#numbers.sequence(1,14)}">
-                                        <option th:value="${i}" th:text="${i}" selected="selected" th:if="${i == diningForm.getBreakfastJapanese()}"></option>
-                                        <option th:value="${i}" th:text="${i}" th:unless="${i == diningForm.getBreakfastJapanese()}"></option>    
-                                    </th:block>
-                                </select>
-                            </div>
-                            <!-- 洋食 -->
-                            <div class="col s6">
-                                <label>洋食</label>
-                                <select class="breakfast_western" name="breakfastWestern">
-                                    <option value=""></option>
-                                    <th:block th:each="i : ${#numbers.sequence(1,14)}">
-                                        <option th:value="${i}" th:text="${i}" selected="selected" th:if="${i == diningForm.getBreakfastWestern()}"></option>
-                                        <option th:value="${i}" th:text="${i}" th:unless="${i == diningForm.getBreakfastWestern()}"></option>    
-                                    </th:block>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s6">
-                                <label for="">時間</label>
-                                <select class="breakfast_time" name="breakfastTime">
-                                    <option></option>
-                                    <th:block th:each="breakfastTime : ${breakfastTimeEnum}">
-                                        <option th:value="${breakfastTime.getCode()}" th:text="${breakfastTime.getLabel()}" selected="selected" th:if="${breakfastTime.getCode() == diningForm.getBreakfastTime()}"></option>
-                                        <option th:value="${breakfastTime.getCode()}" th:text="${breakfastTime.getLabel()}" th:unless="${breakfastTime.getCode() == diningForm.getBreakfastTime()}"></option>
-                                    </th:block>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s6">
-                                <label for="">場所</label>
-                                <select class="breakfast_place" name="breakfastPlace">
-                                    <option></option>
-                                    <th:block th:each="dp : ${diningPlaceList}">
-                                        <option th:value="${dp.getDinnerPlace()}" th:text="${dp.getDinnerPlace()}" selected="selected" th:if="${dp.getDinnerPlace() == diningForm.getBreakfastPlace()}"></option>
-                                        <option th:value="${dp.getDinnerPlace()}" th:text="${dp.getDinnerPlace()}" th:unless="${dp.getDinnerPlace() == diningForm.getBreakfastPlace()}"></option>
-                                    </th:block>
-                                </select>
-                            </div>
-                        </div>
+                    <div>
+                        <label for="memo">備考</label>
+                        <textarea id="memo" class="materialize-textarea" cols="50" rows="10" name="memo"
+                            th:text="${diningForm.getMemo()}"></textarea>
                     </div>
-                    <!-- 弁当 -->
-                    <div class="col s4">
-                        <div style="padding:10px 10px;" class="col s12 grey lighten-4">弁当</div>
-                        <div class="row">
-                            <div class="col s6">
-                                <label>個数</label>
-                                <select class="lunch_japanese" name="lunchNum">
-                                    <option value=""></option>
-                                    <th:block th:each="i : ${#numbers.sequence(1,14)}">
-                                        <option th:value="${i}" th:text="${i}" selected="selected" th:if="${i == diningForm.getLunchNum()}"></option>
-                                        <option th:value="${i}" th:text="${i}" th:unless="${i == diningForm.getLunchNum()}"></option>
-                                    </th:block>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s6">
-                                <label for="">時間</label>
-                                <select class="breakfast_time" name="lunchTime">
-                                    <option></option>
-                                    <th:block th:each="breakfastLunchTime : ${breakfastLunchTimeEnum}">
-                                        <option th:value="${breakfastLunchTime.getCode()}" th:text="${breakfastLunchTime.getLabel()}" selected="selected" th:if="${breakfastLunchTime.getCode() == diningForm.getLunchTime()}"></option>
-                                        <option th:value="${breakfastLunchTime.getCode()}" th:text="${breakfastLunchTime.getLabel()}" th:unless="${breakfastLunchTime.getCode() == diningForm.getLunchTime()}"></option>
-                                    </th:block>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <label for="memo">備考</label>
-                    <textarea id="memo" class="materialize-textarea" cols="50" rows="10" name="memo" th:text="${diningForm.getMemo()}"></textarea>
-                </div>
-                <div style="margin: 30px 0px;">
-                    <button class="btn-large waves-effect waves-light updatebtn" id="updatebtn" type="submit">
-                        更新
-                    </button>
-                    <th:block th:if="${diningForm.getRoomNo() != null}">
-                        <button class="btn-large red darken-1 deletebtn" style="margin-left: 50px;" id="deletebtn" type="submit">
-                            削除
+                    <div style="margin: 30px 0px;">
+                        <button class="btn-large waves-effect waves-light updatebtn" id="updatebtn" type="submit">
+                            更新
                         </button>
-                    </th:block>                    
-                </div>
-            </form>
-            <!-- 削除用フォーム -->
-            <form th:action="@{/admin/dining/delete}" method="post" id="deleteForm">
-                <input type="hidden" name="delDays" th:value="${diningForm.displayDays}" />
-                <input type="hidden" name="delRoom" th:value="${diningForm.getRoomNo()}" />
-            </form>
-		</div>
-    </div>
+                        <th:block th:if="${diningForm.getRoomNo() != null}">
+                            <button class="btn-large red darken-1 deletebtn" style="margin-left: 50px;" id="deletebtn"
+                                type="submit">
+                                削除
+                            </button>
+                        </th:block>
+                    </div>
+                </form>
+                <!-- 削除用フォーム -->
+                <form th:action="@{/admin/dining/delete}" method="post" id="deleteForm">
+                    <input type="hidden" name="delDays" th:value="${diningForm.displayDays}" />
+                    <input type="hidden" name="delRoom" th:value="${diningForm.getRoomNo()}" />
+                </form>
+            </div>
+        </div>
     </main>
 </body>
+
 </html>

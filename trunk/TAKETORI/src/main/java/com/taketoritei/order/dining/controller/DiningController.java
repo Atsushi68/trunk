@@ -11,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.taketoritei.order.common.Consts;
@@ -45,7 +46,7 @@ public class DiningController extends FrontBaseController {
 	 * @throws ParseException
 	 */
 	@GetMapping("/{locale}/dining")
-	public String dining(@RequestParam(name = "date", required = false) String reserveDate, Locale locale, Model model,
+	public String dining(Locale locale, Model model,
 			UsernamePasswordAuthenticationToken token) throws ParseException {
 
 		User user = (User) token.getPrincipal();
@@ -53,12 +54,15 @@ public class DiningController extends FrontBaseController {
 		// 部屋番号の指定
 		String roomNo = user.getRoomNo();
 
+		// 日付を指定
+		AdminDiningForm diningForm = new AdminDiningForm();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+		String displayDays = diningForm.getDisplayDays();
 
 		// reserveDateがnullの時、現在の日付を取得
-		if (reserveDate == null) {
-			reserveDate = dateFormat.format(new Date());
-		}
+		// if (reserveDate == null) {
+		// reserveDate = dateFormat.format(new Date());
+		// }
 
 		Date displayDate = new Date();
 		String displayDateStr = dateFormat.format(displayDate);
@@ -67,43 +71,47 @@ public class DiningController extends FrontBaseController {
 		String dateTo = DateUtil.getBussinessUserDateYmd(user.getToDt());
 
 		// 日付が範囲内かをチェック
-		if (Integer.parseInt(reserveDate) < Integer.parseInt(dateFrom) //
-				|| Integer.parseInt(reserveDate) > Integer.parseInt(dateTo))
+		if (Integer.parseInt(displayDays) < Integer.parseInt(dateFrom) //
+				|| Integer.parseInt(displayDays) > Integer.parseInt(dateTo))
 			throw new IllegalException("不正なアクセスです。");
 
 		// 日付設定
 		model.addAttribute("reserveDispDate",
-				reserveDate.substring(0, 4) + "/" + reserveDate.substring(4, 6) + "/" + reserveDate.substring(6, 8));
+				displayDays.substring(0, 4) + "/" + displayDays.substring(4, 6) + "/" + displayDays.substring(6, 8));
 
 		model.addAttribute("beforeReserveDate", null);
 
-		if (Integer.parseInt(reserveDate) > Integer.parseInt(dateFrom)) {
+		if (Integer.parseInt(displayDays) > Integer.parseInt(dateFrom)) {
 			// SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-			Date date = dateFormat.parse(reserveDate);
+			Date date = dateFormat.parse(displayDays);
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(date);
 			calendar.add(Calendar.DAY_OF_MONTH, -1);
 			model.addAttribute("beforeReserveDate", dateFormat.format(calendar.getTime()));
 		}
 
-		if (Integer.parseInt(reserveDate) < Integer.parseInt(dateTo) - 1) {
+		if (Integer.parseInt(displayDays) < Integer.parseInt(dateTo) - 1) {
 			// SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-			Date date = dateFormat.parse(reserveDate);
+			Date date = dateFormat.parse(displayDays);
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(date);
 			calendar.add(Calendar.DAY_OF_MONTH, 1);
 			model.addAttribute("afterReserveDate", dateFormat.format(calendar.getTime()));
 		}
 
-		model.addAttribute("reserveDate", reserveDate);
+		model.addAttribute("reserveDate", displayDays);
 
 		// 指定した日付と部屋番号の朝食と夕食のデータを取得
-		DDiningRecord diningRecord = diningService.getUserDining(roomNo, reserveDate);
+
+		// String dateString = new
+		// SimpleDateFormat("yyyy-MM-dd").format(diningForm.getDays());
+
+		DDiningRecord diningRecord = diningService.getUserDining(
+				roomNo, displayDays);
 		model.addAttribute("diningRecord", diningRecord);
 
 		if (diningRecord != null) {
-			AdminDiningForm diningForm = new AdminDiningForm();
-			// diningForm.setDays(displayDate);
+			// diningForm.setDays(diningRecord.getDays());
 			// diningForm.setDisplayDays(displayDateStr);
 			diningForm.setDinnerTime(diningRecord.getDinnerTime());
 			diningForm.setDinnerPlace(diningRecord.getDinnerPlace());
