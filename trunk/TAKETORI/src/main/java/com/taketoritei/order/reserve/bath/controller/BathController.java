@@ -44,10 +44,12 @@ public class BathController extends FrontBaseController {
 
 	/**
 	 * 初期表示
+	 * 
 	 * @throws ParseException
 	 */
 	@GetMapping("/{locale}/bath")
-	public String bath(@RequestParam(name = "date", required = false) String reserveDate, Locale locale, Model model, UsernamePasswordAuthenticationToken token) throws ParseException {
+	public String bath(@RequestParam(name = "date", required = false) String reserveDate, Locale locale, Model model,
+			UsernamePasswordAuthenticationToken token) throws ParseException {
 
 		User user = (User) token.getPrincipal();
 
@@ -60,10 +62,12 @@ public class BathController extends FrontBaseController {
 
 	/**
 	 * 予約キャンセル
+	 * 
 	 * @throws ParseException
 	 */
 	@PostMapping("{locale}/bath/cancel")
-	public String bathCancel(Locale locale, Model model, UsernamePasswordAuthenticationToken token, BathInputForm form, Errors errors) throws ParseException {
+	public String bathCancel(Locale locale, Model model, UsernamePasswordAuthenticationToken token, BathInputForm form,
+			Errors errors) throws ParseException {
 
 		User user = (User) token.getPrincipal();
 		String reserveDate = DateUtil.getBussinessUserDateYmd();
@@ -83,10 +87,12 @@ public class BathController extends FrontBaseController {
 
 	/**
 	 * 予約登録
+	 * 
 	 * @throws ParseException
 	 */
 	@PostMapping("{locale}/bath/regist")
-	public String bathRegist(Locale locale, Model model, UsernamePasswordAuthenticationToken token, BathInputForm form, BindingResult result) throws ParseException {
+	public String bathRegist(Locale locale, Model model, UsernamePasswordAuthenticationToken token, BathInputForm form,
+			BindingResult result) throws ParseException {
 
 		User user = (User) token.getPrincipal();
 
@@ -129,11 +135,14 @@ public class BathController extends FrontBaseController {
 
 	/**
 	 * modelに画面表示値を設定する
+	 * 
 	 * @throws ParseException
 	 */
 	private void setModelValue(Model model, String reserveDate, User user, Locale locale) throws ParseException {
 		// 部屋番号
 		String roomNo = user.getRoomNo();
+
+		model.addAttribute("roomNo", roomNo);
 
 		String dateFrom = new SimpleDateFormat("yyyyMMdd").format(user.getFormDt());
 		String dateTo = DateUtil.getBussinessUserDateYmd(user.getToDt());
@@ -144,7 +153,8 @@ public class BathController extends FrontBaseController {
 			throw new IllegalException("不正なアクセスです。");
 
 		// 日付設定
-		model.addAttribute("reserveDispDate", reserveDate.substring(0, 4) + "/" + reserveDate.substring(4, 6) + "/" + reserveDate.substring(6, 8));
+		model.addAttribute("reserveDispDate",
+				reserveDate.substring(0, 4) + "/" + reserveDate.substring(4, 6) + "/" + reserveDate.substring(6, 8));
 
 		model.addAttribute("beforeReserveDate", null);
 
@@ -152,8 +162,8 @@ public class BathController extends FrontBaseController {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 			Date date = dateFormat.parse(reserveDate);
 			Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            calendar.add(Calendar.DAY_OF_MONTH, -1);
+			calendar.setTime(date);
+			calendar.add(Calendar.DAY_OF_MONTH, -1);
 			model.addAttribute("beforeReserveDate", dateFormat.format(calendar.getTime()));
 		}
 
@@ -163,8 +173,8 @@ public class BathController extends FrontBaseController {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 			Date date = dateFormat.parse(reserveDate);
 			Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            calendar.add(Calendar.DAY_OF_MONTH, 1);
+			calendar.setTime(date);
+			calendar.add(Calendar.DAY_OF_MONTH, 1);
 			model.addAttribute("afterReserveDate", dateFormat.format(calendar.getTime()));
 		}
 
