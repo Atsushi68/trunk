@@ -2,343 +2,400 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-248C37K8Y7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-248C37K8Y7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-248C37K8Y7');
-</script>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="format-detection" content="telephone=no,address=no,email=no">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css">
-<meta name="keywords" content="">
-<meta name="description" content="">
+    gtag('config', 'G-248C37K8Y7');
+  </script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no,address=no,email=no">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
 
-<link rel="stylesheet" href="/css/style.css">
-<script type="text/javascript" src="/js/style.js"></script>
-<link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  <script type="text/javascript" src="/js/style.js"></script>
+  <link rel="shortcut icon" href="/img/favicon.ico">
 
-<link rel="stylesheet" th:href="@{/css/reserve/bath/bath.css}">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" th:href="@{/css/user.css}">
+  <link rel="stylesheet" th:href="@{/css/reserve/bath/bath.css}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/user.css}">
 
-<title th:text=#{bath.1}>貸切風呂のご予約</title>
+  <title th:text=#{bath.1}>貸切風呂のご予約</title>
 </head>
 
 <body>
-<header>
-<th:block th:replace="common/header"></th:block>
-</header>
+  <header>
+    <th:block th:replace="common/header"></th:block>
+  </header>
 
-<main>
-<section>
-<div class="hero_under">
-<img class="tb" src="/img/top_img-bath.jpg" alt="">
-<img class="sp" src="/img/top_img-bath-sp.jpg" alt="">
-    <div class="txt">
-        <h1 th:text="#{bath.1}">貸切風呂のご予約</h1>
-    </div>
-</div><!--hero_under-->
-</section>
+  <main>
+    <section>
+      <div class="hero_under">
+        <img class="tb" src="/img/top_img-bath.jpg" alt="">
+        <img class="sp" src="/img/top_img-bath-sp.jpg" alt="">
+        <div class="txt">
+          <h1 th:text="#{bath.1}">貸切風呂のご予約</h1>
+        </div>
+      </div><!--hero_under-->
+    </section>
 
-<ol class="breadcrumbs_comm">
-    <li class="link_txt"><a th:href="'/' + ${#locale} + '/index.html'">TOP</a></li>
-    <li th:text="#{bath.1}">貸切風呂のご予約</li>
-</ol><!--breadcrumbs_comm-->
+    <ol class="breadcrumbs_comm">
+      <li class="link_txt"><a th:href="'/' + ${#locale} + '/index.html'">TOP</a></li>
+      <li th:text="#{bath.1}">貸切風呂のご予約</li>
+    </ol><!--breadcrumbs_comm-->
 
-<!--/* メッセージエリア */-->
-<div th:replace="common/message_field"></div><br>
+    <!--/* メッセージエリア */-->
+    <div th:replace="common/message_field"></div><br>
 
-<!-- ナビボタン -->
-<div class="link_btn_comm">
-    <a href="#bath_link"   th:text="#{bath.3}">露天風呂のご案内</a>
-    <a href="#bath_link_2" th:text="#{bath.4}">内風呂のご案内</a>
-    <a href="#reservation_link" th:text="#{bath.2}">ご予約</a>
-</div><!--link_btn_comm-->
+    <!-- ナビボタン -->
+    <div class="link_btn_comm">
+      <a href="#bath_link" th:text="#{bath.3}">露天風呂のご案内</a>
+      <a href="#bath_link_2" th:text="#{bath.4}">内風呂のご案内</a>
+      <a href="#reservation_link" th:text="#{bath.2}">ご予約</a>
+    </div><!--link_btn_comm-->
 
-<div class="reservation_2" th:if="${reserve} != null" th:object="${reserve}">
-    <div class="box">
-      <form id="cancel" th:action="@{/__${#locale}__/bath/cancel}" method="post">
-	    <p th:text="#{bath.33}">貸切風呂のご予約状況</p>
-	    <span th:unless="*{overTime}" class="guide" th:text="#{bath.49}">貸切風呂の鍵をお渡ししますので、ご利用の前にフロントまでお越しください。</span>
-        <p><span class="left" th:text="#{bath.34}">貸切風呂</span><span class="right" th:text="*{bathNm}">一の湯</span></p>
-        <p><span class="left" th:text="#{bath.35}">時間帯</span><span class="right" th:text="*{timeNm}">16:00～16:45</span></p>
-	    <div class="link">
-		    <span th:if="*{overTime}" th:text="#{bath.40}">ご利用ありがとうございました</span>
-		    <th:block th:unless="*{overTime}">
-		        <a th:if="*{inTime} == false" id="reserve_cancel" class="arrow" th:text="#{bath.36}">ご予約のキャンセル</a>
-	        </th:block>
-	    </div>
-        <input type="hidden" name="timeCd" id="timeCd" th:value="*{timeCd}">
-        <input type="hidden" name="bathCd" id="bathCd" th:value="*{bathCd}">
-        <input type="hidden" name="reserveDate" id="reserveDate" th:value="${reserveDate}">
-      </form>
-    </div><!--box-->
-</div><!--reservation_2-->
+    <div class="reservation_2" th:if="${reserve} != null" th:object="${reserve}">
+      <div class="box">
+        <form id="cancel" th:action="@{/__${#locale}__/bath/cancel}" method="post">
+          <p th:text="#{bath.33}">貸切風呂のご予約状況</p>
+          <span th:unless="*{overTime}" class="guide" th:text="#{bath.49}">貸切風呂の鍵をお渡ししますので、ご利用の前にフロントまでお越しください。</span>
+          <p><span class="left" th:text="#{bath.34}">貸切風呂</span><span class="right" th:text="*{bathNm}">一の湯</span></p>
+          <p><span class="left" th:text="#{bath.35}">時間帯</span><span class="right"
+              th:text="*{timeNm}">16:00～16:45</span></p>
+          <div class="link">
+            <span th:if="*{overTime}" th:text="#{bath.40}">ご利用ありがとうございました</span>
+            <th:block th:unless="*{overTime}">
+              <a th:if="*{inTime} == false" id="reserve_cancel" class="arrow" th:text="#{bath.36}">ご予約のキャンセル</a>
+            </th:block>
+          </div>
+          <input type="hidden" name="timeCd" id="timeCd" th:value="*{timeCd}">
+          <input type="hidden" name="bathCd" id="bathCd" th:value="*{bathCd}">
+          <input type="hidden" name="reserveDate" id="reserveDate" th:value="${reserveDate}">
+        </form>
+      </div><!--box-->
+    </div><!--reservation_2-->
 
-<section>
-<div id="reservation_link" class="reservation_wrap" name="reservation_link">
-  <div class="title_comm">
-    <h2><th:block th:text="#{bath.1}">貸切風呂のご予約</th:block><br class="sp"><th:block th:text="#{bath.26}">（一の湯～八の湯限定）</th:block></h2>
-  </div><!--title_comm-->
-  <div class="res_link guidance_2">
-    <th:block th:if="${beforeReserveDate} != null" >
-      <a th:href="@{/__${#locale}__/bath?date=} + ${beforeReserveDate} + '#reservation_link'" class="res_link_date">
-      ＜&nbsp;&nbsp;&nbsp;
-      </a>
-    </th:block>
-    <span th:text="${reserveDispDate}"></span>
-    <th:block th:if="${afterReserveDate} != null" >
-      <a th:href="@{/__${#locale}__/bath?date=} + ${afterReserveDate} + '#reservation_link'" class="res_link_date">
-      &nbsp;&nbsp;&nbsp;＞
-      </a>
-    </th:block>
-  </div>
-  <div th:if="${reserve} != null" class="reserve_once res_link">
-      <span th:text="#{bath.47}">WEBからの貸切風呂のご予約は1日1回までとさせていただいています。</span><br>
-      <span th:text="#{bath.48}">追加でのご利用の場合はフロント9番までお問い合わせください。</span>
-  </div>
-  <th:block th:if="${reserve} == null" >
-    <div class="txt res_link">
-      <p>
-	    <th:block th:text="#{bath.27}">「一の湯～八の湯」の貸切露天風呂は、以下表からご予約が可能です。</th:block><br>
-	    <th:block th:text="#{bath.28}">※1=一の湯　2=二の湯　3=三の湯　4=四の湯</th:block>　<th:block th:text="#{bath.50}">5=五の湯　6=六の湯　7=七の湯　8=八の湯</th:block>
-	  </p>
-    </div>
-    <!-- 予約表 -->
-    <table class="res_link">
-       <tr>
-        <th th:text="#{bath.29}">時間帯</th>
-        <th>1</th>
-        <th>2</th>
-        <th>3</th>
-        <th>4</th>
-      </tr>
-      <th:block  th:each="elm, stat : *{list}">
-        <th:block th:if="*{elm.bathType} == '露天風呂'">
-        <tr th:if="*{elm.overTime} == false">
-          <td th:text="${elm.timeNm}">15:00～15:45</td>
-          <th:block     th:if="*{elm.bath1}"><td class="reserve" th:data-reserve_date="${reserveDate}" data-bath="1" th:data-bath_name="${bathNm1}"><a class="btn-sticky">○</a></td></th:block>
-          <th:block th:unless="*{elm.bath1}"><td class="impossible">×</td></th:block>
-          <th:block     th:if="*{elm.bath2}"><td class="reserve" th:data-reserve_date="${reserveDate}" data-bath="2" th:data-bath_name="${bathNm2}"><a class="btn-sticky">○</a></td></th:block>
-          <th:block th:unless="*{elm.bath2}"><td class="impossible">×</td></th:block>
-          <th:block     th:if="*{elm.bath3}"><td class="reserve" th:data-reserve_date="${reserveDate}" data-bath="3" th:data-bath_name="${bathNm3}"><a class="btn-sticky">○</a></td></th:block>
-          <th:block th:unless="*{elm.bath3}"><td class="impossible">×</td></th:block>
-          <th:block     th:if="*{elm.bath4}"><td class="reserve" th:data-reserve_date="${reserveDate}" data-bath="4" th:data-bath_name="${bathNm4}"><a class="btn-sticky">○</a></td></th:block>
-          <th:block th:unless="*{elm.bath4}"><td class="impossible">×</td></th:block>
-          <td class="data_area">
-            <span id="time_cd" th:text="*{elm.timeCd}"></span>
-            <span id="time_nm" th:text="*{elm.timeNm}"></span>
-          </td>
-        </tr>
+    <section>
+      <div id="reservation_link" class="reservation_wrap" name="reservation_link">
+        <div class="roomnum">
+          <span th:text="${roomNo + '号室'}">部屋番号</span>
+        </div>
+        <div class="title_comm">
+          <h2>
+            <th:block th:text="#{bath.1}">貸切風呂のご予約</th:block><br class="sp">
+            <th:block th:text="#{bath.26}">（一の湯～八の湯限定）</th:block>
+          </h2>
+        </div><!--title_comm-->
+        <div class="res_link guidance_2">
+          <th:block th:if="${beforeReserveDate} != null">
+            <a th:href="@{/__${#locale}__/bath?date=} + ${beforeReserveDate} + '#reservation_link'"
+              class="res_link_date">
+              ＜&nbsp;&nbsp;&nbsp;
+            </a>
+          </th:block>
+          <span th:text="${reserveDispDate}"></span>
+          <th:block th:if="${afterReserveDate} != null">
+            <a th:href="@{/__${#locale}__/bath?date=} + ${afterReserveDate} + '#reservation_link'"
+              class="res_link_date">
+              &nbsp;&nbsp;&nbsp;＞
+            </a>
+          </th:block>
+        </div>
+        <div th:if="${reserve} != null" class="reserve_once res_link">
+          <span th:text="#{bath.47}">WEBからの貸切風呂のご予約は1日1回までとさせていただいています。</span><br>
+          <span th:text="#{bath.48}">追加でのご利用の場合はフロント9番までお問い合わせください。</span>
+        </div>
+        <th:block th:if="${reserve} == null">
+          <div class="txt res_link">
+            <p>
+              <th:block th:text="#{bath.27}">「一の湯～八の湯」の貸切露天風呂は、以下表からご予約が可能です。</th:block><br>
+              <th:block th:text="#{bath.28}">※1=一の湯　2=二の湯　3=三の湯　4=四の湯</th:block>　<th:block th:text="#{bath.50}">
+                5=五の湯　6=六の湯　7=七の湯　8=八の湯</th:block>
+            </p>
+          </div>
+          <!-- 予約表 -->
+          <table class="res_link">
+            <tr>
+              <th th:text="#{bath.29}">時間帯</th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+            </tr>
+            <th:block th:each="elm, stat : *{list}">
+              <th:block th:if="*{elm.bathType} == '露天風呂'">
+                <tr th:if="*{elm.overTime} == false">
+                  <td th:text="${elm.timeNm}">15:00～15:45</td>
+                  <th:block th:if="*{elm.bath1}">
+                    <td class="reserve" th:data-reserve_date="${reserveDate}" data-bath="1"
+                      th:data-bath_name="${bathNm1}"><a class="btn-sticky">○</a></td>
+                  </th:block>
+                  <th:block th:unless="*{elm.bath1}">
+                    <td class="impossible">×</td>
+                  </th:block>
+                  <th:block th:if="*{elm.bath2}">
+                    <td class="reserve" th:data-reserve_date="${reserveDate}" data-bath="2"
+                      th:data-bath_name="${bathNm2}"><a class="btn-sticky">○</a></td>
+                  </th:block>
+                  <th:block th:unless="*{elm.bath2}">
+                    <td class="impossible">×</td>
+                  </th:block>
+                  <th:block th:if="*{elm.bath3}">
+                    <td class="reserve" th:data-reserve_date="${reserveDate}" data-bath="3"
+                      th:data-bath_name="${bathNm3}"><a class="btn-sticky">○</a></td>
+                  </th:block>
+                  <th:block th:unless="*{elm.bath3}">
+                    <td class="impossible">×</td>
+                  </th:block>
+                  <th:block th:if="*{elm.bath4}">
+                    <td class="reserve" th:data-reserve_date="${reserveDate}" data-bath="4"
+                      th:data-bath_name="${bathNm4}"><a class="btn-sticky">○</a></td>
+                  </th:block>
+                  <th:block th:unless="*{elm.bath4}">
+                    <td class="impossible">×</td>
+                  </th:block>
+                  <td class="data_area">
+                    <span id="time_cd" th:text="*{elm.timeCd}"></span>
+                    <span id="time_nm" th:text="*{elm.timeNm}"></span>
+                  </td>
+                </tr>
+              </th:block>
+            </th:block>
+          </table>
+          <br />
+          <br />
+          <table class="res_link">
+            <tr>
+              <th th:text="#{bath.29}">時間帯</th>
+              <th>5</th>
+              <th>6</th>
+              <th>7</th>
+              <th>8</th>
+            </tr>
+            <th:block th:each="elm, stat : *{list}">
+              <th:block th:if="*{elm.bathType} == '家族風呂'">
+                <tr th:if="*{elm.overTime} == false">
+                  <td th:text="${elm.timeNm}">15:00～15:45</td>
+                  <th:block th:if="*{elm.bath5}">
+                    <td class="reserve" th:data-reserve_date="${reserveDate}" data-bath="5"
+                      th:data-bath_name="${bathNm5}"><a class="btn-sticky">○</a></td>
+                  </th:block>
+                  <th:block th:unless="*{elm.bath5}">
+                    <td class="impossible">×</td>
+                  </th:block>
+                  <th:block th:if="*{elm.bath6}">
+                    <td class="reserve" th:data-reserve_date="${reserveDate}" data-bath="6"
+                      th:data-bath_name="${bathNm6}"><a class="btn-sticky">○</a></td>
+                  </th:block>
+                  <th:block th:unless="*{elm.bath6}">
+                    <td class="impossible">×</td>
+                  </th:block>
+                  <th:block th:if="*{elm.bath7}">
+                    <td class="reserve" th:data-reserve_date="${reserveDate}" data-bath="7"
+                      th:data-bath_name="${bathNm7}"><a class="btn-sticky">○</a></td>
+                  </th:block>
+                  <th:block th:unless="*{elm.bath7}">
+                    <td class="impossible">×</td>
+                  </th:block>
+                  <th:block th:if="*{elm.bath8}">
+                    <td class="reserve" th:data-reserve_date="${reserveDate}" data-bath="8"
+                      th:data-bath_name="${bathNm8}"><a class="btn-sticky">○</a></td>
+                  </th:block>
+                  <th:block th:unless="*{elm.bath8}">
+                    <td class="impossible">×</td>
+                  </th:block>
+                  <td class="data_area">
+                    <span id="time_cd" th:text="*{elm.timeCd}"></span>
+                    <span id="time_nm" th:text="*{elm.timeNm}"></span>
+                  </td>
+                </tr>
+              </th:block>
+            </th:block>
+          </table>
         </th:block>
-      </th:block>
-    </table>
-    <br/>
-    <br/>
-    <table class="res_link">
-       <tr>
-        <th th:text="#{bath.29}">時間帯</th>
-        <th>5</th>
-        <th>6</th>
-        <th>7</th>
-        <th>8</th>
-      </tr>
-      <th:block  th:each="elm, stat : *{list}">
-        <th:block th:if="*{elm.bathType} == '家族風呂'">
-        <tr th:if="*{elm.overTime} == false">
-          <td th:text="${elm.timeNm}">15:00～15:45</td>
-          <th:block     th:if="*{elm.bath5}"><td class="reserve" th:data-reserve_date="${reserveDate}" data-bath="5" th:data-bath_name="${bathNm5}"><a class="btn-sticky">○</a></td></th:block>
-          <th:block th:unless="*{elm.bath5}"><td class="impossible">×</td></th:block>
-          <th:block     th:if="*{elm.bath6}"><td class="reserve" th:data-reserve_date="${reserveDate}" data-bath="6" th:data-bath_name="${bathNm6}"><a class="btn-sticky">○</a></td></th:block>
-          <th:block th:unless="*{elm.bath6}"><td class="impossible">×</td></th:block>
-          <th:block     th:if="*{elm.bath7}"><td class="reserve" th:data-reserve_date="${reserveDate}" data-bath="7" th:data-bath_name="${bathNm7}"><a class="btn-sticky">○</a></td></th:block>
-          <th:block th:unless="*{elm.bath7}"><td class="impossible">×</td></th:block>
-          <th:block     th:if="*{elm.bath8}"><td class="reserve" th:data-reserve_date="${reserveDate}" data-bath="8" th:data-bath_name="${bathNm8}"><a class="btn-sticky">○</a></td></th:block>
-          <th:block th:unless="*{elm.bath8}"><td class="impossible">×</td></th:block>
-          <td class="data_area">
-            <span id="time_cd" th:text="*{elm.timeCd}"></span>
-            <span id="time_nm" th:text="*{elm.timeNm}"></span>
-          </td>
-        </tr>
-        </th:block>
-      </th:block>
-    </table>
-  </th:block>
-</div><!--reservation_wrap-->
-</section>
+      </div><!--reservation_wrap-->
+    </section>
 
-<section>
-<div id="bath_link" class="bath_wrap">
-	<div class="title_comm">
-    <h2 th:text="#{bath.3}">露天風呂のご案内</h2>
-    </div><!--title_comm-->
-    <div class="txt">
-    <p th:text="#{bath.5}">「一の湯～四の湯」の貸切露天風呂は予約制です。本サイトからご予約が可能です。</p>
-    </div><!--txt-->
-    <!-- 一の湯～四の湯 -->
-    <div class="box">
-        <div class="item">
+    <section>
+      <div id="bath_link" class="bath_wrap">
+        <div class="title_comm">
+          <h2 th:text="#{bath.3}">露天風呂のご案内</h2>
+        </div><!--title_comm-->
+        <div class="txt">
+          <p th:text="#{bath.5}">「一の湯～四の湯」の貸切露天風呂は予約制です。本サイトからご予約が可能です。</p>
+        </div><!--txt-->
+        <!-- 一の湯～四の湯 -->
+        <div class="box">
+          <div class="item">
             <h2 th:text="#{bath.6}">一の湯(金泉・銀泉)</h2>
             <div class="item_box">
-	            <div class="pic">
+              <div class="pic">
                 <img src="/img/bath_one.jpg" alt="">
-                </div>
-	            <p th:text="#{bath.7}">大きな銀泉湯船と丸型金泉湯船を備えております。積み上げた岩の野趣と里山をお楽しみください。</p>
+              </div>
+              <p th:text="#{bath.7}">大きな銀泉湯船と丸型金泉湯船を備えております。積み上げた岩の野趣と里山をお楽しみください。</p>
             </div><!--item_box-->
-        </div><!--item-->
-        <div class="item">
+          </div><!--item-->
+          <div class="item">
             <h2 th:text="#{bath.8}">二の湯(金泉・銀泉)</h2>
             <div class="item_box">
-	            <div class="pic">
-	            <img src="/img/bath_two.jpg" alt="">
-                </div>
-    	        <p th:text="#{bath.9}">苔の庭園を配し、大きな銀泉湯船と四角の金泉湯船が特徴です。</p>
+              <div class="pic">
+                <img src="/img/bath_two.jpg" alt="">
+              </div>
+              <p th:text="#{bath.9}">苔の庭園を配し、大きな銀泉湯船と四角の金泉湯船が特徴です。</p>
             </div><!--item_box-->
-        </div><!--item-->
-        <div class="item">
+          </div><!--item-->
+          <div class="item">
             <h2 th:text="#{bath.10}">三の湯(金泉・銀泉)</h2>
             <div class="item_box">
-	            <div class="pic">
-	            <img src="/img/bath_three.jpg" alt="">
-                </div>
-    	        <p th:text="#{bath.11}">四角い銀泉と、同じく四角い金泉湯船は2～3名様向けのお風呂です。</p>
+              <div class="pic">
+                <img src="/img/bath_three.jpg" alt="">
+              </div>
+              <p th:text="#{bath.11}">四角い銀泉と、同じく四角い金泉湯船は2～3名様向けのお風呂です。</p>
             </div><!--item_box-->
-        </div><!--item-->
-        <div class="item">
+          </div><!--item-->
+          <div class="item">
             <h2 th:text="#{bath.12}">四の湯(金泉)</h2>
             <div class="item_box">
-	            <div class="pic">
-	            <img src="/img/bath_four.jpg" alt="">
-                </div>
-	            <p th:text="#{bath.13}">丸い金泉湯船と銀泉湯船を準備しております。裏山の緑がすぐ近くの森林浴効果も抜群です。</p>
+              <div class="pic">
+                <img src="/img/bath_four.jpg" alt="">
+              </div>
+              <p th:text="#{bath.13}">丸い金泉湯船と銀泉湯船を準備しております。裏山の緑がすぐ近くの森林浴効果も抜群です。</p>
             </div><!--item_box-->
-        </div><!--item-->
-    </div><!--box-->
-    <!-- ナビボタン -->
-	<div class="link_btn_comm_bth_tb">
-    <a href="#reservation_link" th:text="#{bath.2}">ご予約</a>
-    </div><!--link_btn_comm_bth_tb-->
-    <!-- 五の湯～八の湯 -->
-    <div id="bath_link_2"></div>
-	<div class="title_comm">
-    <h2 th:text="#{bath.4}">内風呂のご案内</h2>
-    </div><!--title_comm-->
-    <div class="txt">
-    <p th:text="#{bath.14}">「五の湯～八の湯」の貸切内風呂をご予約の際はフロント9番までお問い合わせください。</p>
-    </div><!--txt-->
-    <div class="box">
-        <div class="item">
+          </div><!--item-->
+        </div><!--box-->
+        <!-- ナビボタン -->
+        <div class="link_btn_comm_bth_tb">
+          <a href="#reservation_link" th:text="#{bath.2}">ご予約</a>
+        </div><!--link_btn_comm_bth_tb-->
+        <!-- 五の湯～八の湯 -->
+        <div id="bath_link_2"></div>
+        <div class="title_comm">
+          <h2 th:text="#{bath.4}">内風呂のご案内</h2>
+        </div><!--title_comm-->
+        <div class="txt">
+          <p th:text="#{bath.14}">「五の湯～八の湯」の貸切内風呂をご予約の際はフロント9番までお問い合わせください。</p>
+        </div><!--txt-->
+        <div class="box">
+          <div class="item">
             <h2 th:text="#{bath.15}">五の湯(銀泉)</h2>
             <div class="item_box">
-	            <div class="pic">
+              <div class="pic">
                 <img src="/img/bath_five.jpg">
-                </div>
-                <p th:text="#{bath.16}">八角形の形が特徴の銀泉の貸切風呂です。</p>
+              </div>
+              <p th:text="#{bath.16}">八角形の形が特徴の銀泉の貸切風呂です。</p>
             </div><!--item_box-->
-        </div><!--item-->
-        <div class="item">
+          </div><!--item-->
+          <div class="item">
             <h2 th:text="#{bath.17}">六の湯(金泉・銀泉)</h2>
             <div class="item_box">
-	            <div class="pic">
+              <div class="pic">
                 <img src="/img/bath_six.jpg">
-                </div>
-	            <p th:text="#{bath.18}">四角い金泉と銀泉の湯船を備えております。</p>
+              </div>
+              <p th:text="#{bath.18}">四角い金泉と銀泉の湯船を備えております。</p>
             </div><!--item_box-->
-        </div><!--item-->
-        <div class="item">
+          </div><!--item-->
+          <div class="item">
             <h2 th:text="#{bath.19}">七の湯(金泉・銀泉)</h2>
             <div class="item_box">
-	            <div class="pic">
+              <div class="pic">
                 <img src="/img/bath_seven.jpg">
-                </div>
-	            <p th:text="#{bath.20}">金泉と銀泉の湯船を備えております。</p>
+              </div>
+              <p th:text="#{bath.20}">金泉と銀泉の湯船を備えております。</p>
             </div><!--item_box-->
-        </div><!--item-->
-        <div class="item">
+          </div><!--item-->
+          <div class="item">
             <h2 th:text="#{bath.21}">八の湯(金泉)</h2>
             <div class="item_box">
-	            <div class="pic">
+              <div class="pic">
                 <img src="/img/bath_eight.jpg">
-                </div>
-	            <p th:text="#{bath.22}">四角い湯舟の金泉をご満悦ください。</p>
+              </div>
+              <p th:text="#{bath.22}">四角い湯舟の金泉をご満悦ください。</p>
             </div><!--item_box-->
-        </div><!--item-->
-    </div><!--box-->
-    <!-- 内線案内 -->
-    <div class="guidance_2">
-        <p><th:block th:text="#{bath.23}">ご質問ご用命等あれば遠慮なくフロントまでお申し付けください。</th:block></p>
-        <p><img class="eg_icon" src="/img/eg_icon.svg"><th:block th:text="#{bath.25}">内線番号：9</th:block></p>
-    </div><!--guidance_2-->
-</div><!--bath_wrap-->
-</section>
+          </div><!--item-->
+        </div><!--box-->
+        <!-- 内線案内 -->
+        <div class="guidance_2">
+          <p>
+            <th:block th:text="#{bath.23}">ご質問ご用命等あれば遠慮なくフロントまでお申し付けください。</th:block>
+          </p>
+          <p><img class="eg_icon" src="/img/eg_icon.svg">
+            <th:block th:text="#{bath.25}">内線番号：9</th:block>
+          </p>
+        </div><!--guidance_2-->
+      </div><!--bath_wrap-->
+    </section>
 
 
 
-<div id="modal_wrap">
-    <div id="modal_item">
-      <form id="regist" th:object="${form}" th:action="@{/__${#locale}__/bath/regist}" method="post">
-    	<div class="txt">
-            <p class="reserve_left"><span th:text="#{bath.30}" class="left">ご希望の貸切風呂</span><span class="right" id="modal_lbl_bath">一の湯</span></p>
-            <p class="reserve_left"><span th:text="#{bath.31}" class="left">ご希望の時間帯</span>  <span class="right" id="modal_lbl_time">16:00～16:45</span></p>
-        </div>
-        <div class="link">
+    <div id="modal_wrap">
+      <div id="modal_item">
+        <form id="regist" th:object="${form}" th:action="@{/__${#locale}__/bath/regist}" method="post">
+          <div class="txt">
+            <p class="reserve_left"><span th:text="#{bath.30}" class="left">ご希望の貸切風呂</span><span class="right"
+                id="modal_lbl_bath">一の湯</span></p>
+            <p class="reserve_left"><span th:text="#{bath.31}" class="left">ご希望の時間帯</span> <span class="right"
+                id="modal_lbl_time">16:00～16:45</span></p>
+          </div>
+          <div class="link">
             <a class="arrow" id="confirm" th:text="#{bath.32}">確定する</a>
-        </div>
-        <input type="hidden" name="reserveDate" id="reserveDate">
-        <input type="hidden" name="timeCd" id="timeCd">
-        <input type="hidden" name="bathCd" id="bathCd">
-      </form>
-	</div>
-</div><!--modal_wrap-->
-</main>
+          </div>
+          <input type="hidden" name="reserveDate" id="reserveDate">
+          <input type="hidden" name="timeCd" id="timeCd">
+          <input type="hidden" name="bathCd" id="bathCd">
+        </form>
+      </div>
+    </div><!--modal_wrap-->
+  </main>
 
-<footer>
-</footer>
+  <footer>
+  </footer>
 
-<!-- pagetop -->
-<div id="scroll">
+  <!-- pagetop -->
+  <div id="scroll">
     <a href="#" class="scroll"><img src="/img/page_top.svg"><span class="tb" th:text="#{top.13}">上へ</span></a>
-</div>
+  </div>
 
-<script>
-$(function() {
-	$('.reserve').click(function(){
-      var timeCd = $(this).parents('tr').find('#time_cd').text(),
+  <script>
+    $(function () {
+      $('.reserve').click(function () {
+        var timeCd = $(this).parents('tr').find('#time_cd').text(),
           timeNm = $(this).parents('tr').find('#time_nm').text(),
           reserveDate = $(this).data('reserve_date'),
           bathCd = $(this).data('bath'),
           bathNm = $(this).data('bath_name');
-      $('#regist').children('#reserveDate').val(reserveDate);
-      $('#regist').children('#timeCd').val(timeCd);
-      $('#modal_lbl_time').text(timeNm);
-      $('#regist').children('#bathCd').val(bathCd);
-      $('#modal_lbl_bath').text(bathNm);
-	  $('#modal_wrap, #modal_item').fadeTo(200,1);
-	});
-	$('#modal_wrap').click(function(){
-	  $('#modal_wrap, #modal_item').fadeTo(200,0).hide();
-	});
-	$('#reserve_cancel').click(function(){
-      // 確認ダイアログを出す
-      var alertCancelMsg = $("#alert_cancel").val();
-      if(confirm(alertCancelMsg)) {
-        $('#cancel').submit();
-      } else {
-        return false;
-      }      
-	});
-	$('#confirm').click(function(){
-      $('#regist').submit();
-	});
-});
-</script>
-<input type="hidden" id="alert_cancel" th:value="#{alert.cancel}" />
+        $('#regist').children('#reserveDate').val(reserveDate);
+        $('#regist').children('#timeCd').val(timeCd);
+        $('#modal_lbl_time').text(timeNm);
+        $('#regist').children('#bathCd').val(bathCd);
+        $('#modal_lbl_bath').text(bathNm);
+        $('#modal_wrap, #modal_item').fadeTo(200, 1);
+      });
+      $('#modal_wrap').click(function () {
+        $('#modal_wrap, #modal_item').fadeTo(200, 0).hide();
+      });
+      $('#reserve_cancel').click(function () {
+        // 確認ダイアログを出す
+        var alertCancelMsg = $("#alert_cancel").val();
+        if (confirm(alertCancelMsg)) {
+          $('#cancel').submit();
+        } else {
+          return false;
+        }
+      });
+      $('#confirm').click(function () {
+        $('#regist').submit();
+      });
+    });
+  </script>
+  <input type="hidden" id="alert_cancel" th:value="#{alert.cancel}" />
 </body>
+
 </html>
