@@ -53,7 +53,7 @@ public class AdminDiningController extends AdminBaseController {
 
 	/**
 	 * 朝食・夕食登録画面
-	 * 
+	 *
 	 * @throws ParseException
 	 */
 	@GetMapping("/admin/dining/regist")
@@ -86,7 +86,7 @@ public class AdminDiningController extends AdminBaseController {
 
 	/**
 	 * 朝食・夕食編集画面
-	 * 
+	 *
 	 * @throws ParseException
 	 */
 	@GetMapping("/admin/dining/edit")
@@ -151,7 +151,7 @@ public class AdminDiningController extends AdminBaseController {
 
 	/**
 	 * 朝食・夕食の登録処理
-	 * 
+	 *
 	 * @throws ParseException
 	 */
 	@PostMapping("/admin/dining")
@@ -212,7 +212,7 @@ public class AdminDiningController extends AdminBaseController {
 
 	/**
 	 * 朝食・夕食の削除
-	 * 
+	 *
 	 * @throws ParseException
 	 */
 	@PostMapping("/admin/dining/delete")
@@ -237,7 +237,7 @@ public class AdminDiningController extends AdminBaseController {
 
 	/**
 	 * 朝食・夕食の一覧画面(時間別)
-	 * 
+	 *
 	 * @throws ParseException
 	 */
 	@GetMapping("/admin/dining/time")
@@ -415,7 +415,7 @@ public class AdminDiningController extends AdminBaseController {
 
 	/**
 	 * 朝食・夕食の一覧画面(場所別)
-	 * 
+	 *
 	 * @throws ParseException
 	 */
 	@GetMapping("/admin/dining/place")
@@ -529,7 +529,7 @@ public class AdminDiningController extends AdminBaseController {
 
 	/**
 	 * 朝食・夕食の伝言事項初期表示
-	 * 
+	 *
 	 * @throws ParseException
 	 */
 	@GetMapping("/admin/dining/message")
@@ -567,7 +567,7 @@ public class AdminDiningController extends AdminBaseController {
 
 	/**
 	 * 朝食・夕食の伝言事項登録画面
-	 * 
+	 *
 	 * @throws ParseException
 	 */
 	@GetMapping("/admin/dining/message/edit")
@@ -583,7 +583,7 @@ public class AdminDiningController extends AdminBaseController {
 		if (StringUtils.isEmpty(displayDateStr) || StringUtils.isEmpty(place)) {
 			// エラー
 		}
-			
+
 		int placeId = Integer.parseInt(place);
 		Date displayDate = dateFormat.parse(displayDateStr);
 
@@ -618,7 +618,7 @@ public class AdminDiningController extends AdminBaseController {
 
 	/**
 	 * 朝食・夕食の伝言事項登録処理
-	 * 
+	 *
 	 * @throws ParseException
 	 */
 	@PostMapping("/admin/dining/message/regist")
@@ -628,7 +628,7 @@ public class AdminDiningController extends AdminBaseController {
 		@ModelAttribute("adminDiningMessageForm") @Validated AdminDiningMessageForm adminDiningMessageForm,
 		BindingResult result,
 		RedirectAttributes redirectAttributes) throws ParseException {
-		
+
 		// 表示する日付 デフォルトは今日のビジネス日付（昼12時に切り替え）
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String displayDateStr = adminDiningMessageForm.getDisplayDays();
