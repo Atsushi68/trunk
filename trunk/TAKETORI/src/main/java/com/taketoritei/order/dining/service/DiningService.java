@@ -249,10 +249,8 @@ public class DiningService extends BaseService {
         // java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
 
         // Strng型からLocalDate型に変換
-        // LocalDate todayStr = LocalDate.parse(displayDays,
-        // DateTimeFormatter.ofPattern("yyyyMMdd"));
-
-        java.sql.Date sqlDate = java.sql.Date.valueOf(displayDays);
+        LocalDate todayStr = LocalDate.parse(displayDays, DateTimeFormatter.ofPattern("yyyyMMdd"));
+        java.sql.Date sqlDate = java.sql.Date.valueOf(todayStr);
 
         // SQLクエリで食事データを取得
         return jooq.selectFrom(D_DINING)

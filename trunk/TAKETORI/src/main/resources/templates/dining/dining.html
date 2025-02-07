@@ -83,8 +83,8 @@
           </h2>
         </div><!--title_comm-->
 
-        <div th:if="${diningForm == null}" class="dining-layout-null">
-          <p>料理のご予約は受付、または電話で承ります。</p>
+        <div th:if="${diningForm == null}" class="dining-layout-null" style="height: 300px;">
+          <p style="font-size: 1.5rem;">料理のご予約は受付、または電話で承ります。</p>
         </div>
 
         <div th:if="${diningForm != null}" th:object="${diningForm}" class="dining-layout">
@@ -97,6 +97,12 @@
 
               <dt>お部屋</dt>
               <dd th:text="*{dinnerPlace}">牡丹</dd>
+            </dl>
+            <dl>
+                <dt>人数</dt>
+                <dd>
+                  <span th:text="*{customerNum}">1</span><span>人</span>
+                </dd>
             </dl>
           </div>
 

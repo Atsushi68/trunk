@@ -4,18 +4,24 @@
 package com.taketoritei.order.jooq.tables;
 
 
+import com.taketoritei.order.jooq.Indexes;
+import com.taketoritei.order.jooq.Keys;
 import com.taketoritei.order.jooq.Taketori;
 import com.taketoritei.order.jooq.tables.records.DDiningMessageRecord;
 
 import java.sql.Date;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.Generated;
 
 import org.jooq.Field;
+import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
+import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.TableImpl;
 
@@ -33,7 +39,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DDiningMessage extends TableImpl<DDiningMessageRecord> {
 
-    private static final long serialVersionUID = -470076987;
+    private static final long serialVersionUID = 2025419407;
 
     /**
      * The reference instance of <code>taketori.d_dining_message</code>
@@ -51,12 +57,12 @@ public class DDiningMessage extends TableImpl<DDiningMessageRecord> {
     /**
      * The column <code>taketori.d_dining_message.days</code>.
      */
-    public final TableField<DDiningMessageRecord, Date> DAYS = createField("days", org.jooq.impl.SQLDataType.DATE, this, "");
+    public final TableField<DDiningMessageRecord, Date> DAYS = createField("days", org.jooq.impl.SQLDataType.DATE.nullable(false), this, "");
 
     /**
      * The column <code>taketori.d_dining_message.dining_place_id</code>.
      */
-    public final TableField<DDiningMessageRecord, Integer> DINING_PLACE_ID = createField("dining_place_id", org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<DDiningMessageRecord, Integer> DINING_PLACE_ID = createField("dining_place_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>taketori.d_dining_message.message</code>.
@@ -98,6 +104,30 @@ public class DDiningMessage extends TableImpl<DDiningMessageRecord> {
     @Override
     public Schema getSchema() {
         return Taketori.TAKETORI;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Index> getIndexes() {
+        return Arrays.<Index>asList(Indexes.D_DINING_MESSAGE_PKEY);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UniqueKey<DDiningMessageRecord> getPrimaryKey() {
+        return Keys.D_DINING_MESSAGE_PKEY;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<UniqueKey<DDiningMessageRecord>> getKeys() {
+        return Arrays.<UniqueKey<DDiningMessageRecord>>asList(Keys.D_DINING_MESSAGE_PKEY);
     }
 
     /**

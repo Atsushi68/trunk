@@ -7,6 +7,7 @@ package com.taketoritei.order.jooq;
 import com.taketoritei.order.jooq.tables.DCart;
 import com.taketoritei.order.jooq.tables.DCartLang;
 import com.taketoritei.order.jooq.tables.DDining;
+import com.taketoritei.order.jooq.tables.DDiningMessage;
 import com.taketoritei.order.jooq.tables.DOrder;
 import com.taketoritei.order.jooq.tables.DOrderLang;
 import com.taketoritei.order.jooq.tables.MAdmin;
@@ -42,6 +43,7 @@ public class Indexes {
     public static final Index D_CART_LANG_PKEY = Indexes0.D_CART_LANG_PKEY;
     public static final Index D_DINING_DAYS_ROOM_NO_KEY = Indexes0.D_DINING_DAYS_ROOM_NO_KEY;
     public static final Index D_DINING_PKEY = Indexes0.D_DINING_PKEY;
+    public static final Index D_DINING_MESSAGE_PKEY = Indexes0.D_DINING_MESSAGE_PKEY;
     public static final Index D_ORDER_PKEY = Indexes0.D_ORDER_PKEY;
     public static final Index D_ORDER_LANG_PKEY = Indexes0.D_ORDER_LANG_PKEY;
     public static final Index M_ADMIN_PKEY = Indexes0.M_ADMIN_PKEY;
@@ -58,6 +60,7 @@ public class Indexes {
         public static Index D_CART_LANG_PKEY = Internal.createIndex("d_cart_lang_pkey", DCartLang.D_CART_LANG, new OrderField[] { DCartLang.D_CART_LANG.CART_ID, DCartLang.D_CART_LANG.LANGUAGE }, true);
         public static Index D_DINING_DAYS_ROOM_NO_KEY = Internal.createIndex("d_dining_days_room_no_key", DDining.D_DINING, new OrderField[] { DDining.D_DINING.DAYS, DDining.D_DINING.ROOM_NO }, true);
         public static Index D_DINING_PKEY = Internal.createIndex("d_dining_pkey", DDining.D_DINING, new OrderField[] { DDining.D_DINING.ID }, true);
+        public static Index D_DINING_MESSAGE_PKEY = Internal.createIndex("d_dining_message_pkey", DDiningMessage.D_DINING_MESSAGE, new OrderField[] { DDiningMessage.D_DINING_MESSAGE.DAYS, DDiningMessage.D_DINING_MESSAGE.DINING_PLACE_ID }, true);
         public static Index D_ORDER_PKEY = Internal.createIndex("d_order_pkey", DOrder.D_ORDER, new OrderField[] { DOrder.D_ORDER.ORDER_ID }, true);
         public static Index D_ORDER_LANG_PKEY = Internal.createIndex("d_order_lang_pkey", DOrderLang.D_ORDER_LANG, new OrderField[] { DOrderLang.D_ORDER_LANG.ORDER_ID, DOrderLang.D_ORDER_LANG.LANGUAGE }, true);
         public static Index M_ADMIN_PKEY = Internal.createIndex("m_admin_pkey", MAdmin.M_ADMIN, new OrderField[] { MAdmin.M_ADMIN.ADMIN_ID }, true);
